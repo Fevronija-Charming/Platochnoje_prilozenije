@@ -5,8 +5,9 @@ from fastapi import HTTPException
 from fastapi import Depends
 from typing import Annotated
 import uvicorn
-from faststream.rabbit.fastapi import RabbitBroker, RabbitRouter
-router=RabbitRouter(host="localhost", port=5672)
+#заяц погашен
+#from faststream.rabbit.fastapi import RabbitBroker, RabbitRouter
+#router=RabbitRouter(host="localhost", port=5672)
 app = FastAPI()
 from pydantic import BaseModel, Field, ValidationError
 from dotenv import find_dotenv, load_dotenv
@@ -137,7 +138,7 @@ class Banda_Schema(BaseModel):
     Ссылка_На_Яндекс_Дзен: str = Field(min_length=5, max_length=75)
     Ссылка_На_Сайт: str = Field(min_length=5, max_length=75)
     Адрес_Деятельности: str = Field(min_length=5, max_length=75)
-@router.post("/symboly", summary="Platok",tags=["Symboli"])
+@app.post("/symboly", summary="Platok",tags=["Symboli"])
 async def create_tradicii(symbol: Annotated[Symbol_Schema, Depends()]):
     try:
         symbol_eksemp = Symboly(id=symbol.id,Название_Символа=symbol.Название_Символа,
@@ -152,18 +153,20 @@ async def create_tradicii(symbol: Annotated[Symbol_Schema, Depends()]):
         session.add(symbol_eksemp)
         await session.commit()
         await session.close()
-        try:
-            await router.broker.publish(message=f"{symbol}", queue="PLATOKY")
-            return symbol
-        except:
-            raise HTTPException(status_code=500, detail="Проблема с брокером")
+        return symbol
+        #заяц_погашен
+        #try:
+        #await router.broker.publish(message=f"{symbol}", queue="PLATOKY")
+        #return symbol
+        #except:
+        #raise HTTPException(status_code=500, detail="Проблема с брокером")
     except:
         raise HTTPException(status_code=500, detail="Проблема с базой данных")
 
 @app.get("/platok2", summary="Platok",tags=["Platok"])
 def root():
     return {"message": "Hello World"}
-@router.post("/platoky_dict2", summary="Platok",tags=["Platok"])
+@app.post("/platoky_dict2", summary="Platok",tags=["Platok"])
 async def create_platok_dict(id: int,avtor_platka: str,nazvanije_platka: str,kolorit_1: str,kolorit_2: str,kolorit_3: str,
     kolorit_4: str, kolorit_5: str, uzor_temeni: str, uzor_serdceviny: str, uzor_storon: str,uzor_uglov: str,
     uzor_kraja: str, cvety_ornament: str, izobrazheniy_cvetok_1: str, izobrazheniy_cvetok_2: str, izobrazheniy_cvetok_3: str,
@@ -241,31 +244,32 @@ async def create_platok_dict(id: int,avtor_platka: str,nazvanije_platka: str,kol
         await session.commit()
     except:
         raise HTTPException(status_code=500, detail="Проблема с базой данных")
-    try:
-        await router.broker.publish(message=f"{platok_kontroll.nazvanije_platka}{"; ;"}{platok_kontroll.avtor_platka}{"; ;"}{platok_kontroll.kolorit_1}{"; ;"}{platok_kontroll.kolorit_2}", queue="PLATOKY")
-        await router.broker.publish(message=f"{platok_kontroll.avtor_platka}", queue="PLATOKY")
-        await router.broker.publish(message=f"{platok_kontroll.kolorit_1}", queue="PLATOKY")
-        await router.broker.publish(message=f"{platok_kontroll.kolorit_2}", queue="PLATOKY")
-        await router.broker.publish(message=f"{platok_kontroll.kolorit_3}", queue="PLATOKY")
-        await router.broker.publish(message=f"{platok_kontroll.kolorit_4}", queue="PLATOKY")
-        await router.broker.publish(message=f"{platok_kontroll.kolorit_5}", queue="PLATOKY")
-        await router.broker.publish(message=f"{platok_kontroll.uzor_temeni}", queue="PLATOKY")
-        await router.broker.publish(message=f"{platok_kontroll.uzor_serdceviny}", queue="PLATOKY")
-        await router.broker.publish(message=f"{platok_kontroll.uzor_storon}", queue="PLATOKY")
-        await router.broker.publish(message=f"{platok_kontroll.uzor_kraja}", queue="PLATOKY")
-        await router.broker.publish(message=f"{platok_kontroll.uzor_uglov}", queue="PLATOKY")
-        await router.broker.publish(message=f"{platok_kontroll.cvety_ornament}", queue="PLATOKY")
-        await router.broker.publish(message=f"{platok_kontroll.izobrazheniy_cvetok_1}", queue="PLATOKY")
-        await router.broker.publish(message=f"{platok_kontroll.izobrazheniy_cvetok_2}", queue="PLATOKY")
-        await router.broker.publish(message=f"{platok_kontroll.izobrazheniy_cvetok_3}", queue="PLATOKY")
-        await router.broker.publish(message=f"{platok_kontroll.izobrazheniy_cvetok_4}", queue="PLATOKY")
-        await router.broker.publish(message=f"{platok_kontroll.izobrazheniy_cvetok_5}", queue="PLATOKY")
-        await router.broker.publish(message=f"{platok_kontroll.razmer_platka}", queue="PLATOKY")
-        await router.broker.publish(message=f"{platok_kontroll.material_platka}", queue="PLATOKY")
-        await router.broker.publish(message=f"{platok_kontroll.material_bahromi}", queue="PLATOKY")
-        return {"message": "OK"}
-    except:
-        raise HTTPException(status_code=500, detail="Проблема с брокером")
+    #КРОЛИК ВЫКЛЮЧЕН
+    #try:
+    #await router.broker.publish(message=f"{platok_kontroll.nazvanije_platka}{"; ;"}{platok_kontroll.avtor_platka}{"; ;"}{platok_kontroll.kolorit_1}{"; ;"}{platok_kontroll.kolorit_2}", queue="PLATOKY")
+    #await router.broker.publish(message=f"{platok_kontroll.avtor_platka}", queue="PLATOKY")
+    #await router.broker.publish(message=f"{platok_kontroll.kolorit_1}", queue="PLATOKY")
+    #await router.broker.publish(message=f"{platok_kontroll.kolorit_2}", queue="PLATOKY")
+    #await router.broker.publish(message=f"{platok_kontroll.kolorit_3}", queue="PLATOKY")
+    #await router.broker.publish(message=f"{platok_kontroll.kolorit_4}", queue="PLATOKY")
+    #await router.broker.publish(message=f"{platok_kontroll.kolorit_5}", queue="PLATOKY")
+    #await router.broker.publish(message=f"{platok_kontroll.uzor_temeni}", queue="PLATOKY")
+    #await router.broker.publish(message=f"{platok_kontroll.uzor_serdceviny}", queue="PLATOKY")
+    #await router.broker.publish(message=f"{platok_kontroll.uzor_storon}", queue="PLATOKY")
+    #await router.broker.publish(message=f"{platok_kontroll.uzor_kraja}", queue="PLATOKY")
+    #await router.broker.publish(message=f"{platok_kontroll.uzor_uglov}", queue="PLATOKY")
+    #await router.broker.publish(message=f"{platok_kontroll.cvety_ornament}", queue="PLATOKY")
+    #await router.broker.publish(message=f"{platok_kontroll.izobrazheniy_cvetok_1}", queue="PLATOKY")
+    #await router.broker.publish(message=f"{platok_kontroll.izobrazheniy_cvetok_2}", queue="PLATOKY")
+    #await router.broker.publish(message=f"{platok_kontroll.izobrazheniy_cvetok_3}", queue="PLATOKY")
+    #await router.broker.publish(message=f"{platok_kontroll.izobrazheniy_cvetok_4}", queue="PLATOKY")
+    #await router.broker.publish(message=f"{platok_kontroll.izobrazheniy_cvetok_5}", queue="PLATOKY")
+    #await router.broker.publish(message=f"{platok_kontroll.razmer_platka}", queue="PLATOKY")
+    #await router.broker.publish(message=f"{platok_kontroll.material_platka}", queue="PLATOKY")
+    #await router.broker.publish(message=f"{platok_kontroll.material_bahromi}", queue="PLATOKY")
+    #return {"message": "OK"}
+    #except:
+    #raise HTTPException(status_code=500, detail="Проблема с брокером")
 @app.get("/platok3", summary="Platok",tags=["Platok"])
 async def root(Название_платка: str):
     platok_s_db_data = {}
@@ -407,20 +411,22 @@ async def create_platok_dict2(id: int,avtor_platka: str,nazvanije_platka: str,ko
         platok_kontroll = Platok_Schema(**platok_s_api_data)
     except:
         raise HTTPException(status_code=422, detail="Данные не прошли валидацию")
-    try:
-        await router.broker.publish(message=f"{soobshenije22}", queue="PLATOKY")
-        return {"платок в публикацию": platok_kontroll}
-    except:
-        raise HTTPException(status_code=500, detail="Проблема с брокером")
+    #ЗАЯЦ ВЫКЛЮЧЕН
+    #try:
+    #await router.broker.publish(message=f"{soobshenije22}", queue="PLATOKY")
+    #return {"платок в публикацию": platok_kontroll}
+    #except:
+    #raise HTTPException(status_code=500, detail="Проблема с брокером")
 
-@router.post("/platoky_dict4", summary="Platok",tags=["Platok"])
+@app.post("/platoky_dict4", summary="Platok",tags=["Platok"])
 async def insert_platky(platok: Annotated[Platok_Schema,Depends()]):
     session=session_factory()
     query=select(Platoky).where(Platoky.Название==platok.Название_Платка)
     result=await session.execute(query)
     unikalnost_platka=result.scalar_one_or_none()
     if unikalnost_platka is None:
-        await router.broker.publish(message="Это уникальный платок", queue="PLATOKY")
+        #заяц выключен
+        #await router.broker.publish(message="Это уникальный платок", queue="PLATOKY")
         session = session_factory()
         query2 = select(Platoky).where(Platoky.id == platok.id)
         result2 = await session.execute(query2)
@@ -440,19 +446,20 @@ async def insert_platky(platok: Annotated[Platok_Schema,Depends()]):
                 # await session.commit()
             except:
                 raise HTTPException(status_code=500, detail="Проблема с базой данных")
-            try:
-                    await router.broker.publish(message="Добавлен новый платок", queue="PLATOKY")
-                    await router.broker.publish(message=f"{platok}", queue="PLATOKY")
-                    return {"message": "OK"}
-            except:
-                raise HTTPException(status_code=500, detail="Проблема с брокером")
-
+            #заяц выключен
+            #try:
+            # router.broker.publish(message="Добавлен новый платок", queue="PLATOKY")
+            #await router.broker.publish(message=f"{platok}", queue="PLATOKY")
+            #return {"message": "OK"}
+            #except:
+            #raise HTTPException(status_code=500, detail="Проблема с брокером")
         else:
             raise HTTPException(status_code=422, detail="Данные не прошли валидацию")
     else:
-        await router.broker.publish(message="Такой уже есть, отмена регистрации", queue="PLATOKY")
+        # заяц выключен
+        #await router.broker.publish(message="Такой уже есть, отмена регистрации", queue="PLATOKY")
         raise HTTPException(status_code=422, detail="Данные не прошли валидацию")
-@router.post("/banda", summary="Platok",tags=["Платочная_Банда"])
+@app.post("/banda", summary="Platok",tags=["Платочная_Банда"])
 async def insert_persona(platoch_persona: Annotated[Banda_Schema,Depends()]):
     try:
         banda_eksemp = Banda(id=platoch_persona.id, Гражданское_Имя=platoch_persona.Гражданское_Имя,
@@ -469,12 +476,14 @@ async def insert_persona(platoch_persona: Annotated[Banda_Schema,Depends()]):
         session.add(banda_eksemp)
         await session.commit()
         await session.close()
-        try:
-            await router.broker.publish(message="Добавлен новый персонаж", queue="PLATOKY")
-            await router.broker.publish(message=f"{platoch_persona}", queue="PLATOKY")
-            return {"message": "OK"}
-        except:
-            raise HTTPException(status_code=500, detail="Проблема с брокером")
+        return platoch_persona
+        #заяц выключен
+        #try:
+        #await router.broker.publish(message="Добавлен новый персонаж", queue="PLATOKY")
+        #await router.broker.publish(message=f"{platoch_persona}", queue="PLATOKY")
+        #return {"message": "OK"}
+        #except:
+        #raise HTTPException(status_code=500, detail="Проблема с брокером")
     except:
         raise HTTPException(status_code=500, detail="Проблема с базой данных")
 async def create_platky():
@@ -514,9 +523,10 @@ async def create_platky():
         await connection.run_sync(Base.metadata.create_all)
 async def main():
     init(autoreset=True)
-    await kostily_BD()
+    #await kostily_BD()
     await create_platky()
     uvicorn.run("prilozhenije:app", reload=True, port=8000)
-app.include_router(router)
+#ЗАЯЦ ВЫКЛЮЧЕН
+#app.include_router(router)
 if __name__ == "__main__":
     asyncio.run(main())

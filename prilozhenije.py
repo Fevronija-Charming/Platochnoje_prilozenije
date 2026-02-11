@@ -163,113 +163,113 @@ async def create_tradicii(symbol: Annotated[Symbol_Schema, Depends()]):
     except:
         raise HTTPException(status_code=500, detail="Проблема с базой данных")
 
-@app.get("/platok2", summary="Platok",tags=["Platok"])
+@app.get("/root", summary="root",tags=["DEBUG"])
 def root():
-    return {"message": "Hello World"}
-@app.post("/platoky_dict2", summary="Platok",tags=["Platok"])
-async def create_platok_dict(id: int,avtor_platka: str,nazvanije_platka: str,kolorit_1: str,kolorit_2: str,kolorit_3: str,
-    kolorit_4: str, kolorit_5: str, uzor_temeni: str, uzor_serdceviny: str, uzor_storon: str,uzor_uglov: str,
-    uzor_kraja: str, cvety_ornament: str, izobrazheniy_cvetok_1: str, izobrazheniy_cvetok_2: str, izobrazheniy_cvetok_3: str,
-    izobrazheniy_cvetok_4: str, izobrazheniy_cvetok_5: str, razmer_platka: str, material_platka: str, material_bahromi: str):
-    peremycka="; ;"
-    soobshenije0=[]
-    platok_s_api_data = {}
-    platok_s_api_data["id"] = id
-    soobshenije1 =  soobshenije0 + id
-    platok_s_api_data["avtor_platka"] = avtor_platka
-    soobshenije2 = soobshenije1 + peremycka + avtor_platka
-    platok_s_api_data["nazvanije_platka"] = nazvanije_platka
-    soobshenije3 = soobshenije2 + peremycka + nazvanije_platka
-    platok_s_api_data["kolorit_1"] = kolorit_1
-    soobshenije4 = soobshenije3 + peremycka + kolorit_1
-    platok_s_api_data["kolorit_2"] = kolorit_2
-    soobshenije5 = soobshenije4 + peremycka + kolorit_2
-    platok_s_api_data["kolorit_3"] = kolorit_3
-    soobshenije6= soobshenije5 + peremycka + kolorit_3
-    platok_s_api_data["kolorit_4"] = kolorit_4
-    soobshenije7 = soobshenije6 + peremycka + kolorit_4
-    platok_s_api_data["kolorit_5"] = kolorit_5
-    soobshenije8 = soobshenije7 + peremycka + kolorit_5
-    platok_s_api_data["uzor_temeni"] = uzor_temeni
-    soobhsenije9 = soobshenije8 + peremycka + uzor_temeni
-    platok_s_api_data["uzor_serdceviny"] = uzor_serdceviny
-    soobhsenije10=soobhsenije9 + peremycka + uzor_serdceviny
-    platok_s_api_data["uzor_storon"] = uzor_storon
-    soobhsenije11=soobhsenije10 + peremycka + uzor_storon
-    platok_s_api_data["uzor_uglov"] = uzor_uglov
-    soobshenije12=soobhsenije11 + peremycka + uzor_uglov
-    platok_s_api_data["uzor_kraja"] = uzor_kraja
-    soobshenije13=soobshenije12 + peremycka + uzor_kraja
-    platok_s_api_data["cvety_ornament"] = cvety_ornament
-    soobshenije14=soobshenije13+peremycka + cvety_ornament
-    platok_s_api_data["izobrazheniy_cvetok_1"] = izobrazheniy_cvetok_1
-    soobshenije15=soobshenije14 + peremycka + izobrazheniy_cvetok_1
-    platok_s_api_data["izobrazheniy_cvetok_2"] = izobrazheniy_cvetok_2
-    soobshenije16 = soobshenije15 + peremycka + izobrazheniy_cvetok_2
-    platok_s_api_data["izobrazheniy_cvetok_3"] = izobrazheniy_cvetok_3
-    soobshenije17 = soobshenije16 + peremycka + izobrazheniy_cvetok_3
-    platok_s_api_data["izobrazheniy_cvetok_4"] = izobrazheniy_cvetok_4
-    soobshenije18 = soobshenije17 + peremycka + izobrazheniy_cvetok_4
-    platok_s_api_data["izobrazheniy_cvetok_5"] = izobrazheniy_cvetok_5
-    soobshenije19 = soobshenije18 + peremycka + izobrazheniy_cvetok_5
-    platok_s_api_data["razmer_platka"] = razmer_platka
-    soobshenije20= soobshenije19 + peremycka + razmer_platka
-    platok_s_api_data["material_platka"] = material_platka
-    soobshenije21=soobshenije20 + peremycka + material_platka
-    platok_s_api_data["material_bahromi"] = material_bahromi
-    soobshenije22=soobshenije21 + peremycka + material_bahromi
-    try:
-        platok_kontroll = Platok_Schema(**platok_s_api_data)
-    except:
-        raise HTTPException(status_code=422, detail="Данные не прошли валидацию")
-    try:
-        platoch_eksemp = Platoky(id=platok_kontroll.id,Название=platok_kontroll.nazvanije_platka,
-        Автор=platok_kontroll.avtor_platka, Колорит_1=platok_kontroll.kolorit_1, Колорит_2=platok_kontroll.kolorit_2,
-        Колорит_3=platok_kontroll.kolorit_3, Колорит_4=platok_kontroll.kolorit_4, Колорит_5=platok_kontroll.kolorit_5,
-                                     Узор_темени=platok_kontroll.uzor_temeni,
-                                     Узор_сердцевины=platok_kontroll.uzor_serdceviny,
-                                     Узор_сторон=platok_kontroll.uzor_storon, Узор_углов=platok_kontroll.uzor_uglov,
-                                     Узор_края=platok_kontroll.uzor_kraja,
-                                     Цветы_Орнамент=platok_kontroll.cvety_ornament,
-                                     Изображенный_Цветок_1=platok_kontroll.izobrazheniy_cvetok_1,
-                                     Изображенный_Цветок_2=platok_kontroll.izobrazheniy_cvetok_2,
-                                     Изображенный_Цветок_3=platok_kontroll.izobrazheniy_cvetok_3,
-                                     Изображенный_Цветок_4=platok_kontroll.izobrazheniy_cvetok_4,
-                                     Изображенный_Цветок_5=platok_kontroll.izobrazheniy_cvetok_5,
-                                     Размер_Платка=platok_kontroll.razmer_platka,
-                                     Материал_Платка=platok_kontroll.material_platka,
-                                     Материал_Бахромы=platok_kontroll.material_bahromi)
-        session = session_factory()
-        session.add(platoch_eksemp)
-        await session.commit()
-    except:
-        raise HTTPException(status_code=500, detail="Проблема с базой данных")
-    #КРОЛИК ВЫКЛЮЧЕН
-    #try:
-    #await router.broker.publish(message=f"{platok_kontroll.nazvanije_platka}{"; ;"}{platok_kontroll.avtor_platka}{"; ;"}{platok_kontroll.kolorit_1}{"; ;"}{platok_kontroll.kolorit_2}", queue="PLATOKY")
-    #await router.broker.publish(message=f"{platok_kontroll.avtor_platka}", queue="PLATOKY")
-    #await router.broker.publish(message=f"{platok_kontroll.kolorit_1}", queue="PLATOKY")
-    #await router.broker.publish(message=f"{platok_kontroll.kolorit_2}", queue="PLATOKY")
-    #await router.broker.publish(message=f"{platok_kontroll.kolorit_3}", queue="PLATOKY")
-    #await router.broker.publish(message=f"{platok_kontroll.kolorit_4}", queue="PLATOKY")
-    #await router.broker.publish(message=f"{platok_kontroll.kolorit_5}", queue="PLATOKY")
-    #await router.broker.publish(message=f"{platok_kontroll.uzor_temeni}", queue="PLATOKY")
-    #await router.broker.publish(message=f"{platok_kontroll.uzor_serdceviny}", queue="PLATOKY")
-    #await router.broker.publish(message=f"{platok_kontroll.uzor_storon}", queue="PLATOKY")
-    #await router.broker.publish(message=f"{platok_kontroll.uzor_kraja}", queue="PLATOKY")
-    #await router.broker.publish(message=f"{platok_kontroll.uzor_uglov}", queue="PLATOKY")
-    #await router.broker.publish(message=f"{platok_kontroll.cvety_ornament}", queue="PLATOKY")
-    #await router.broker.publish(message=f"{platok_kontroll.izobrazheniy_cvetok_1}", queue="PLATOKY")
-    #await router.broker.publish(message=f"{platok_kontroll.izobrazheniy_cvetok_2}", queue="PLATOKY")
-    #await router.broker.publish(message=f"{platok_kontroll.izobrazheniy_cvetok_3}", queue="PLATOKY")
-    #await router.broker.publish(message=f"{platok_kontroll.izobrazheniy_cvetok_4}", queue="PLATOKY")
-    #await router.broker.publish(message=f"{platok_kontroll.izobrazheniy_cvetok_5}", queue="PLATOKY")
-    #await router.broker.publish(message=f"{platok_kontroll.razmer_platka}", queue="PLATOKY")
-    #await router.broker.publish(message=f"{platok_kontroll.material_platka}", queue="PLATOKY")
-    #await router.broker.publish(message=f"{platok_kontroll.material_bahromi}", queue="PLATOKY")
-    #return {"message": "OK"}
-    #except:
-    #raise HTTPException(status_code=500, detail="Проблема с брокером")
+    return {"message": "Здарова, начальник!!!"}
+#ВВОД СТАРОГО ОБРАЗЦА С PYDANTIC БЕЗ ЗАВИСИМОСТЕЙ
+#@app.post("/platoky_dict2", summary="Platok",tags=["Platok"])
+#async def create_platok_dict(id: int,avtor_platka: str,nazvanije_platka: str,kolorit_1: str,kolorit_2: str,kolorit_3: str,
+#kolorit_4: str, kolorit_5: str, uzor_temeni: str, uzor_serdceviny: str, uzor_storon: str,uzor_uglov: str,
+#uzor_kraja: str, cvety_ornament: str, izobrazheniy_cvetok_1: str, izobrazheniy_cvetok_2: str, izobrazheniy_cvetok_3: str,
+#izobrazheniy_cvetok_4: str, izobrazheniy_cvetok_5: str, razmer_platka: str, material_platka: str, material_bahromi: str):
+#peremycka="; ;"
+#soobshenije0=[]
+#platok_s_api_data = {}
+#platok_s_api_data["id"] = id
+#soobshenije1 =  soobshenije0 + id
+#platok_s_api_data["avtor_platka"] = avtor_platka
+#soobshenije2 = soobshenije1 + peremycka + avtor_platka
+#platok_s_api_data["nazvanije_platka"] = nazvanije_platka
+#soobshenije3 = soobshenije2 + peremycka + nazvanije_platka
+#platok_s_api_data["kolorit_1"] = kolorit_1
+#soobshenije4 = soobshenije3 + peremycka + kolorit_1
+#platok_s_api_data["kolorit_2"] = kolorit_2
+#soobshenije5 = soobshenije4 + peremycka + kolorit_2
+#platok_s_api_data["kolorit_3"] = kolorit_3
+#soobshenije6= soobshenije5 + peremycka + kolorit_3
+#platok_s_api_data["kolorit_4"] = kolorit_4
+#soobshenije7 = soobshenije6 + peremycka + kolorit_4
+#platok_s_api_data["kolorit_5"] = kolorit_5
+#soobshenije8 = soobshenije7 + peremycka + kolorit_5
+#platok_s_api_data["uzor_temeni"] = uzor_temeni
+#soobhsenije9 = soobshenije8 + peremycka + uzor_temeni
+#platok_s_api_data["uzor_serdceviny"] = uzor_serdceviny
+#soobhsenije10=soobhsenije9 + peremycka + uzor_serdceviny
+#platok_s_api_data["uzor_storon"] = uzor_storon
+#soobhsenije11=soobhsenije10 + peremycka + uzor_storon
+#platok_s_api_data["uzor_uglov"] = uzor_uglov
+#soobshenije12=soobhsenije11 + peremycka + uzor_uglov
+#platok_s_api_data["uzor_kraja"] = uzor_kraja
+#soobshenije13=soobshenije12 + peremycka + uzor_kraja
+#platok_s_api_data["cvety_ornament"] = cvety_ornament
+#soobshenije14=soobshenije13+peremycka + cvety_ornament
+#platok_s_api_data["izobrazheniy_cvetok_1"] = izobrazheniy_cvetok_1
+#soobshenije15=soobshenije14 + peremycka + izobrazheniy_cvetok_1
+#platok_s_api_data["izobrazheniy_cvetok_2"] = izobrazheniy_cvetok_2
+#soobshenije16 = soobshenije15 + peremycka + izobrazheniy_cvetok_2
+#platok_s_api_data["izobrazheniy_cvetok_3"] = izobrazheniy_cvetok_3
+#soobshenije17 = soobshenije16 + peremycka + izobrazheniy_cvetok_3
+#platok_s_api_data["izobrazheniy_cvetok_4"] = izobrazheniy_cvetok_4
+#soobshenije18 = soobshenije17 + peremycka + izobrazheniy_cvetok_4
+#platok_s_api_data["izobrazheniy_cvetok_5"] = izobrazheniy_cvetok_5
+#soobshenije19 = soobshenije18 + peremycka + izobrazheniy_cvetok_5
+#platok_s_api_data["razmer_platka"] = razmer_platka
+#soobshenije20= soobshenije19 + peremycka + razmer_platka
+#platok_s_api_data["material_platka"] = material_platka
+#soobshenije21=soobshenije20 + peremycka + material_platka
+#platok_s_api_data["material_bahromi"] = material_bahromi
+#soobshenije22=soobshenije21 + peremycka + material_bahromi
+#try:
+#platok_kontroll = Platok_Schema(**platok_s_api_data)
+#except:
+#raise HTTPException(status_code=422, detail="Данные не прошли валидацию")
+#try:
+#platoch_eksemp = Platoky(id=platok_kontroll.id,Название=platok_kontroll.nazvanije_platka,
+#Автор=platok_kontroll.avtor_platka, Колорит_1=platok_kontroll.kolorit_1, Колорит_2=platok_kontroll.kolorit_2,
+#Колорит_3=platok_kontroll.kolorit_3, Колорит_4=platok_kontroll.kolorit_4, Колорит_5=platok_kontroll.kolorit_5,
+#Узор_темени=platok_kontroll.uzor_temeni,
+#Узор_сердцевины=platok_kontroll.uzor_serdceviny,
+#Узор_сторон=platok_kontroll.uzor_storon, Узор_углов=platok_kontroll.uzor_uglov,
+#Узор_края=platok_kontroll.uzor_kraja,
+#Цветы_Орнамент=platok_kontroll.cvety_ornament,
+#Изображенный_Цветок_1=platok_kontroll.izobrazheniy_cvetok_1,
+#Изображенный_Цветок_2=platok_kontroll.izobrazheniy_cvetok_2,
+#Изображенный_Цветок_3=platok_kontroll.izobrazheniy_cvetok_3,
+#Изображенный_Цветок_4=platok_kontroll.izobrazheniy_cvetok_4,
+#Изображенный_Цветок_5=platok_kontroll.izobrazheniy_cvetok_5,
+#Размер_Платка=platok_kontroll.razmer_platka,
+#Материал_Платка=platok_kontroll.material_platka,
+#session.add(platoch_eksemp)
+#await session.commit()
+#except:
+#raise HTTPException(status_code=500, detail="Проблема с базой данных")
+#КРОЛИК ВЫКЛЮЧЕН
+#try:
+#await router.broker.publish(message=f"{platok_kontroll.nazvanije_platka}{"; ;"}{platok_kontroll.avtor_platka}{"; ;"}{platok_kontroll.kolorit_1}{"; ;"}{platok_kontroll.kolorit_2}", queue="PLATOKY")
+#await router.broker.publish(message=f"{platok_kontroll.avtor_platka}", queue="PLATOKY")
+#await router.broker.publish(message=f"{platok_kontroll.kolorit_1}", queue="PLATOKY")
+#await router.broker.publish(message=f"{platok_kontroll.kolorit_2}", queue="PLATOKY")
+#await router.broker.publish(message=f"{platok_kontroll.kolorit_3}", queue="PLATOKY")
+#await router.broker.publish(message=f"{platok_kontroll.kolorit_4}", queue="PLATOKY")
+#await router.broker.publish(message=f"{platok_kontroll.kolorit_5}", queue="PLATOKY")
+#await router.broker.publish(message=f"{platok_kontroll.uzor_temeni}", queue="PLATOKY")
+#await router.broker.publish(message=f"{platok_kontroll.uzor_serdceviny}", queue="PLATOKY")
+#await router.broker.publish(message=f"{platok_kontroll.uzor_storon}", queue="PLATOKY")
+#await router.broker.publish(message=f"{platok_kontroll.uzor_kraja}", queue="PLATOKY")
+#await router.broker.publish(message=f"{platok_kontroll.uzor_uglov}", queue="PLATOKY")
+#await router.broker.publish(message=f"{platok_kontroll.cvety_ornament}", queue="PLATOKY")
+#await router.broker.publish(message=f"{platok_kontroll.izobrazheniy_cvetok_1}", queue="PLATOKY")
+#await router.broker.publish(message=f"{platok_kontroll.izobrazheniy_cvetok_2}", queue="PLATOKY")
+#await router.broker.publish(message=f"{platok_kontroll.izobrazheniy_cvetok_3}", queue="PLATOKY")
+#await router.broker.publish(message=f"{platok_kontroll.izobrazheniy_cvetok_4}", queue="PLATOKY")
+#await router.broker.publish(message=f"{platok_kontroll.izobrazheniy_cvetok_5}", queue="PLATOKY")
+#await router.broker.publish(message=f"{platok_kontroll.razmer_platka}", queue="PLATOKY")
+#await router.broker.publish(message=f"{platok_kontroll.material_platka}", queue="PLATOKY")
+#await router.broker.publish(message=f"{platok_kontroll.material_bahromi}", queue="PLATOKY")
+#return {"message": "OK"}
+#except:
+#raise HTTPException(status_code=500, detail="Проблема с брокером")
+#ПОЛУЧЕНИЕ ДАННЫХ ПО ПЛАТКУ
 @app.get("/platok3", summary="Platok",tags=["Platok"])
 async def root(Название_платка: str):
     platok_s_db_data = {}
@@ -356,69 +356,70 @@ async def root(Название_платка: str):
     material_bahromi = result20.scalars().all()
     platok_s_db_data["Материал_Бахромы"] = material_bahromi
     return platok_s_db_data
-@app.post("/platoky_dict", summary="Platok",tags=["Platok"])
-async def create_platok_dict2(id: int,avtor_platka: str,nazvanije_platka: str,kolorit_1: str,kolorit_2: str,kolorit_3: str,
-    kolorit_4: str, kolorit_5: str, uzor_temeni: str, uzor_serdceviny: str, uzor_storon: str,uzor_uglov: str,
-    uzor_kraja: str, cvety_ornament: str, izobrazheniy_cvetok_1: str, izobrazheniy_cvetok_2: str, izobrazheniy_cvetok_3: str,
-    izobrazheniy_cvetok_4: str, izobrazheniy_cvetok_5: str, razmer_platka: str, material_platka: str, material_bahromi: str):
-    peremycka = "; ;"
-    platok_s_api_data = {}
-    platok_s_api_data["id"] = id
-    soobshenije1 = str(id)
-    platok_s_api_data["avtor_platka"] = avtor_platka
-    soobshenije2 = soobshenije1 + peremycka + avtor_platka
-    platok_s_api_data["nazvanije_platka"] = nazvanije_platka
-    soobshenije3 = soobshenije2 + peremycka + nazvanije_platka
-    platok_s_api_data["kolorit_1"] = kolorit_1
-    soobshenije4 = soobshenije3 + peremycka + kolorit_1
-    platok_s_api_data["kolorit_2"] = kolorit_2
-    soobshenije5 = soobshenije4 + peremycka + kolorit_2
-    platok_s_api_data["kolorit_3"] = kolorit_3
-    soobshenije6 = soobshenije5 + peremycka + kolorit_3
-    platok_s_api_data["kolorit_4"] = kolorit_4
-    soobshenije7 = soobshenije6 + peremycka + kolorit_4
-    platok_s_api_data["kolorit_5"] = kolorit_5
-    soobshenije8 = soobshenije7 + peremycka + kolorit_5
-    platok_s_api_data["uzor_temeni"] = uzor_temeni
-    soobhsenije9 = soobshenije8 + peremycka + uzor_temeni
-    platok_s_api_data["uzor_serdceviny"] = uzor_serdceviny
-    soobhsenije10 = soobhsenije9 + peremycka + uzor_serdceviny
-    platok_s_api_data["uzor_storon"] = uzor_storon
-    soobhsenije11 = soobhsenije10 + peremycka + uzor_storon
-    platok_s_api_data["uzor_uglov"] = uzor_uglov
-    soobshenije12 = soobhsenije11 + peremycka + uzor_uglov
-    platok_s_api_data["uzor_kraja"] = uzor_kraja
-    soobshenije13 = soobshenije12 + peremycka + uzor_kraja
-    platok_s_api_data["cvety_ornament"] = cvety_ornament
-    soobshenije14 = soobshenije13 + peremycka + cvety_ornament
-    platok_s_api_data["izobrazheniy_cvetok_1"] = izobrazheniy_cvetok_1
-    soobshenije15 = soobshenije14 + peremycka + izobrazheniy_cvetok_1
-    platok_s_api_data["izobrazheniy_cvetok_2"] = izobrazheniy_cvetok_2
-    soobshenije16 = soobshenije15 + peremycka + izobrazheniy_cvetok_2
-    platok_s_api_data["izobrazheniy_cvetok_3"] = izobrazheniy_cvetok_3
-    soobshenije17 = soobshenije16 + peremycka + izobrazheniy_cvetok_3
-    platok_s_api_data["izobrazheniy_cvetok_4"] = izobrazheniy_cvetok_4
-    soobshenije18 = soobshenije17 + peremycka + izobrazheniy_cvetok_4
-    platok_s_api_data["izobrazheniy_cvetok_5"] = izobrazheniy_cvetok_5
-    soobshenije19 = soobshenije18 + peremycka + izobrazheniy_cvetok_5
-    platok_s_api_data["razmer_platka"] = razmer_platka
-    soobshenije20 = soobshenije19 + peremycka + razmer_platka
-    platok_s_api_data["material_platka"] = material_platka
-    soobshenije21 = soobshenije20 + peremycka + material_platka
-    platok_s_api_data["material_bahromi"] = material_bahromi
-    soobshenije22 = soobshenije21 + peremycka + material_bahromi
-    try:
-        platok_kontroll = Platok_Schema(**platok_s_api_data)
-    except:
-        raise HTTPException(status_code=422, detail="Данные не прошли валидацию")
-    #ЗАЯЦ ВЫКЛЮЧЕН
-    #try:
-    #await router.broker.publish(message=f"{soobshenije22}", queue="PLATOKY")
-    #return {"платок в публикацию": platok_kontroll}
-    #except:
-    #raise HTTPException(status_code=500, detail="Проблема с брокером")
-
-@app.post("/platoky_dict4", summary="Platok",tags=["Platok"])
+#ВВОД СТАРОГО ОБРАЗЦА БЕЗ КОНТРАКТА С PYDANTIC И БЕЗ ЗАВИСИМОСТЕЙ
+#@app.post("/platoky_dict", summary="Platok",tags=["Platok"])
+#async def create_platok_dict2(id: int,avtor_platka: str,nazvanije_platka: str,kolorit_1: str,kolorit_2: str,kolorit_3: str,
+#kolorit_4: str, kolorit_5: str, uzor_temeni: str, uzor_serdceviny: str, uzor_storon: str,uzor_uglov: str,
+#uzor_kraja: str, cvety_ornament: str, izobrazheniy_cvetok_1: str, izobrazheniy_cvetok_2: str, izobrazheniy_cvetok_3: str,
+#izobrazheniy_cvetok_4: str, izobrazheniy_cvetok_5: str, razmer_platka: str, material_platka: str, material_bahromi: str):
+#peremycka = "; ;"
+#platok_s_api_data = {}
+#platok_s_api_data["id"] = id
+#soobshenije1 = str(id)
+#platok_s_api_data["avtor_platka"] = avtor_platka
+#soobshenije2 = soobshenije1 + peremycka + avtor_platka
+#platok_s_api_data["nazvanije_platka"] = nazvanije_platka
+#soobshenije3 = soobshenije2 + peremycka + nazvanije_platka
+#platok_s_api_data["kolorit_1"] = kolorit_1
+#soobshenije4 = soobshenije3 + peremycka + kolorit_1
+#platok_s_api_data["kolorit_2"] = kolorit_2
+#soobshenije5 = soobshenije4 + peremycka + kolorit_2
+#platok_s_api_data["kolorit_3"] = kolorit_3
+#soobshenije6 = soobshenije5 + peremycka + kolorit_3
+#platok_s_api_data["kolorit_4"] = kolorit_4
+#soobshenije7 = soobshenije6 + peremycka + kolorit_4
+#platok_s_api_data["kolorit_5"] = kolorit_5
+#soobshenije8 = soobshenije7 + peremycka + kolorit_5
+#platok_s_api_data["uzor_temeni"] = uzor_temeni
+#soobhsenije9 = soobshenije8 + peremycka + uzor_temeni
+#platok_s_api_data["uzor_serdceviny"] = uzor_serdceviny
+#soobhsenije10 = soobhsenije9 + peremycka + uzor_serdceviny
+#platok_s_api_data["uzor_storon"] = uzor_storon
+#soobhsenije11 = soobhsenije10 + peremycka + uzor_storon
+#platok_s_api_data["uzor_uglov"] = uzor_uglov
+#soobshenije12 = soobhsenije11 + peremycka + uzor_uglov
+#platok_s_api_data["uzor_kraja"] = uzor_kraja
+#soobshenije13 = soobshenije12 + peremycka + uzor_kraja
+#platok_s_api_data["cvety_ornament"] = cvety_ornament
+#soobshenije14 = soobshenije13 + peremycka + cvety_ornament
+#platok_s_api_data["izobrazheniy_cvetok_1"] = izobrazheniy_cvetok_1
+#soobshenije15 = soobshenije14 + peremycka + izobrazheniy_cvetok_1
+#platok_s_api_data["izobrazheniy_cvetok_2"] = izobrazheniy_cvetok_2
+#soobshenije16 = soobshenije15 + peremycka + izobrazheniy_cvetok_2
+#platok_s_api_data["izobrazheniy_cvetok_3"] = izobrazheniy_cvetok_3
+#soobshenije17 = soobshenije16 + peremycka + izobrazheniy_cvetok_3
+#platok_s_api_data["izobrazheniy_cvetok_4"] = izobrazheniy_cvetok_4
+#soobshenije18 = soobshenije17 + peremycka + izobrazheniy_cvetok_4
+#platok_s_api_data["izobrazheniy_cvetok_5"] = izobrazheniy_cvetok_5
+#soobshenije19 = soobshenije18 + peremycka + izobrazheniy_cvetok_5
+#platok_s_api_data["razmer_platka"] = razmer_platka
+#soobshenije20 = soobshenije19 + peremycka + razmer_platka
+#platok_s_api_data["material_platka"] = material_platka
+#soobshenije21 = soobshenije20 + peremycka + material_platka
+#platok_s_api_data["material_bahromi"] = material_bahromi
+#soobshenije22 = soobshenije21 + peremycka + material_bahromi
+#try:
+#platok_kontroll = Platok_Schema(**platok_s_api_data)
+#except:
+#raise HTTPException(status_code=422, detail="Данные не прошли валидацию")
+#ЗАЯЦ ВЫКЛЮЧЕН
+#try:
+#await router.broker.publish(message=f"{soobshenije22}", queue="PLATOKY")
+#return {"платок в публикацию": platok_kontroll}
+#except:
+#raise HTTPException(status_code=500, detail="Проблема с брокером")
+#ВВОД ДАННЫХ ПЛАТКА
+@app.post("/platoky_vvod", summary="Platok",tags=["Platok"])
 async def insert_platky(platok: Annotated[Platok_Schema,Depends()]):
     session=session_factory()
     query=select(Platoky).where(Platoky.Название==platok.Название_Платка)

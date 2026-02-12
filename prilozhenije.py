@@ -20,8 +20,8 @@ from sqlalchemy import  select
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine, async_sessionmaker
 from psycopg2.errors import *
-#engine = create_async_engine(os.getenv("DBURL"),echo=True,max_overflow=5,pool_size=5)
-#session_factory = async_sessionmaker(bind=engine,class_=AsyncSession,expire_on_commit=False)
+engine = create_async_engine(os.getenv("DBURL"),echo=True,max_overflow=5,pool_size=5)
+session_factory = async_sessionmaker(bind=engine,class_=AsyncSession,expire_on_commit=False)
 class Base(DeclarativeBase):
     pass
 class Platoky(Base):
@@ -519,13 +519,13 @@ async def kostily_BD():
             connection.close()
         if cursor:
             cursor.close()
-#async def create_platky():
-    #async with engine.begin() as connection:
-        #await connection.run_sync(Base.metadata.create_all)
+async def create_platky():
+    async with engine.begin() as connection:
+        await connection.run_sync(Base.metadata.create_all)
 async def main():
     init(autoreset=True)
     #await kostily_BD()
-    #await create_platky()
+    await create_platky()
     uvicorn.run("prilozhenije:app", reload=True, port=8000)
 #ЗАЯЦ ВЫКЛЮЧЕН
 #app.include_router(router)

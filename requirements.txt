@@ -39,3 +39,5 @@ typing_extensions==4.15.0
 tzdata==2025.3
 uvicorn==0.40.0
 yarl==1.22.0
+gunicorn==25.0.3
+packaging==26.0

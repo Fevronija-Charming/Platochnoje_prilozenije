@@ -20,8 +20,8 @@ from sqlalchemy import  select
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine, async_sessionmaker
 from psycopg2.errors import *
-engine = create_async_engine(os.getenv("DBURL"),echo=True,max_overflow=5,pool_size=5)
-session_factory = async_sessionmaker(bind=engine,class_=AsyncSession,expire_on_commit=False)
+#engine = create_async_engine(os.getenv("DBURL"),echo=True,max_overflow=5,pool_size=5)
+#session_factory = async_sessionmaker(bind=engine,class_=AsyncSession,expire_on_commit=False)
 class Base(DeclarativeBase):
     pass
 class Platoky(Base):
@@ -149,10 +149,10 @@ async def create_tradicii(symbol: Annotated[Symbol_Schema, Depends()]):
             Символ_На_Платке_1=symbol.Символ_На_Платке_1, Символ_На_Платке_2=symbol.Символ_На_Платке_2,
             Символ_На_Платке_3=symbol.Символ_На_Платке_3, Символ_На_Платке_4=symbol.Символ_На_Платке_4,
             Символ_На_Платке_5=symbol.Символ_На_Платке_5)
-        session = session_factory()
-        session.add(symbol_eksemp)
-        await session.commit()
-        await session.close()
+        #session = session_factory()
+        #session.add(symbol_eksemp)
+        #await session.commit()
+        #await session.close()
         return symbol
         #заяц_погашен
         #try:
@@ -273,88 +273,88 @@ def root():
 @app.get("/platok3", summary="Platok",tags=["Platok"])
 async def root(Название_платка: str):
     platok_s_db_data = {}
-    query1 = select(Platoky.Автор).where(Platoky.Название == Название_платка)
-    session = session_factory()
-    result1 = await session.execute(query1)
-    avtor = result1.scalars().all()
-    platok_s_db_data["Автор"] = avtor
-    query2=select(Platoky.Колорит_1).where(Platoky.Название==Название_платка)
-    session=session_factory()
-    result2 =await session.execute(query2)
-    kolorit_1=result2.scalars().all()
-    platok_s_db_data["Колорит_1"] = kolorit_1
-    query3=select(Platoky.Колорит_2).where(Platoky.Название==Название_платка)
-    result3 = await session.execute(query3)
-    kolorit_2 = result3.scalars().all()
-    platok_s_db_data["Колорит_2"] = kolorit_2
-    query4 = select(Platoky.Колорит_3).where(Platoky.Название == Название_платка)
-    result4 = await session.execute(query4)
-    kolorit_3 = result4.scalars().all()
-    platok_s_db_data["Колорит_3"] = kolorit_3
-    query5 = select(Platoky.Колорит_4).where(Platoky.Название == Название_платка)
-    result5 = await session.execute(query5)
-    kolorit_4 = result5.scalars().all()
-    platok_s_db_data["Колорит_4"] = kolorit_4
-    query6 = select(Platoky.Колорит_5).where(Platoky.Название == Название_платка)
-    result6 = await session.execute(query6)
-    kolorit_5 = result6.scalars().all()
-    platok_s_db_data["Колорит_5"] = kolorit_5
-    query7 = select(Platoky.Узор_темени).where(Platoky.Название == Название_платка)
-    result7 = await session.execute(query7)
-    uzor_temeni = result7.scalars().all()
-    platok_s_db_data["Узор_Темени"] = uzor_temeni
-    query8 = select(Platoky.Узор_сердцевины).where(Platoky.Название == Название_платка)
-    result8 = await session.execute(query8)
-    uzor_cerdcevini = result8.scalars().all()
-    platok_s_db_data["Узор_Сердцевины"] = uzor_cerdcevini
-    query9 = select(Platoky.Узор_края).where(Platoky.Название == Название_платка)
-    result9 = await session.execute(query9)
-    uzor_krajev = result9.scalars().all()
-    platok_s_db_data["Узор_Края"] = uzor_krajev
-    query10 = select(Platoky.Узор_сторон).where(Platoky.Название == Название_платка)
-    result10 = await session.execute(query10)
-    uzor_stroron = result10.scalars().all()
-    platok_s_db_data["Узор_Сторон"] = uzor_stroron
-    query11 = select(Platoky.Узор_углов).where(Platoky.Название == Название_платка)
-    result11 = await session.execute(query11)
-    uzor_uglov = result11.scalars().all()
-    platok_s_db_data["Узор_Углов"] = uzor_uglov
-    query12 = select(Platoky.Цветы_Орнамент).where(Platoky.Название == Название_платка)
-    result12 = await session.execute(query12)
-    cvety_ornament = result12.scalars().all()
-    platok_s_db_data["Соотношение_цветов и орнамента"] =cvety_ornament
-    query13 = select(Platoky.Изображенный_Цветок_1).where(Platoky.Название == Название_платка)
-    result13 = await session.execute(query13)
-    izobr_cvetok_1 = result13.scalars().all()
-    platok_s_db_data["Изображенный цветок_1"] = izobr_cvetok_1
-    query14 = select(Platoky.Изображенный_Цветок_2).where(Platoky.Название == Название_платка)
-    result14 = await session.execute(query14)
-    izobr_cvetok_2 = result14.scalars().all()
-    platok_s_db_data["Изображенный цветок_2"] = izobr_cvetok_2
-    query15 = select(Platoky.Изображенный_Цветок_3).where(Platoky.Название == Название_платка)
-    result15 = await session.execute(query15)
-    izobr_cvetok_3 = result15.scalars().all()
-    platok_s_db_data["Изображенный цветок_3"] = izobr_cvetok_3
-    query16 = select(Platoky.Изображенный_Цветок_4).where(Platoky.Название == Название_платка)
-    result16 = await session.execute(query16)
-    izobr_cvetok_4 = result16.scalars().all()
-    platok_s_db_data["Изображенный цветок_4"] = izobr_cvetok_4
-    query17 = select(Platoky.Изображенный_Цветок_5).where(Platoky.Название == Название_платка)
-    result17 = await session.execute(query17)
-    izobr_cvetok_5 = result17.scalars().all()
-    platok_s_db_data["Изображенный цветок_5"] = izobr_cvetok_5
-    query18 = select(Platoky.Размер_Платка).where(Platoky.Название == Название_платка)
-    result18 = await session.execute(query18)
-    razmer_platka = result18.scalars().all()
-    platok_s_db_data["Размер_Платка"] = razmer_platka
-    query19 = select(Platoky.Материал_Платка).where(Platoky.Название == Название_платка)
-    result19 = await session.execute(query19 )
-    material_platka = result19.scalars().all()
-    platok_s_db_data["Материал_Платка"] = material_platka
+    #query1 = select(Platoky.Автор).where(Platoky.Название == Название_платка)
+    #session = session_factory()
+    #result1 = await session.execute(query1)
+    #avtor = result1.scalars().all()
+    #platok_s_db_data["Автор"] = avtor
+    #query2=select(Platoky.Колорит_1).where(Platoky.Название==Название_платка)
+    #session=session_factory()
+    #result2 =await session.execute(query2)
+    #kolorit_1=result2.scalars().all()
+    #platok_s_db_data["Колорит_1"] = kolorit_1
+    #query3=select(Platoky.Колорит_2).where(Platoky.Название==Название_платка)
+    #result3 = await session.execute(query3)
+    #kolorit_2 = result3.scalars().all()
+    #platok_s_db_data["Колорит_2"] = kolorit_2
+    #query4 = select(Platoky.Колорит_3).where(Platoky.Название == Название_платка)
+    #result4 = await session.execute(query4)
+    #kolorit_3 = result4.scalars().all()
+    #platok_s_db_data["Колорит_3"] = kolorit_3
+    #query5 = select(Platoky.Колорит_4).where(Platoky.Название == Название_платка)
+    #result5 = await session.execute(query5)
+    #kolorit_4 = result5.scalars().all()
+    #platok_s_db_data["Колорит_4"] = kolorit_4
+    #query6 = select(Platoky.Колорит_5).where(Platoky.Название == Название_платка)
+    #result6 = await session.execute(query6)
+    #kolorit_5 = result6.scalars().all()
+    #platok_s_db_data["Колорит_5"] = kolorit_5
+    #query7 = select(Platoky.Узор_темени).where(Platoky.Название == Название_платка)
+    #result7 = await session.execute(query7)
+    #uzor_temeni = result7.scalars().all()
+    #platok_s_db_data["Узор_Темени"] = uzor_temeni
+    #query8 = select(Platoky.Узор_сердцевины).where(Platoky.Название == Название_платка)
+    #result8 = await session.execute(query8)
+    #uzor_cerdcevini = result8.scalars().all()
+    #platok_s_db_data["Узор_Сердцевины"] = uzor_cerdcevini
+    #query9 = select(Platoky.Узор_края).where(Platoky.Название == Название_платка)
+    #result9 = await session.execute(query9)
+    #uzor_krajev = result9.scalars().all()
+    #platok_s_db_data["Узор_Края"] = uzor_krajev
+    #query10 = select(Platoky.Узор_сторон).where(Platoky.Название == Название_платка)
+    #result10 = await session.execute(query10)
+    #uzor_stroron = result10.scalars().all()
+    #platok_s_db_data["Узор_Сторон"] = uzor_stroron
+    #query11 = select(Platoky.Узор_углов).where(Platoky.Название == Название_платка)
+    #result11 = await session.execute(query11)
+    #uzor_uglov = result11.scalars().all()
+    #platok_s_db_data["Узор_Углов"] = uzor_uglov
+    #query12 = select(Platoky.Цветы_Орнамент).where(Platoky.Название == Название_платка)
+    #result12 = await session.execute(query12)
+    #cvety_ornament = result12.scalars().all()
+    #platok_s_db_data["Соотношение_цветов и орнамента"] =cvety_ornament
+    #query13 = select(Platoky.Изображенный_Цветок_1).where(Platoky.Название == Название_платка)
+    #result13 = await session.execute(query13)
+    #izobr_cvetok_1 = result13.scalars().all()
+    #platok_s_db_data["Изображенный цветок_1"] = izobr_cvetok_1
+    #query14 = select(Platoky.Изображенный_Цветок_2).where(Platoky.Название == Название_платка)
+    #result14 = await session.execute(query14)
+    #izobr_cvetok_2 = result14.scalars().all()
+    #platok_s_db_data["Изображенный цветок_2"] = izobr_cvetok_2
+    #query15 = select(Platoky.Изображенный_Цветок_3).where(Platoky.Название == Название_платка)
+    #result15 = await session.execute(query15)
+    #izobr_cvetok_3 = result15.scalars().all()
+    #platok_s_db_data["Изображенный цветок_3"] = izobr_cvetok_3
+    #query16 = select(Platoky.Изображенный_Цветок_4).where(Platoky.Название == Название_платка)
+    #result16 = await session.execute(query16)
+    #izobr_cvetok_4 = result16.scalars().all()
+    #platok_s_db_data["Изображенный цветок_4"] = izobr_cvetok_4
+    #query17 = select(Platoky.Изображенный_Цветок_5).where(Platoky.Название == Название_платка)
+    #result17 = await session.execute(query17)
+    #izobr_cvetok_5 = result17.scalars().all()
+    #platok_s_db_data["Изображенный цветок_5"] = izobr_cvetok_5
+    #query18 = select(Platoky.Размер_Платка).where(Platoky.Название == Название_платка)
+    #result18 = await session.execute(query18)
+    #razmer_platka = result18.scalars().all()
+    #platok_s_db_data["Размер_Платка"] = razmer_platka
+    #query19 = select(Platoky.Материал_Платка).where(Platoky.Название == Название_платка)
+    #result19 = await session.execute(query19 )
+    #material_platka = result19.scalars().all()
+    #platok_s_db_data["Материал_Платка"] = material_platka
     query20 = select(Platoky.Материал_Бахромы).where(Platoky.Название == Название_платка)
-    result20 = await session.execute(query20)
-    material_bahromi = result20.scalars().all()
-    platok_s_db_data["Материал_Бахромы"] = material_bahromi
+    #result20 = await session.execute(query20)
+    #material_bahromi = result20.scalars().all()
+    #platok_s_db_data["Материал_Бахромы"] = material_bahromi
     return platok_s_db_data
 #ВВОД СТАРОГО ОБРАЗЦА БЕЗ КОНТРАКТА С PYDANTIC И БЕЗ ЗАВИСИМОСТЕЙ
 #@app.post("/platoky_dict", summary="Platok",tags=["Platok"])
@@ -421,18 +421,18 @@ async def root(Название_платка: str):
 #ВВОД ДАННЫХ ПЛАТКА
 @app.post("/platoky_vvod", summary="Platok",tags=["Platok"])
 async def insert_platky(platok: Annotated[Platok_Schema,Depends()]):
-    session=session_factory()
-    query=select(Platoky).where(Platoky.Название==platok.Название_Платка)
-    result=await session.execute(query)
-    unikalnost_platka=result.scalar_one_or_none()
-    if unikalnost_platka is None:
+#session=session_factory()
+#query=select(Platoky).where(Platoky.Название==platok.Название_Платка)
+#result=await session.execute(query)
+#unikalnost_platka=result.scalar_one_or_none()
+#if unikalnost_platka is None:
         #заяц выключен
         #await router.broker.publish(message="Это уникальный платок", queue="PLATOKY")
-        session = session_factory()
-        query2 = select(Platoky).where(Platoky.id == platok.id)
-        result2 = await session.execute(query2)
-        unikalnost_id = result2.scalar_one_or_none()
-        if unikalnost_id is None:
+        #session = session_factory()
+        #query2 = select(Platoky).where(Platoky.id == platok.id)
+        #result2 = await session.execute(query2)
+        #unikalnost_id = result2.scalar_one_or_none()
+        #if unikalnost_id is None:
             try:
                 platoch_eksemp = Platoky(id=platok.id, Название=platok.Название_Платка,
                 Автор=platok.Автор_Платка, Колорит_1=platok.Колорит_1, Колорит_2=platok.Колорит_2, Колорит_3=platok.Колорит_3,
@@ -442,8 +442,8 @@ async def insert_platky(platok: Annotated[Platok_Schema,Depends()]):
                 Изображенный_Цветок_2=platok.Изображённый_Цветок_2, Изображенный_Цветок_3=platok.Изображённый_Цветок_3,
                 Изображенный_Цветок_4=platok.Изображённый_Цветок_4, Изображенный_Цветок_5=platok.Изображённый_Цветок_5,
                 Размер_Платка=platok.Размер_Платка, Материал_Платка=platok.Материал_Платка, Материал_Бахромы=platok.Материал_Бахромы)
-                session = session_factory()
-                session.add(platoch_eksemp)
+                #session = session_factory()
+                #session.add(platoch_eksemp)
                 # await session.commit()
             except:
                 raise HTTPException(status_code=500, detail="Проблема с базой данных")
@@ -454,12 +454,12 @@ async def insert_platky(platok: Annotated[Platok_Schema,Depends()]):
             #return {"message": "OK"}
             #except:
             #raise HTTPException(status_code=500, detail="Проблема с брокером")
-        else:
-            raise HTTPException(status_code=422, detail="Данные не прошли валидацию")
-    else:
+#else:
+#raise HTTPException(status_code=422, detail="Данные не прошли валидацию")
+            #else:
         # заяц выключен
         #await router.broker.publish(message="Такой уже есть, отмена регистрации", queue="PLATOKY")
-        raise HTTPException(status_code=422, detail="Данные не прошли валидацию")
+        #raise HTTPException(status_code=422, detail="Данные не прошли валидацию")
 @app.post("/banda", summary="Platok",tags=["Платочная_Банда"])
 async def insert_persona(platoch_persona: Annotated[Banda_Schema,Depends()]):
     try:
@@ -473,10 +473,10 @@ async def insert_persona(platoch_persona: Annotated[Banda_Schema,Depends()]):
         Ссылка_На_Одноклассники=platoch_persona.Ссылка_На_Одноклассники,
         Ссылка_На_Яндекс_Дзен=platoch_persona.Ссылка_На_Яндекс_Дзен, Ссылка_На_Сайт=platoch_persona.Ссылка_На_Сайт,
         Адрес_Деятельности=platoch_persona.Адрес_Деятельности)
-        session = session_factory()
-        session.add(banda_eksemp)
-        await session.commit()
-        await session.close()
+        #session = session_factory()
+        #session.add(banda_eksemp)
+        #await session.commit()
+        #await session.close()
         return platoch_persona
         #заяц выключен
         #try:
@@ -487,12 +487,12 @@ async def insert_persona(platoch_persona: Annotated[Banda_Schema,Depends()]):
         #raise HTTPException(status_code=500, detail="Проблема с брокером")
     except:
         raise HTTPException(status_code=500, detail="Проблема с базой данных")
-async def create_platky():
-    async with engine.begin() as connection:
-        await connection.run_sync(Base.metadata.create_all)
-async def destroy_platky():
-    async with engine.begin() as connection:
-        await connection.run_sync(Base.metadata.drop_all())
+#async def create_platky():
+#async with engine.begin() as connection:
+#await connection.run_sync(Base.metadata.create_all)
+#async def destroy_platky():
+#async with engine.begin() as connection:
+#await connection.run_sync(Base.metadata.drop_all())
 async def kostily_BD():
     # создать ДБ
     import psycopg2 as ps
@@ -519,13 +519,13 @@ async def kostily_BD():
             connection.close()
         if cursor:
             cursor.close()
-async def create_platky():
-    async with engine.begin() as connection:
-        await connection.run_sync(Base.metadata.create_all)
+#async def create_platky():
+    #async with engine.begin() as connection:
+        #await connection.run_sync(Base.metadata.create_all)
 async def main():
     init(autoreset=True)
     #await kostily_BD()
-    await create_platky()
+    #await create_platky()
     uvicorn.run("prilozhenije:app", reload=True, port=8000)
 #ЗАЯЦ ВЫКЛЮЧЕН
 #app.include_router(router)

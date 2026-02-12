@@ -473,10 +473,10 @@ async def insert_persona(platoch_persona: Annotated[Banda_Schema,Depends()]):
         Ссылка_На_Одноклассники=platoch_persona.Ссылка_На_Одноклассники,
         Ссылка_На_Яндекс_Дзен=platoch_persona.Ссылка_На_Яндекс_Дзен, Ссылка_На_Сайт=platoch_persona.Ссылка_На_Сайт,
         Адрес_Деятельности=platoch_persona.Адрес_Деятельности)
-        #session = session_factory()
-        #session.add(banda_eksemp)
-        #await session.commit()
-        #await session.close()
+        session = session_factory()
+        session.add(banda_eksemp)
+        await session.commit()
+        await session.close()
         return platoch_persona
         #заяц выключен
         #try:

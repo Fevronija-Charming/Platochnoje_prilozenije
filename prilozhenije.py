@@ -273,88 +273,88 @@ def root():
 @app.get("/platok3", summary="Platok",tags=["Platok"])
 async def root(Название_платка: str):
     platok_s_db_data = {}
-    #query1 = select(Platoky.Автор).where(Platoky.Название == Название_платка)
-    #session = session_factory()
-    #result1 = await session.execute(query1)
-    #avtor = result1.scalars().all()
-    #platok_s_db_data["Автор"] = avtor
-    #query2=select(Platoky.Колорит_1).where(Platoky.Название==Название_платка)
-    #session=session_factory()
-    #result2 =await session.execute(query2)
-    #kolorit_1=result2.scalars().all()
-    #platok_s_db_data["Колорит_1"] = kolorit_1
-    #query3=select(Platoky.Колорит_2).where(Platoky.Название==Название_платка)
-    #result3 = await session.execute(query3)
-    #kolorit_2 = result3.scalars().all()
-    #platok_s_db_data["Колорит_2"] = kolorit_2
-    #query4 = select(Platoky.Колорит_3).where(Platoky.Название == Название_платка)
-    #result4 = await session.execute(query4)
-    #kolorit_3 = result4.scalars().all()
-    #platok_s_db_data["Колорит_3"] = kolorit_3
-    #query5 = select(Platoky.Колорит_4).where(Platoky.Название == Название_платка)
-    #result5 = await session.execute(query5)
-    #kolorit_4 = result5.scalars().all()
-    #platok_s_db_data["Колорит_4"] = kolorit_4
-    #query6 = select(Platoky.Колорит_5).where(Platoky.Название == Название_платка)
-    #result6 = await session.execute(query6)
-    #kolorit_5 = result6.scalars().all()
-    #platok_s_db_data["Колорит_5"] = kolorit_5
-    #query7 = select(Platoky.Узор_темени).where(Platoky.Название == Название_платка)
-    #result7 = await session.execute(query7)
-    #uzor_temeni = result7.scalars().all()
-    #platok_s_db_data["Узор_Темени"] = uzor_temeni
-    #query8 = select(Platoky.Узор_сердцевины).where(Platoky.Название == Название_платка)
-    #result8 = await session.execute(query8)
-    #uzor_cerdcevini = result8.scalars().all()
-    #platok_s_db_data["Узор_Сердцевины"] = uzor_cerdcevini
-    #query9 = select(Platoky.Узор_края).where(Platoky.Название == Название_платка)
-    #result9 = await session.execute(query9)
-    #uzor_krajev = result9.scalars().all()
-    #platok_s_db_data["Узор_Края"] = uzor_krajev
-    #query10 = select(Platoky.Узор_сторон).where(Platoky.Название == Название_платка)
-    #result10 = await session.execute(query10)
-    #uzor_stroron = result10.scalars().all()
-    #platok_s_db_data["Узор_Сторон"] = uzor_stroron
-    #query11 = select(Platoky.Узор_углов).where(Platoky.Название == Название_платка)
-    #result11 = await session.execute(query11)
-    #uzor_uglov = result11.scalars().all()
-    #platok_s_db_data["Узор_Углов"] = uzor_uglov
-    #query12 = select(Platoky.Цветы_Орнамент).where(Platoky.Название == Название_платка)
-    #result12 = await session.execute(query12)
-    #cvety_ornament = result12.scalars().all()
-    #platok_s_db_data["Соотношение_цветов и орнамента"] =cvety_ornament
-    #query13 = select(Platoky.Изображенный_Цветок_1).where(Platoky.Название == Название_платка)
-    #result13 = await session.execute(query13)
-    #izobr_cvetok_1 = result13.scalars().all()
-    #platok_s_db_data["Изображенный цветок_1"] = izobr_cvetok_1
-    #query14 = select(Platoky.Изображенный_Цветок_2).where(Platoky.Название == Название_платка)
-    #result14 = await session.execute(query14)
-    #izobr_cvetok_2 = result14.scalars().all()
-    #platok_s_db_data["Изображенный цветок_2"] = izobr_cvetok_2
-    #query15 = select(Platoky.Изображенный_Цветок_3).where(Platoky.Название == Название_платка)
-    #result15 = await session.execute(query15)
-    #izobr_cvetok_3 = result15.scalars().all()
-    #platok_s_db_data["Изображенный цветок_3"] = izobr_cvetok_3
-    #query16 = select(Platoky.Изображенный_Цветок_4).where(Platoky.Название == Название_платка)
-    #result16 = await session.execute(query16)
-    #izobr_cvetok_4 = result16.scalars().all()
-    #platok_s_db_data["Изображенный цветок_4"] = izobr_cvetok_4
-    #query17 = select(Platoky.Изображенный_Цветок_5).where(Platoky.Название == Название_платка)
-    #result17 = await session.execute(query17)
-    #izobr_cvetok_5 = result17.scalars().all()
-    #platok_s_db_data["Изображенный цветок_5"] = izobr_cvetok_5
-    #query18 = select(Platoky.Размер_Платка).where(Platoky.Название == Название_платка)
-    #result18 = await session.execute(query18)
-    #razmer_platka = result18.scalars().all()
-    #platok_s_db_data["Размер_Платка"] = razmer_platka
-    #query19 = select(Platoky.Материал_Платка).where(Platoky.Название == Название_платка)
-    #result19 = await session.execute(query19 )
-    #material_platka = result19.scalars().all()
-    #platok_s_db_data["Материал_Платка"] = material_platka
+    query1 = select(Platoky.Автор).where(Platoky.Название == Название_платка)
+    session = session_factory()
+    result1 = await session.execute(query1)
+    avtor = result1.scalars().all()
+    platok_s_db_data["Автор"] = avtor
+    query2=select(Platoky.Колорит_1).where(Platoky.Название==Название_платка)
+    session=session_factory()
+    result2 =await session.execute(query2)
+    kolorit_1=result2.scalars().all()
+    platok_s_db_data["Колорит_1"] = kolorit_1
+    query3=select(Platoky.Колорит_2).where(Platoky.Название==Название_платка)
+    result3 = await session.execute(query3)
+    kolorit_2 = result3.scalars().all()
+    platok_s_db_data["Колорит_2"] = kolorit_2
+    query4 = select(Platoky.Колорит_3).where(Platoky.Название == Название_платка)
+    result4 = await session.execute(query4)
+    kolorit_3 = result4.scalars().all()
+    platok_s_db_data["Колорит_3"] = kolorit_3
+    query5 = select(Platoky.Колорит_4).where(Platoky.Название == Название_платка)
+    result5 = await session.execute(query5)
+    kolorit_4 = result5.scalars().all()
+    platok_s_db_data["Колорит_4"] = kolorit_4
+    query6 = select(Platoky.Колорит_5).where(Platoky.Название == Название_платка)
+    result6 = await session.execute(query6)
+    kolorit_5 = result6.scalars().all()
+    platok_s_db_data["Колорит_5"] = kolorit_5
+    query7 = select(Platoky.Узор_темени).where(Platoky.Название == Название_платка)
+    result7 = await session.execute(query7)
+    uzor_temeni = result7.scalars().all()
+    platok_s_db_data["Узор_Темени"] = uzor_temeni
+    query8 = select(Platoky.Узор_сердцевины).where(Platoky.Название == Название_платка)
+    result8 = await session.execute(query8)
+    uzor_cerdcevini = result8.scalars().all()
+    platok_s_db_data["Узор_Сердцевины"] = uzor_cerdcevini
+    query9 = select(Platoky.Узор_края).where(Platoky.Название == Название_платка)
+    result9 = await session.execute(query9)
+    uzor_krajev = result9.scalars().all()
+    platok_s_db_data["Узор_Края"] = uzor_krajev
+    query10 = select(Platoky.Узор_сторон).where(Platoky.Название == Название_платка)
+    result10 = await session.execute(query10)
+    uzor_stroron = result10.scalars().all()
+    platok_s_db_data["Узор_Сторон"] = uzor_stroron
+    query11 = select(Platoky.Узор_углов).where(Platoky.Название == Название_платка)
+    result11 = await session.execute(query11)
+    uzor_uglov = result11.scalars().all()
+    platok_s_db_data["Узор_Углов"] = uzor_uglov
+    query12 = select(Platoky.Цветы_Орнамент).where(Platoky.Название == Название_платка)
+    result12 = await session.execute(query12)
+    cvety_ornament = result12.scalars().all()
+    platok_s_db_data["Соотношение_цветов и орнамента"] =cvety_ornament
+    query13 = select(Platoky.Изображенный_Цветок_1).where(Platoky.Название == Название_платка)
+    result13 = await session.execute(query13)
+    izobr_cvetok_1 = result13.scalars().all()
+    platok_s_db_data["Изображенный цветок_1"] = izobr_cvetok_1
+    query14 = select(Platoky.Изображенный_Цветок_2).where(Platoky.Название == Название_платка)
+    result14 = await session.execute(query14)
+    izobr_cvetok_2 = result14.scalars().all()
+    platok_s_db_data["Изображенный цветок_2"] = izobr_cvetok_2
+    query15 = select(Platoky.Изображенный_Цветок_3).where(Platoky.Название == Название_платка)
+    result15 = await session.execute(query15)
+    izobr_cvetok_3 = result15.scalars().all()
+    platok_s_db_data["Изображенный цветок_3"] = izobr_cvetok_3
+    query16 = select(Platoky.Изображенный_Цветок_4).where(Platoky.Название == Название_платка)
+    result16 = await session.execute(query16)
+    izobr_cvetok_4 = result16.scalars().all()
+    platok_s_db_data["Изображенный цветок_4"] = izobr_cvetok_4
+    query17 = select(Platoky.Изображенный_Цветок_5).where(Platoky.Название == Название_платка)
+    result17 = await session.execute(query17)
+    izobr_cvetok_5 = result17.scalars().all()
+    platok_s_db_data["Изображенный цветок_5"] = izobr_cvetok_5
+    query18 = select(Platoky.Размер_Платка).where(Platoky.Название == Название_платка)
+    result18 = await session.execute(query18)
+    razmer_platka = result18.scalars().all()
+    platok_s_db_data["Размер_Платка"] = razmer_platka
+    query19 = select(Platoky.Материал_Платка).where(Platoky.Название == Название_платка)
+    result19 = await session.execute(query19 )
+    material_platka = result19.scalars().all()
+    platok_s_db_data["Материал_Платка"] = material_platka
     query20 = select(Platoky.Материал_Бахромы).where(Platoky.Название == Название_платка)
-    #result20 = await session.execute(query20)
-    #material_bahromi = result20.scalars().all()
-    #platok_s_db_data["Материал_Бахромы"] = material_bahromi
+    result20 = await session.execute(query20)
+    material_bahromi = result20.scalars().all()
+    platok_s_db_data["Материал_Бахромы"] = material_bahromi
     return platok_s_db_data
 #ВВОД СТАРОГО ОБРАЗЦА БЕЗ КОНТРАКТА С PYDANTIC И БЕЗ ЗАВИСИМОСТЕЙ
 #@app.post("/platoky_dict", summary="Platok",tags=["Platok"])

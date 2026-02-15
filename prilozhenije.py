@@ -450,12 +450,13 @@ async def insert_platky(platok: Annotated[Platok_Schema,Depends()]):
                 session = session_factory()
                 session.add(platoch_eksemp)
                 await session.commit()
+                return platoch_eksemp
             except:
                 raise HTTPException(status_code=500, detail="Проблема с базой данных")
         else:
-            raise HTTPException(status_code=428, detail="Такой платок уже есть")
+            raise HTTPException(status_code=428, detail="ID занят")
     else:
-        raise HTTPException(status_code=428, detail="ID занят")
+        raise HTTPException(status_code=428, detail="Такой платок уже есть")
 @app.post("/banda", summary="Platok",tags=["Платочная_Банда"])
 async def insert_persona(platoch_persona: Annotated[Banda_Schema,Depends()]):
     try:

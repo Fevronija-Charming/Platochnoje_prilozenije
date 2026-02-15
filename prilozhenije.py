@@ -421,45 +421,41 @@ async def root(Название_платка: str):
 #ВВОД ДАННЫХ ПЛАТКА
 @app.post("/platoky_vvod", summary="Platok",tags=["Platok"])
 async def insert_platky(platok: Annotated[Platok_Schema,Depends()]):
-#session=session_factory()
-#query=select(Platoky).where(Platoky.Название==platok.Название_Платка)
-#result=await session.execute(query)
-#unikalnost_platka=result.scalar_one_or_none()
-#if unikalnost_platka is None:
-        #заяц выключен
-        #await router.broker.publish(message="Это уникальный платок", queue="PLATOKY")
-        #session = session_factory()
-        #query2 = select(Platoky).where(Platoky.id == platok.id)
-        #result2 = await session.execute(query2)
-        #unikalnost_id = result2.scalar_one_or_none()
-        #if unikalnost_id is None:
+    session=session_factory()
+    query=select(Platoky).where(Platoky.Название==platok.Название_Платка)
+    result=await session.execute(query)
+    unikalnost_platka=result.scalar_one_or_none()
+    if unikalnost_platka is None:
+        session = session_factory()
+        query2 = select(Platoky).where(Platoky.id == platok.id)
+        result2 = await session.execute(query2)
+        unikalnost_id = result2.scalar_one_or_none()
+        if unikalnost_id is None:
             try:
                 platoch_eksemp = Platoky(id=platok.id, Название=platok.Название_Платка,
-                Автор=platok.Автор_Платка, Колорит_1=platok.Колорит_1, Колорит_2=platok.Колорит_2, Колорит_3=platok.Колорит_3,
-                Колорит_4=platok.Колорит_4, Колорит_5=platok.Колорит_5, Узор_темени=platok.Узор_Темени,
-                Узор_сердцевины=platok.Узор_Сердцевины, Узор_сторон=platok.Узор_Сторон, Узор_углов=platok.Узор_Углов,
-                Узор_края=platok.Узор_Края, Цветы_Орнамент=platok.Цветы_Орнамент, Изображенный_Цветок_1=platok.Изображённый_Цветок_1,
-                Изображенный_Цветок_2=platok.Изображённый_Цветок_2, Изображенный_Цветок_3=platok.Изображённый_Цветок_3,
-                Изображенный_Цветок_4=platok.Изображённый_Цветок_4, Изображенный_Цветок_5=platok.Изображённый_Цветок_5,
-                Размер_Платка=platok.Размер_Платка, Материал_Платка=platok.Материал_Платка, Материал_Бахромы=platok.Материал_Бахромы)
-                #session = session_factory()
-                #session.add(platoch_eksemp)
-                # await session.commit()
+                                         Автор=platok.Автор_Платка, Колорит_1=platok.Колорит_1,
+                                         Колорит_2=platok.Колорит_2, Колорит_3=platok.Колорит_3,
+                                         Колорит_4=platok.Колорит_4, Колорит_5=platok.Колорит_5,
+                                         Узор_темени=platok.Узор_Темени,
+                                         Узор_сердцевины=platok.Узор_Сердцевины, Узор_сторон=platok.Узор_Сторон,
+                                         Узор_углов=platok.Узор_Углов,
+                                         Узор_края=platok.Узор_Края, Цветы_Орнамент=platok.Цветы_Орнамент,
+                                         Изображенный_Цветок_1=platok.Изображённый_Цветок_1,
+                                         Изображенный_Цветок_2=platok.Изображённый_Цветок_2,
+                                         Изображенный_Цветок_3=platok.Изображённый_Цветок_3,
+                                         Изображенный_Цветок_4=platok.Изображённый_Цветок_4,
+                                         Изображенный_Цветок_5=platok.Изображённый_Цветок_5,
+                                         Размер_Платка=platok.Размер_Платка, Материал_Платка=platok.Материал_Платка,
+                                         Материал_Бахромы=platok.Материал_Бахромы)
+                session = session_factory()
+                session.add(platoch_eksemp)
+                await session.commit()
             except:
                 raise HTTPException(status_code=500, detail="Проблема с базой данных")
-            #заяц выключен
-            #try:
-            # router.broker.publish(message="Добавлен новый платок", queue="PLATOKY")
-            #await router.broker.publish(message=f"{platok}", queue="PLATOKY")
-            #return {"message": "OK"}
-            #except:
-            #raise HTTPException(status_code=500, detail="Проблема с брокером")
-#else:
-#raise HTTPException(status_code=422, detail="Данные не прошли валидацию")
-            #else:
-        # заяц выключен
-        #await router.broker.publish(message="Такой уже есть, отмена регистрации", queue="PLATOKY")
-        #raise HTTPException(status_code=422, detail="Данные не прошли валидацию")
+        else:
+            raise HTTPException(status_code=428, detail="Такой платок уже есть")
+    else:
+        raise HTTPException(status_code=428, detail="ID занят")
 @app.post("/banda", summary="Platok",tags=["Платочная_Банда"])
 async def insert_persona(platoch_persona: Annotated[Banda_Schema,Depends()]):
     try:

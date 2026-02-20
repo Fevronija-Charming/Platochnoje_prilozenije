@@ -149,10 +149,10 @@ async def create_tradicii(symbol: Annotated[Symbol_Schema, Depends()]):
             Символ_На_Платке_1=symbol.Символ_На_Платке_1, Символ_На_Платке_2=symbol.Символ_На_Платке_2,
             Символ_На_Платке_3=symbol.Символ_На_Платке_3, Символ_На_Платке_4=symbol.Символ_На_Платке_4,
             Символ_На_Платке_5=symbol.Символ_На_Платке_5)
-        #session = session_factory()
-        #session.add(symbol_eksemp)
-        #await session.commit()
-        #await session.close()
+        session = session_factory()
+        session.add(symbol_eksemp)
+        await session.commit()
+        await session.close()
         return symbol
         #заяц_погашен
         #try:

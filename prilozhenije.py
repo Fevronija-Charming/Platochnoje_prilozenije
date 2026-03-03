@@ -5,15 +5,15 @@ from fastapi import HTTPException
 from fastapi import Depends
 from typing import Annotated
 import uvicorn
-#заяц погашен
-#from faststream.rabbit.fastapi import RabbitBroker, RabbitRouter
-#router=RabbitRouter(host="localhost", port=5672)
-app = FastAPI()
 from pydantic import BaseModel, Field, ValidationError
 from dotenv import find_dotenv, load_dotenv
 import os
 from tokenize import String
 load_dotenv(find_dotenv())
+#заяц включен
+from faststream.rabbit.fastapi import RabbitBroker, RabbitRouter
+router=RabbitRouter(url=os.getenv("CLOUDAMQP_URL"))
+app = FastAPI()
 #работа с базой данных
 from sqlalchemy import  DateTime, String, Float, Column, Integer, func,Text
 from sqlalchemy import  select
@@ -138,7 +138,8 @@ class Banda_Schema(BaseModel):
     Ссылка_На_Яндекс_Дзен: str = Field(min_length=5, max_length=75)
     Ссылка_На_Сайт: str = Field(min_length=5, max_length=75)
     Адрес_Деятельности: str = Field(min_length=5, max_length=75)
-@app.post("/symboly", summary="Platok",tags=["Symboli"])
+#@app.post("/symboly", summary="Platok", tags=["Symboli"])
+@router.post("/symboly", summary="Platok",tags=["Symboli"])
 async def create_tradicii(symbol: Annotated[Symbol_Schema, Depends()]):
     try:
         symbol_eksemp = Symboly(id=symbol.id,Название_Символа=symbol.Название_Символа,
@@ -153,13 +154,12 @@ async def create_tradicii(symbol: Annotated[Symbol_Schema, Depends()]):
         session.add(symbol_eksemp)
         await session.commit()
         await session.close()
-        return symbol
-        #заяц_погашен
-        #try:
-        #await router.broker.publish(message=f"{symbol}", queue="PLATOKY")
-        #return symbol
-        #except:
-        #raise HTTPException(status_code=500, detail="Проблема с брокером")
+        #заяц_включён
+        try:
+            await router.broker.publish(message=f"{symbol}", queue="PLATOKY")
+            return symbol
+        except:
+            raise HTTPException(status_code=500, detail="Проблема с брокером")
     except:
         raise HTTPException(status_code=500, detail="Проблема с базой данных")
 
@@ -419,7 +419,9 @@ async def root(Название_платка: str):
 #except:
 #raise HTTPException(status_code=500, detail="Проблема с брокером")
 #ВВОД ДАННЫХ ПЛАТКА
-@app.post("/platoky_vvod", summary="Platok",tags=["Platok"])
+#@app.post("/platoky_vvod", summary="Platok",tags=["Platok"]
+#кролмк выключен
+@router.post("/platoky_vvod", summary="Platok",tags=["Platok"])
 async def insert_platky(platok: Annotated[Platok_Schema,Depends()]):
     session=session_factory()
     query=select(Platoky).where(Platoky.Название==platok.Название_Платка)
@@ -449,8 +451,13 @@ async def insert_platky(platok: Annotated[Platok_Schema,Depends()]):
                                          Материал_Бахромы=platok.Материал_Бахромы)
                 session = session_factory()
                 session.add(platoch_eksemp)
-                await session.commit()
-                return platoch_eksemp
+                # await session.commit()
+                # await session.close()
+                try:
+                    await router.broker.publish(message="Добавлен новый платок", queue="PLATOKY")
+                    await router.broker.publish(message=f"{platok}", queue="PLATOKY")
+                    return platok
+                except: raise HTTPException(status_code=500, detail="Проблема с брокером")
             except:
                 raise HTTPException(status_code=500, detail="Проблема с базой данных")
         else:
@@ -524,7 +531,7 @@ async def main():
     #await kostily_BD()
     await create_platky()
     uvicorn.run("prilozhenije:app", reload=True, port=8000)
-#ЗАЯЦ ВЫКЛЮЧЕН
-#app.include_router(router)
+#ЗАЯЦ ВКЛЮЧЕН
+app.include_router(router)
 if __name__ == "__main__":
     asyncio.run(main())

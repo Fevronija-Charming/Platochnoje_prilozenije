@@ -451,8 +451,8 @@ async def insert_platky(platok: Annotated[Platok_Schema,Depends()]):
                                          Материал_Бахромы=platok.Материал_Бахромы)
                 session = session_factory()
                 session.add(platoch_eksemp)
-                # await session.commit()
-                # await session.close()
+                await session.commit()
+                await session.close()
                 try:
                     await router.broker.publish(message="Добавлен новый платок", queue="PLATOKY")
                     await router.broker.publish(message=f"{platok}", queue="PLATOKY")

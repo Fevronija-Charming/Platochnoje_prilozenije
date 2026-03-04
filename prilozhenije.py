@@ -1,6 +1,8 @@
 import asyncio
+from io import BytesIO
+import pandas as pd
 from colorama import *
-from fastapi import FastAPI
+from fastapi import FastAPI, UploadFile, File
 from fastapi import HTTPException
 from fastapi import Depends
 from typing import Annotated
@@ -420,7 +422,7 @@ async def root(Название_платка: str):
 #raise HTTPException(status_code=500, detail="Проблема с брокером")
 #ВВОД ДАННЫХ ПЛАТКА
 #@app.post("/platoky_vvod", summary="Platok",tags=["Platok"]
-#кролмк выключен
+#кролмк включен
 @router.post("/platoky_vvod", summary="Platok",tags=["Platok"])
 async def insert_platky(platok: Annotated[Platok_Schema,Depends()]):
     session=session_factory()
@@ -464,6 +466,19 @@ async def insert_platky(platok: Annotated[Platok_Schema,Depends()]):
             raise HTTPException(status_code=428, detail="ID занят")
     else:
         raise HTTPException(status_code=428, detail="Такой платок уже есть")
+#@app.post("/platoky_vvod", summary="Platok",tags=["Platok"]
+#кролмк включен
+@router.post("/platoky_grupovoy", summary="Platok",tags=["Platok"])
+async def insert_boundle_platoky(file:UploadFile = File(...)):
+    #проверка расширения файла
+    if not (file.filename.endswith(".xls") or file.filename.endswith(".xlsx") or file.filename.endswith(".csv")):
+        raise HTTPException(status_code=400, detail="В обработку принмаем только EXCEL, дятел!!! ")
+    try:
+        contents = await file.read()
+        dataframe=pd.read_excel(BytesIO(contents))
+        print(dataframe)
+    except:
+        raise HTTPException(status_code=428, detail="Не удалось обработать присланный файл")
 @app.post("/banda", summary="Platok",tags=["Платочная_Банда"])
 async def insert_persona(platoch_persona: Annotated[Banda_Schema,Depends()]):
     try:

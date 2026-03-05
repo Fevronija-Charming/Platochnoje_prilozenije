@@ -476,10 +476,10 @@ async def insert_boundle_platoky(file:UploadFile = File(...)):
     try:
         contents = await file.read()
         dataframe=pd.read_excel(BytesIO(contents))
-        nazvan_platki_vstavka=dataframe.iloc[:,1]
+        nazvanije_platki_vstavka=dataframe.iloc[:,1]
         id_platki_vstavka=dataframe.iloc[:,0]
-        print(nazvan_platki_vstavka)
-        print(id_platki_vstavka)
+        print(type(nazvanije_platki_vstavka))
+        print(type(id_platki_vstavka))
         try:
             session=session_factory()
             query11 = select(Platoky.Название)
@@ -489,8 +489,17 @@ async def insert_boundle_platoky(file:UploadFile = File(...)):
             result22 = await session.execute(query22)
             id_platki_DB = result22.scalars().all()
             await session.close()
-            print(id_platki_DB)
-            print(nazvanije_platki_DB)
+            print(type(id_platki_DB))
+            print(type(nazvanije_platki_DB))
+            for i in range(len(nazvanije_platki_vstavka)):
+                if nazvanije_platki_vstavka[i] in nazvanije_platki_DB:
+                    soobhenije=("Этот платок уже есть в БД")
+                    return soobhenije + str(nazvanije_platki_vstavka[i])
+                elif id_platki_vstavka[i] in id_platki_DB:
+                    soobhenije2 = ("Этот id уже есть в БД")
+                    return soobhenije2 + str(id_platki_vstavka[i])
+                else: print("OK!")
+
         except:
             raise HTTPException(status_code=500, detail="Проблема с базой данных")
     except:
@@ -531,7 +540,7 @@ async def insert_persona(platoch_persona: Annotated[Banda_Schema,Depends()]):
 async def kostily_BD():
     # создать ДБ
     import psycopg2 as ps
-    from psycopg2.errors import DuplicateDatabase as Oshibka
+    from psycopg2.errors import DublicateDATABASE
     from psycopg2 import sql
     connection = None
     try:

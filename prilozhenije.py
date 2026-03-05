@@ -493,12 +493,14 @@ async def insert_boundle_platoky(file:UploadFile = File(...)):
             print(type(nazvanije_platki_DB))
             for i in range(len(nazvanije_platki_vstavka)):
                 if nazvanije_platki_vstavka[i] in nazvanije_platki_DB:
+                    peremycka=(" ")
                     soobhenije=("Этот платок уже есть в БД")
-                    return soobhenije + str(nazvanije_platki_vstavka[i])
+                    return soobhenije + peremycka + str(nazvanije_platki_vstavka[i])
                 elif id_platki_vstavka[i] in id_platki_DB:
-                    soobhenije2 = ("Этот id уже есть в БД")
-                    return soobhenije2 + str(id_platki_vstavka[i])
-                else: print("OK!")
+                    peremycka = (" ")
+                    soobhenije2=("Этот id уже есть в БД")
+                    return soobhenije2 + peremycka + str(id_platki_vstavka[i])
+            print("OK!")
 
         except:
             raise HTTPException(status_code=500, detail="Проблема с базой данных")
@@ -540,7 +542,7 @@ async def insert_persona(platoch_persona: Annotated[Banda_Schema,Depends()]):
 async def kostily_BD():
     # создать ДБ
     import psycopg2 as ps
-    from psycopg2.errors import DublicateDATABASE
+    from psycopg2.errors import Dublica
     from psycopg2 import sql
     connection = None
     try:

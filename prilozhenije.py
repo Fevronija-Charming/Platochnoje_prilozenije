@@ -502,7 +502,7 @@ async def insert_boundle_platoky(file:UploadFile = File(...)):
                     return soobhenije2 + peremycka + str(id_platki_vstavka[i])
             try:
                 session = session_factory()
-                for i in range(len(nazvanije_platki_vstavka)):
+                for i in range(5):
                     platoch_eksemp = Platoky(id=dataframe.iloc[i,0], Название=dataframe.iloc[i,1],
                     Автор=dataframe.iloc[i,2], Колорит_1=dataframe.iloc[i,3], Колорит_2=dataframe.iloc[i,4],
                     Колорит_3=dataframe.iloc[i,5], Колорит_4=dataframe.iloc[i,6], Колорит_5=dataframe.iloc[i,7],

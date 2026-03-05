@@ -476,7 +476,23 @@ async def insert_boundle_platoky(file:UploadFile = File(...)):
     try:
         contents = await file.read()
         dataframe=pd.read_excel(BytesIO(contents))
-        print(dataframe)
+        nazvan_platki_vstavka=dataframe.iloc[:,1]
+        id_platki_vstavka=dataframe.iloc[:,0]
+        print(nazvan_platki_vstavka)
+        print(id_platki_vstavka)
+        try:
+            session=session_factory()
+            query11 = select(Platoky.Название)
+            result11 = await session.execute(query11)
+            nazvanije_platki_DB=result11.scalars().all()
+            query22 = select(Platoky.id)
+            result22 = await session.execute(query22)
+            id_platki_DB = result22.scalars().all()
+            await session.close()
+            print(id_platki_DB)
+            print(nazvanije_platki_DB)
+        except:
+            raise HTTPException(status_code=500, detail="Проблема с базой данных")
     except:
         raise HTTPException(status_code=428, detail="Не удалось обработать присланный файл")
 @app.post("/banda", summary="Platok",tags=["Платочная_Банда"])

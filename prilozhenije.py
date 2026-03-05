@@ -460,12 +460,9 @@ async def insert_platky(platok: Annotated[Platok_Schema,Depends()]):
                     await router.broker.publish(message=f"{platok}", queue="PLATOKY")
                     return platok
                 except: raise HTTPException(status_code=500, detail="Проблема с брокером")
-            except:
-                raise HTTPException(status_code=500, detail="Проблема с базой данных")
-        else:
-            raise HTTPException(status_code=428, detail="ID занят")
-    else:
-        raise HTTPException(status_code=428, detail="Такой платок уже есть")
+            except: raise HTTPException(status_code=500, detail="Проблема с базой данных")
+        else: raise HTTPException(status_code=428, detail="ID занят")
+    else: raise HTTPException(status_code=428, detail="Такой платок уже есть")
 #@app.post("/platoky_vvod", summary="Platok",tags=["Platok"]
 #кролмк включен
 @router.post("/platoky_grupovoy", summary="Platok",tags=["Platok"])
@@ -478,8 +475,6 @@ async def insert_boundle_platoky(file:UploadFile = File(...)):
         dataframe=pd.read_excel(BytesIO(contents))
         nazvanije_platki_vstavka=dataframe.iloc[:,1]
         id_platki_vstavka=dataframe.iloc[:,0]
-        print(type(nazvanije_platki_vstavka))
-        print(type(id_platki_vstavka))
         try:
             session=session_factory()
             query11 = select(Platoky.Название)
@@ -489,8 +484,6 @@ async def insert_boundle_platoky(file:UploadFile = File(...)):
             result22 = await session.execute(query22)
             id_platki_DB = result22.scalars().all()
             await session.close()
-            print(type(id_platki_DB))
-            print(type(nazvanije_platki_DB))
             for i in range(len(nazvanije_platki_vstavka)):
                 if nazvanije_platki_vstavka[i] in nazvanije_platki_DB:
                     peremycka=(" ")
@@ -514,6 +507,10 @@ async def insert_boundle_platoky(file:UploadFile = File(...)):
                     Размер_Платка=dataframe.iloc[i,19], Материал_Платка=dataframe.iloc[i,20],
                     Материал_Бахромы=dataframe.iloc[i,21])
                     session.add(platoch_eksemp)
+                    try:
+                        await router.broker.publish(message="Добавлен новый платок", queue="PLATOKY")
+                        await router.broker.publish(message=f"{platoch_eksemp}", queue="PLATOKY")
+                    except: raise HTTPException(status_code=500, detail="Проблема с брокером")
                 await session.commit()
                 await session.close()
             except:

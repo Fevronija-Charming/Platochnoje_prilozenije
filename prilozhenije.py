@@ -500,9 +500,9 @@ async def insert_boundle_platoky(file:UploadFile = File(...)):
                     peremycka = (" ")
                     soobhenije2=("Этот id уже есть в БД")
                     return soobhenije2 + peremycka + str(id_platki_vstavka[i])
-            for i in range(len(nazvanije_platki_vstavka)):
-                try:
-                    session = session_factory()
+            try:
+                session = session_factory()
+                for i in range(len(nazvanije_platki_vstavka)):
                     platoch_eksemp = Platoky(id=dataframe.iloc[i,0], Название=dataframe.iloc[i,1],
                     Автор=dataframe.iloc[i,2], Колорит_1=dataframe.iloc[i,3], Колорит_2=dataframe.iloc[i,4],
                     Колорит_3=dataframe.iloc[i,5], Колорит_4=dataframe.iloc[i,6], Колорит_5=dataframe.iloc[i,7],
@@ -514,9 +514,10 @@ async def insert_boundle_platoky(file:UploadFile = File(...)):
                     Размер_Платка=dataframe.iloc[i,19], Материал_Платка=dataframe.iloc[i,20],
                     Материал_Бахромы=dataframe.iloc[i,21])
                     session.add(platoch_eksemp)
-                    await session.commit()
-                    await session.close()
-                except:
+                    del platoch_eksemp
+                await session.commit()
+                await session.close()
+            except:
                     raise HTTPException(status_code=500, detail="Проблема с базой данных при вставке")
         except:
             raise HTTPException(status_code=500, detail="Проблема с базой данных при проверке")

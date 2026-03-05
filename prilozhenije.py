@@ -500,23 +500,24 @@ async def insert_boundle_platoky(file:UploadFile = File(...)):
                     peremycka = (" ")
                     soobhenije2=("Этот id уже есть в БД")
                     return soobhenije2 + peremycka + str(id_platki_vstavka[i])
-            try:
+            for i in range(len(nazvanije_platki_vstavka)):
+                try:
                     session = session_factory()
-                    platoch_eksemp = Platoky(id=dataframe.iloc[1,0], Название=dataframe.iloc[1,1],
-                    Автор=dataframe.iloc[1,2], Колорит_1=dataframe.iloc[1,3], Колорит_2=dataframe.iloc[1,4],
-                    Колорит_3=dataframe.iloc[1,5], Колорит_4=dataframe.iloc[1,6], Колорит_5=dataframe.iloc[1,7],
-                    Узор_темени=dataframe.iloc[1,8], Узор_сердцевины=dataframe.iloc[1,9],
-                    Узор_сторон=dataframe.iloc[1,10],Узор_углов=dataframe.iloc[1,11],Узор_края=dataframe.iloc[1,12],
-                    Цветы_Орнамент=dataframe.iloc[1,13],Изображенный_Цветок_1=dataframe.iloc[1,14],
-                    Изображенный_Цветок_2=dataframe.iloc[1,15],Изображенный_Цветок_3=dataframe.iloc[1,16],
-                    Изображенный_Цветок_4=dataframe.iloc[1,17],Изображенный_Цветок_5=dataframe.iloc[1,18],
-                    Размер_Платка=dataframe.iloc[1,19], Материал_Платка=dataframe.iloc[1,20],
-                    Материал_Бахромы=dataframe.iloc[1,21])
+                    platoch_eksemp = Platoky(id=dataframe.iloc[i,0], Название=dataframe.iloc[i,1],
+                    Автор=dataframe.iloc[i,2], Колорит_1=dataframe.iloc[i,3], Колорит_2=dataframe.iloc[i,4],
+                    Колорит_3=dataframe.iloc[i,5], Колорит_4=dataframe.iloc[i,6], Колорит_5=dataframe.iloc[i,7],
+                    Узор_темени=dataframe.iloc[i,8], Узор_сердцевины=dataframe.iloc[i,9],
+                    Узор_сторон=dataframe.iloc[i,10],Узор_углов=dataframe.iloc[i,11],Узор_края=dataframe.iloc[i,12],
+                    Цветы_Орнамент=dataframe.iloc[i,13],Изображенный_Цветок_1=dataframe.iloc[i,14],
+                    Изображенный_Цветок_2=dataframe.iloc[i,15],Изображенный_Цветок_3=dataframe.iloc[i,16],
+                    Изображенный_Цветок_4=dataframe.iloc[i,17],Изображенный_Цветок_5=dataframe.iloc[i,18],
+                    Размер_Платка=dataframe.iloc[i,19], Материал_Платка=dataframe.iloc[i,20],
+                    Материал_Бахромы=dataframe.iloc[i,21])
                     session.add(platoch_eksemp)
                     await session.commit()
                     await session.close()
-            except:
-                raise HTTPException(status_code=500, detail="Проблема с базой данных при вставке")
+                except:
+                    raise HTTPException(status_code=500, detail="Проблема с базой данных при вставке")
         except:
             raise HTTPException(status_code=500, detail="Проблема с базой данных при проверке")
     except:

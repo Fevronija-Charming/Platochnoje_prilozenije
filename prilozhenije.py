@@ -494,6 +494,7 @@ async def insert_boundle_platoky(file:UploadFile = File(...)):
                     soobhenije2=("Этот id уже есть в БД")
                     return soobhenije2 + peremycka + str(id_platki_vstavka[i])
             try:
+                platok_vstavka = []
                 session = session_factory()
                 platok_predstav = ["id: ", "Название платка: ", "Автор платка: ", "Вариант окраски 1: ",
                 "Вариант окраски 2: ", "Вариант окраски 3 ", "Вариант окраски 4: ", "Вариант окраски 5: ",
@@ -520,10 +521,11 @@ async def insert_boundle_platoky(file:UploadFile = File(...)):
                             platok_dannye.append(platok_rjad)
                         await router.broker.publish(message="Добавлен новый платок", queue="PLATOKY")
                         await router.broker.publish(message=f"{platok_dannye}", queue="PLATOKY")
+                        platok_vstavka.append(platok_dannye)
                     except: raise HTTPException(status_code=500, detail="Проблема с брокером")
                 await session.commit()
                 await session.close()
-                return dataframe
+                return platok_vstavka
             except: raise HTTPException(status_code=500, detail="Проблема с базой данных при вставке")
         except: raise HTTPException(status_code=500, detail="Проблема с базой данных при проверке")
     except: raise HTTPException(status_code=428, detail="Не удалось обработать присланный файл")

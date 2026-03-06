@@ -525,7 +525,6 @@ async def insert_boundle_platoky(file:UploadFile = File(...)):
                 platok_s_excel_data["Размер_Платка"] = dataframe.iloc[i, 19]
                 platok_s_excel_data["Материал_Платка"] = dataframe.iloc[i, 20]
                 platok_s_excel_data["Материал_Бахромы"] = dataframe.iloc[i, 21]
-#try:
                 platok_kontroll = Platok_Schema(**platok_s_excel_data)
                 try:
                     platoch_eksemp = Platoky(id=platok_kontroll.id,Название=platok_kontroll.Название_Платка,
@@ -556,10 +555,6 @@ async def insert_boundle_platoky(file:UploadFile = File(...)):
                     await session.close()
                     return platok_vstavka
                 except: raise HTTPException(status_code=500, detail="Проблема с базой данных при вставке")
-#except:
-#peremycka=(" ")
-#soobhenije=("Данные не прошли валидацию, ошибка в строке")
-#return soobhenije + peremycka + str(i+1)
         except: raise HTTPException(status_code=500, detail="Проблема с базой данных при проверке")
     except: raise HTTPException(status_code=428, detail="Не удалось обработать присланный файл")
 @app.post("/banda", summary="Platok",tags=["Платочная_Банда"])
@@ -633,3 +628,7 @@ async def main():
 app.include_router(router)
 if __name__ == "__main__":
     asyncio.run(main())
+#except:
+#peremycka=(" ")
+#soobhenije=("Данные не прошли валидацию, ошибка в строке")
+#return soobhenije + peremycka + str(i+1)

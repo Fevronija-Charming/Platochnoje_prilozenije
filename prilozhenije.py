@@ -526,6 +526,7 @@ async def insert_boundle_platoky(file:UploadFile = File(...)):
                 platok_s_excel_data["Материал_Платка"] = dataframe.iloc[i, 20]
                 platok_s_excel_data["Материал_Бахромы"] = dataframe.iloc[i, 21]
                 platok_kontroll = Platok_Schema(**platok_s_excel_data)
+                print(platok_kontroll.id)
                 try:
                     platoch_eksemp = Platoky(id=platok_kontroll.id,Название=platok_kontroll.Название_Платка,
                     Автор=platok_kontroll.Автор_Платка, Колорит_1=platok_kontroll.Колорит_1,

@@ -501,11 +501,11 @@ async def insert_boundle_platoky(file:UploadFile = File(...)):
                 "Размер платка: ", "Материал платка: ", "Материал бахромы: "]
     for i in range(len(nazvanije_platki_vstavka)):
         platok_s_excel_data = {}
-        platok_s_excel_data["id"] = int(dataframe.iloc[i,0])
-        platok_s_excel_data["Название_Платка"] = str(dataframe.iloc[i, 1])
-        platok_s_excel_data["Автор_Платка"]= str(dataframe.iloc[i, 2])
-        platok_s_excel_data["Колорит_1"] = str(dataframe.iloc[i, 3])
-        platok_s_excel_data["Колорит_2"] = str(dataframe.iloc[i, 4])
+        platok_s_excel_data["id"] = dataframe.iloc[i,0]
+        platok_s_excel_data["Название_Платка"] = dataframe.iloc[i, 1]
+        platok_s_excel_data["Автор_Платка"]= dataframe.iloc[i, 2]
+        platok_s_excel_data["Колорит_1"] = dataframe.iloc[i, 3]
+        platok_s_excel_data["Колорит_2"] = dataframe.iloc[i, 4]
         platok_s_excel_data["Колорит_3"] = dataframe.iloc[i, 5]
         platok_s_excel_data["Колорит_4"] = dataframe.iloc[i, 6]
         platok_s_excel_data["Колорит_5"] = dataframe.iloc[i, 7]
@@ -515,15 +515,14 @@ async def insert_boundle_platoky(file:UploadFile = File(...)):
         platok_s_excel_data["Узор_Углов"] = dataframe.iloc[i, 11]
         platok_s_excel_data["Узор_Края"] = dataframe.iloc[i, 12]
         platok_s_excel_data["Цветы_Орнамент"] = dataframe.iloc[i, 13]
-        platok_s_excel_data["Изображенный_Цветок_1"] = dataframe.iloc[i, 14]
-        platok_s_excel_data["Изображенный_Цветок_2"] = dataframe.iloc[i, 15]
-        platok_s_excel_data["Изображенный_Цветок_3"] = dataframe.iloc[i, 16]
-        platok_s_excel_data["Изображенный_Цветок_4"] = dataframe.iloc[i, 17]
-        platok_s_excel_data["Изображенный_Цветок_5"] = dataframe.iloc[i, 18]
+        platok_s_excel_data["Изображённый_Цветок_1"] = dataframe.iloc[i, 14]
+        platok_s_excel_data["Изображённый_Цветок_2"] = dataframe.iloc[i, 15]
+        platok_s_excel_data["Изображённый_Цветок_3"] = dataframe.iloc[i, 16]
+        platok_s_excel_data["Изображённый_Цветок_4"] = dataframe.iloc[i, 17]
+        platok_s_excel_data["Изображённый_Цветок_5"] = dataframe.iloc[i, 18]
         platok_s_excel_data["Размер_Платка"] = dataframe.iloc[i, 19]
         platok_s_excel_data["Материал_Платка"] = dataframe.iloc[i, 20]
         platok_s_excel_data["Материал_Бахромы"] = dataframe.iloc[i, 21]
-        print(platok_s_excel_data)
         platok_kontroll = Platok_Schema(**platok_s_excel_data)
         platoch_eksemp = Platoky(id=platok_kontroll.id,Название=platok_kontroll.Название_Платка,
         Автор=platok_kontroll.Автор_Платка, Колорит_1=platok_kontroll.Колорит_1,

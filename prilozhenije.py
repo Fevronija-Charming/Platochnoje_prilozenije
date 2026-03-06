@@ -495,6 +495,14 @@ async def insert_boundle_platoky(file:UploadFile = File(...)):
                     return soobhenije2 + peremycka + str(id_platki_vstavka[i])
             try:
                 session = session_factory()
+                platok_predstav = ["id:", "Название платка:", "Автор платка:", "Вариант окраски 1:",
+                                   "Вариант окраски 2:", "Вариант окраски 3",
+                                   "Вариант окраски 4:", "Вариант окраски 5:", "Узор темени:", "Узор сердцевины:",
+                                   "Узор сторон:",
+                                   "Узор углов:", "Узор края:", "Соотношение цветов и узора:", "Нарисованный цветок 1:",
+                                   "Нарисованный цветок 2:", "Нарисованный цветок 3:", "Нарисованный цветок 4:",
+                                   "Нарисованный цветок 5:",
+                                   "Размер платка:", "Материал платка:", "Материал бахромы:"]
                 for i in range(len(nazvanije_platki_vstavka)):
                     platoch_eksemp = Platoky(id=int(dataframe.iloc[i,0]), Название=dataframe.iloc[i,1],
                     Автор=dataframe.iloc[i,2], Колорит_1=dataframe.iloc[i,3], Колорит_2=dataframe.iloc[i,4],
@@ -508,17 +516,18 @@ async def insert_boundle_platoky(file:UploadFile = File(...)):
                     Материал_Бахромы=dataframe.iloc[i,21])
                     session.add(platoch_eksemp)
                     try:
+                        platok_dannye = []
+                        for j in range(len(dataframe.columns)):
+                            platok_rjad = platok_predstav[j] + ":" + " " + str(dataframe.iloc[i,j])
+                            platok_dannye.append(platok_rjad)
                         await router.broker.publish(message="Добавлен новый платок", queue="PLATOKY")
-                        await router.broker.publish(message=f"{platoch_eksemp}", queue="PLATOKY")
+                        await router.broker.publish(message=f"{platok_dannye}", queue="PLATOKY")
                     except: raise HTTPException(status_code=500, detail="Проблема с брокером")
                 await session.commit()
                 await session.close()
-            except:
-                    raise HTTPException(status_code=500, detail="Проблема с базой данных при вставке")
-        except:
-            raise HTTPException(status_code=500, detail="Проблема с базой данных при проверке")
-    except:
-        raise HTTPException(status_code=428, detail="Не удалось обработать присланный файл")
+            except: raise HTTPException(status_code=500, detail="Проблема с базой данных при вставке")
+        except: raise HTTPException(status_code=500, detail="Проблема с базой данных при проверке")
+    except: raise HTTPException(status_code=428, detail="Не удалось обработать присланный файл")
 @app.post("/banda", summary="Platok",tags=["Платочная_Банда"])
 async def insert_persona(platoch_persona: Annotated[Banda_Schema,Depends()]):
     try:

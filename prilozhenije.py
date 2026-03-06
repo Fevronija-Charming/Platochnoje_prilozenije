@@ -523,6 +523,7 @@ async def insert_boundle_platoky(file:UploadFile = File(...)):
                     except: raise HTTPException(status_code=500, detail="Проблема с брокером")
                 await session.commit()
                 await session.close()
+                return dataframe
             except: raise HTTPException(status_code=500, detail="Проблема с базой данных при вставке")
         except: raise HTTPException(status_code=500, detail="Проблема с базой данных при проверке")
     except: raise HTTPException(status_code=428, detail="Не удалось обработать присланный файл")

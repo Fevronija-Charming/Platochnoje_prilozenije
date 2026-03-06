@@ -493,7 +493,6 @@ async def insert_boundle_platoky(file:UploadFile = File(...)):
                     peremycka = (" ")
                     soobhenije2=("Этот id уже есть в БД")
                     return soobhenije2 + peremycka + str(id_platki_vstavka[i])
-            platok_s_excel_data = {}
             platok_vstavka = []
             session = session_factory()
             platok_predstav = ["id: ", "Название платка: ", "Автор платка: ", "Вариант окраски 1: ",
@@ -503,6 +502,7 @@ async def insert_boundle_platoky(file:UploadFile = File(...)):
                 "Нарисованный цветок 3: ", "Нарисованный цветок 4: ", "Нарисованный цветок 5: ",
                 "Размер платка: ", "Материал платка: ", "Материал бахромы: "]
             for i in range(len(nazvanije_platki_vstavka)):
+                platok_s_excel_data = {}
                 platok_s_excel_data["id"] = dataframe.iloc[i,0]
                 platok_s_excel_data["Название"] = dataframe.iloc[i, 1]
                 platok_s_excel_data["Автор"]= dataframe.iloc[i, 2]

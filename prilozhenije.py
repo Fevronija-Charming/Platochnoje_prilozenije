@@ -473,8 +473,8 @@ async def insert_boundle_platoky(file:UploadFile = File(...)):
     try:
         contents = await file.read()
         dataframe=pd.read_excel(BytesIO(contents))
-        nazvanije_platki_vstavka=dataframe.iloc[:,1]
-        id_platki_vstavka=dataframe.iloc[:,0]
+        nazvanije_platki_vstavka=dataframe.iloc[:,1].tolist()
+        id_platki_vstavka=dataframe.iloc[:,0].tolist()
         print(nazvanije_platki_vstavka)
         print(id_platki_vstavka)
     except: raise HTTPException(status_code=428, detail="Не удалось обработать входящий файл")
@@ -528,7 +528,12 @@ async def insert_boundle_platoky(file:UploadFile = File(...)):
         platok_s_excel_data["Размер_Платка"] = dataframe.iloc[i, 19]
         platok_s_excel_data["Материал_Платка"] = dataframe.iloc[i, 20]
         platok_s_excel_data["Материал_Бахромы"] = dataframe.iloc[i, 21]
-        platok_kontroll = Platok_Schema(**platok_s_excel_data)
+        try:
+            platok_kontroll = Platok_Schema(**platok_s_excel_data)
+        except:
+            peremycka=(" ")
+            notation=("Допушена ошибка в строке")
+            return {"message": notation+peremycka+str(i+1)}
         try:
             session = session_factory()
             platoch_eksemp = Platoky(id=platok_kontroll.id,Название=platok_kontroll.Название_Платка,

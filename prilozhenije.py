@@ -553,13 +553,13 @@ async def insert_boundle_platoky(file:UploadFile = File(...)):
                             await router.broker.publish(message="Добавлен новый платок", queue="PLATOKY")
                             await router.broker.publish(message=f"{platok_dannye}", queue="PLATOKY")
                             platok_vstavka.append(platok_dannye)
+                            return platok_dannye
                         except: raise HTTPException(status_code=500, detail="Проблема с брокером")
                     except:  raise HTTPException(status_code=500, detail="Проблема с БД при вставке данных")
                 except:
                     peremycka = (" ")
                     soobhenije = ("Данные не прошли валидацию, ошибка в строке номер")
                     return soobhenije + peremycka + str(i + 1)
-            return platok_dannye
         except: raise HTTPException(status_code=500, detail="Проблема с БД при предварительной проверке данных")
     except: raise HTTPException(status_code=428, detail="Не удалось обработать входящий файл")
 @app.post("/banda", summary="Platok",tags=["Платочная_Банда"])

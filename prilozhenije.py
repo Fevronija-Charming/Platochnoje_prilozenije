@@ -475,6 +475,8 @@ async def insert_boundle_platoky(file:UploadFile = File(...)):
         dataframe=pd.read_excel(BytesIO(contents))
         nazvanije_platki_vstavka=dataframe.iloc[:,1]
         id_platki_vstavka=dataframe.iloc[:,0]
+        print(nazvanije_platki_vstavka)
+        print(id_platki_vstavka)
     except: raise HTTPException(status_code=428, detail="Не удалось обработать входящий файл")
     try:
         session=session_factory()

@@ -475,8 +475,6 @@ async def insert_boundle_platoky(file:UploadFile = File(...)):
         dataframe=pd.read_excel(BytesIO(contents))
         nazvanije_platki_vstavka=dataframe.iloc[:,1].tolist()
         id_platki_vstavka=dataframe.iloc[:,0].tolist()
-        print(nazvanije_platki_vstavka)
-        print(id_platki_vstavka)
     except: raise HTTPException(status_code=428, detail="Не удалось обработать входящий файл")
     try:
         session=session_factory()
@@ -488,16 +486,21 @@ async def insert_boundle_platoky(file:UploadFile = File(...)):
         id_platki_DB = result22.scalars().all()
         await session.close()
     except: raise HTTPException(status_code=500, detail="Проблема с БД при предварительной проверке данных")
+    zanjatyje_id=[]
+    zanjatyje_imena=[]
     for i in range(len(nazvanije_platki_vstavka)):
         if nazvanije_platki_vstavka[i] in nazvanije_platki_DB:
-            peremycka=(" ")
-            soobhenije=("Этот платок уже есть в БД")
-            return soobhenije + peremycka + str(nazvanije_platki_vstavka[i])
+            zanjatyje_imena.append(nazvanije_platki_vstavka[i])
         elif id_platki_vstavka[i] in id_platki_DB:
-            peremycka = (" ")
-            soobhenije2=("Этот id уже есть в БД")
-            return soobhenije2 + peremycka + str(id_platki_vstavka[i])
+            zanjatyje_id.append(id_platki_vstavka[i])
+    if len(zanjatyje_id)>0:
+        soobhenije1=("Эти артикулы платков уже заняты в БД")
+        return soobhenije1, zanjatyje_id
+    if len(zanjatyje_imena)>0:
+        soobhenije2 = ("Эти названия платков ужк есть в БД")
+        return soobhenije2, zanjatyje_imena
     platok_vstavka = []
+    bityje_rjady = []
     platok_predstav = ["id: ", "Название платка: ", "Автор платка: ", "Вариант окраски 1: ",
     "Вариант окраски 2: ", "Вариант окраски 3 ", "Вариант окраски 4: ", "Вариант окраски 5: ",
     "Узор темени: ", "Узор сердцевины: ", "Узор сторон: ", "Узор углов: ", "Узор края: ",
@@ -533,9 +536,10 @@ async def insert_boundle_platoky(file:UploadFile = File(...)):
         try:
             platok_kontroll = Platok_Schema(**platok_s_excel_data)
         except:
+            soobjenije3=("Данный ряд не прошёл валидацию")
             peremycka=(" ")
-            notation=("Допушена ошибка в строке")
-            return {"message": notation+peremycka+str(i+1)}
+            bityje_rjady.append(soobjenije3+peremycka+str(i+1))
+            continue
         try:
             session = session_factory()
             platoch_eksemp = Platoky(id=platok_kontroll.id,Название=platok_kontroll.Название_Платка,
@@ -566,7 +570,7 @@ async def insert_boundle_platoky(file:UploadFile = File(...)):
             await router.broker.publish(message=f"{platok_dannye}", queue="PLATOKY")
             platok_vstavka.append(platok_dannye)
         except: raise HTTPException(status_code=500, detail="Проблема с брокером")
-    return platok_vstavka
+    return platok_vstavka, bityje_rjady
 @app.post("/banda", summary="Platok",tags=["Платочная_Банда"])
 async def insert_persona(platoch_persona: Annotated[Banda_Schema,Depends()]):
     try:

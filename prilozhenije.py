@@ -478,7 +478,7 @@ async def insert_boundle_platoky(file:UploadFile = File(...)):
         for i in range(len(nazvanije_platki_vstavka)):
             try:
                 proverka22=int(id_platki_vstavka[i])
-            except ValueError:
+            except TypeError:
                 peremycka=(" ")
                 soobhenije=("Артикул платка -- не целое число в строке номер:")
                 return soobhenije + peremycka + str(i+1)

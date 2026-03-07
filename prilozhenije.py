@@ -475,13 +475,6 @@ async def insert_boundle_platoky(file:UploadFile = File(...)):
         dataframe=pd.read_excel(BytesIO(contents))
         nazvanije_platki_vstavka=dataframe.iloc[:,1]
         id_platki_vstavka=dataframe.iloc[:,0]
-        for i in range(len(nazvanije_platki_vstavka)):
-            try:
-                proverka22=int(id_platki_vstavka[i])
-            except TypeError:
-                peremycka=(" ")
-                soobhenije=("Артикул платка -- не целое число в строке номер:")
-                return soobhenije + peremycka + str(i+1)
         try:
             session=session_factory()
             query11 = select(Platoky.Название)

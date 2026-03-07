@@ -561,7 +561,7 @@ async def insert_boundle_platoky(file:UploadFile = File(...)):
             await router.broker.publish(message=f"{platok_dannye}", queue="PLATOKY")
             platok_vstavka.append(platok_dannye)
         except: raise HTTPException(status_code=500, detail="Проблема с брокером")
-        return platok_vstavka
+    return platok_vstavka
 @app.post("/banda", summary="Platok",tags=["Платочная_Банда"])
 async def insert_persona(platoch_persona: Annotated[Banda_Schema,Depends()]):
     try:

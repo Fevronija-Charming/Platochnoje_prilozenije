@@ -500,7 +500,6 @@ async def insert_boundle_platoky(file:UploadFile = File(...)):
                 "Соотношение цветов и узора: ", "Нарисованный цветок 1: ", "Нарисованный цветок 2: ",
                 "Нарисованный цветок 3: ", "Нарисованный цветок 4: ", "Нарисованный цветок 5: ",
                 "Размер платка: ", "Материал платка: ", "Материал бахромы: "]
-            session = session_factory()
             for i in range(len(nazvanije_platki_vstavka)):
                 platok_s_excel_data = {}
                 platok_s_excel_data["id"] = dataframe.iloc[i,0]
@@ -528,6 +527,7 @@ async def insert_boundle_platoky(file:UploadFile = File(...)):
                 try:
                     platok_kontroll = Platok_Schema(**platok_s_excel_data)
                     try:
+                        session=session_factory()
                         platoch_eksemp = Platoky(id=platok_kontroll.id,Название=platok_kontroll.Название_Платка,
                         Автор=platok_kontroll.Автор_Платка, Колорит_1=platok_kontroll.Колорит_1,
                         Колорит_2=platok_kontroll.Колорит_2, Колорит_3=platok_kontroll.Колорит_3,
@@ -543,6 +543,8 @@ async def insert_boundle_platoky(file:UploadFile = File(...)):
                         Размер_Платка=platok_kontroll.Размер_Платка, Материал_Платка=platok_kontroll.Материал_Платка,
                         Материал_Бахромы=platok_kontroll.Материал_Бахромы)
                         session.add(platoch_eksemp)
+                        await session.commit()
+                        await session.close()
                         try:
                             platok_dannye = []
                             for j in range(len(dataframe.columns)):
@@ -551,8 +553,6 @@ async def insert_boundle_platoky(file:UploadFile = File(...)):
                             await router.broker.publish(message="Добавлен новый платок", queue="PLATOKY")
                             await router.broker.publish(message=f"{platok_dannye}", queue="PLATOKY")
                             platok_vstavka.append(platok_dannye)
-                            await session.commit()
-                            await session.close()
                             return platok_vstavka
                         except: raise HTTPException(status_code=500, detail="Проблема с брокером")
                     except:  raise HTTPException(status_code=500, detail="Проблема с БД при вставке данных")

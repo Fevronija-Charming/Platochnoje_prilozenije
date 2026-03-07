@@ -507,7 +507,9 @@ async def insert_boundle_platoky(file:UploadFile = File(...)):
     for i in range(len(nazvanije_platki_vstavka)):
         platok_s_excel_data = {}
         platok_s_excel_data["id"] = dataframe.iloc[i,0]
+        print(dataframe.iloc[i,0])
         platok_s_excel_data["Название_Платка"] = dataframe.iloc[i, 1]
+        print(dataframe.iloc[i, 1])
         platok_s_excel_data["Автор_Платка"]= dataframe.iloc[i, 2]
         platok_s_excel_data["Колорит_1"] = dataframe.iloc[i, 3]
         platok_s_excel_data["Колорит_2"] = dataframe.iloc[i, 4]

@@ -475,93 +475,93 @@ async def insert_boundle_platoky(file:UploadFile = File(...)):
         dataframe=pd.read_excel(BytesIO(contents))
         nazvanije_platki_vstavka=dataframe.iloc[:,1]
         id_platki_vstavka=dataframe.iloc[:,0]
-        try:
-            session=session_factory()
-            query11 = select(Platoky.Название)
-            result11 = await session.execute(query11)
-            nazvanije_platki_DB=result11.scalars().all()
-            query22 = select(Platoky.id)
-            result22 = await session.execute(query22)
-            id_platki_DB = result22.scalars().all()
-            await session.close()
-            for i in range(len(nazvanije_platki_vstavka)):
-                if nazvanije_platki_vstavka[i] in nazvanije_platki_DB:
-                    peremycka=(" ")
-                    soobhenije=("Этот платок уже есть в БД")
-                    return soobhenije + peremycka + str(nazvanije_platki_vstavka[i])
-                elif id_platki_vstavka[i] in id_platki_DB:
-                    peremycka = (" ")
-                    soobhenije2=("Этот id уже есть в БД")
-                    return soobhenije2 + peremycka + str(id_platki_vstavka[i])
-            platok_vstavka = []
-            platok_predstav = ["id: ", "Название платка: ", "Автор платка: ", "Вариант окраски 1: ",
-                "Вариант окраски 2: ", "Вариант окраски 3 ", "Вариант окраски 4: ", "Вариант окраски 5: ",
-                "Узор темени: ", "Узор сердцевины: ", "Узор сторон: ", "Узор углов: ", "Узор края: ",
-                "Соотношение цветов и узора: ", "Нарисованный цветок 1: ", "Нарисованный цветок 2: ",
-                "Нарисованный цветок 3: ", "Нарисованный цветок 4: ", "Нарисованный цветок 5: ",
-                "Размер платка: ", "Материал платка: ", "Материал бахромы: "]
-            for i in range(len(nazvanije_platki_vstavka)):
-                try:
-                    platok_s_excel_data = {}
-                    platok_s_excel_data["id"] = dataframe.iloc[i,0]
-                    platok_s_excel_data["Название_Платка"] = dataframe.iloc[i, 1]
-                    platok_s_excel_data["Автор_Платка"]= dataframe.iloc[i, 2]
-                    platok_s_excel_data["Колорит_1"] = dataframe.iloc[i, 3]
-                    platok_s_excel_data["Колорит_2"] = dataframe.iloc[i, 4]
-                    platok_s_excel_data["Колорит_3"] = dataframe.iloc[i, 5]
-                    platok_s_excel_data["Колорит_4"] = dataframe.iloc[i, 6]
-                    platok_s_excel_data["Колорит_5"] = dataframe.iloc[i, 7]
-                    platok_s_excel_data["Узор_Темени"] = dataframe.iloc[i, 8]
-                    platok_s_excel_data["Узор_Сердцевины"] = dataframe.iloc[i, 9]
-                    platok_s_excel_data["Узор_Сторон"] = dataframe.iloc[i, 10]
-                    platok_s_excel_data["Узор_Углов"] = dataframe.iloc[i, 11]
-                    platok_s_excel_data["Узор_Края"] = dataframe.iloc[i, 12]
-                    platok_s_excel_data["Цветы_Орнамент"] = dataframe.iloc[i, 13]
-                    platok_s_excel_data["Изображённый_Цветок_1"] = dataframe.iloc[i, 14]
-                    platok_s_excel_data["Изображённый_Цветок_2"] = dataframe.iloc[i, 15]
-                    platok_s_excel_data["Изображённый_Цветок_3"] = dataframe.iloc[i, 16]
-                    platok_s_excel_data["Изображённый_Цветок_4"] = dataframe.iloc[i, 17]
-                    platok_s_excel_data["Изображённый_Цветок_5"] = dataframe.iloc[i, 18]
-                    platok_s_excel_data["Размер_Платка"] = dataframe.iloc[i, 19]
-                    platok_s_excel_data["Материал_Платка"] = dataframe.iloc[i, 20]
-                    platok_s_excel_data["Материал_Бахромы"] = dataframe.iloc[i, 21]
-                    platok_kontroll = Platok_Schema(**platok_s_excel_data)
-                    try:
-                        session=session_factory()
-                        platoch_eksemp = Platoky(id=platok_kontroll.id,Название=platok_kontroll.Название_Платка,
-                        Автор=platok_kontroll.Автор_Платка, Колорит_1=platok_kontroll.Колорит_1,
-                        Колорит_2=platok_kontroll.Колорит_2, Колорит_3=platok_kontroll.Колорит_3,
-                        Колорит_4=platok_kontroll.Колорит_4, Колорит_5=platok_kontroll.Колорит_5,
-                        Узор_темени=platok_kontroll.Узор_Темени, Узор_сердцевины=platok_kontroll.Узор_Сердцевины,
-                        Узор_сторон=platok_kontroll.Узор_Сторон, Узор_углов=platok_kontroll.Узор_Углов,
-                        Узор_края=platok_kontroll.Узор_Края, Цветы_Орнамент=platok_kontroll.Цветы_Орнамент,
-                        Изображенный_Цветок_1=platok_kontroll.Изображённый_Цветок_1,
-                        Изображенный_Цветок_2=platok_kontroll.Изображённый_Цветок_2,
-                        Изображенный_Цветок_3=platok_kontroll.Изображённый_Цветок_3,
-                        Изображенный_Цветок_4=platok_kontroll.Изображённый_Цветок_4,
-                        Изображенный_Цветок_5=platok_kontroll.Изображённый_Цветок_5,
-                        Размер_Платка=platok_kontroll.Размер_Платка, Материал_Платка=platok_kontroll.Материал_Платка,
-                        Материал_Бахромы=platok_kontroll.Материал_Бахромы)
-                        session.add(platoch_eksemp)
-                        await session.commit()
-                        await session.close()
-                        try:
-                            platok_dannye = []
-                            for j in range(len(dataframe.columns)):
-                                platok_rjad = platok_predstav[j] + " " + str(dataframe.iloc[i,j])
-                                platok_dannye.append(platok_rjad)
-                            await router.broker.publish(message="Добавлен новый платок", queue="PLATOKY")
-                            await router.broker.publish(message=f"{platok_dannye}", queue="PLATOKY")
-                            platok_vstavka.append(platok_dannye)
-                            return platok_dannye
-                        except: raise HTTPException(status_code=500, detail="Проблема с брокером")
-                    except:  raise HTTPException(status_code=500, detail="Проблема с БД при вставке данных")
-                except:
-                    peremycka = (" ")
-                    soobhenije = ("Данные не прошли валидацию, ошибка в строке номер")
-                    return soobhenije + peremycka + str(i + 1)
-        except: raise HTTPException(status_code=500, detail="Проблема с БД при предварительной проверке данных")
     except: raise HTTPException(status_code=428, detail="Не удалось обработать входящий файл")
+    try:
+        session=session_factory()
+        query11 = select(Platoky.Название)
+        result11 = await session.execute(query11)
+        nazvanije_platki_DB=result11.scalars().all()
+        query22 = select(Platoky.id)
+        result22 = await session.execute(query22)
+        id_platki_DB = result22.scalars().all()
+        await session.close()
+    except: raise HTTPException(status_code=500, detail="Проблема с БД при предварительной проверке данных")
+    for i in range(len(nazvanije_platki_vstavka)):
+        if nazvanije_platki_vstavka[i] in nazvanije_platki_DB:
+            peremycka=(" ")
+            soobhenije=("Этот платок уже есть в БД")
+            return soobhenije + peremycka + str(nazvanije_platki_vstavka[i])
+        elif id_platki_vstavka[i] in id_platki_DB:
+            peremycka = (" ")
+            soobhenije2=("Этот id уже есть в БД")
+            return soobhenije2 + peremycka + str(id_platki_vstavka[i])
+    platok_vstavka = []
+    platok_predstav = ["id: ", "Название платка: ", "Автор платка: ", "Вариант окраски 1: ",
+    "Вариант окраски 2: ", "Вариант окраски 3 ", "Вариант окраски 4: ", "Вариант окраски 5: ",
+    "Узор темени: ", "Узор сердцевины: ", "Узор сторон: ", "Узор углов: ", "Узор края: ",
+    "Соотношение цветов и узора: ", "Нарисованный цветок 1: ", "Нарисованный цветок 2: ",
+    "Нарисованный цветок 3: ", "Нарисованный цветок 4: ", "Нарисованный цветок 5: ",
+    "Размер платка: ", "Материал платка: ", "Материал бахромы: "]
+    for i in range(len(nazvanije_platki_vstavka)):
+        platok_s_excel_data = {}
+        platok_s_excel_data["id"] = dataframe.iloc[i,0]
+        platok_s_excel_data["Название_Платка"] = dataframe.iloc[i, 1]
+        platok_s_excel_data["Автор_Платка"]= dataframe.iloc[i, 2]
+        platok_s_excel_data["Колорит_1"] = dataframe.iloc[i, 3]
+        platok_s_excel_data["Колорит_2"] = dataframe.iloc[i, 4]
+        platok_s_excel_data["Колорит_3"] = dataframe.iloc[i, 5]
+        platok_s_excel_data["Колорит_4"] = dataframe.iloc[i, 6]
+        platok_s_excel_data["Колорит_5"] = dataframe.iloc[i, 7]
+        platok_s_excel_data["Узор_Темени"] = dataframe.iloc[i, 8]
+        platok_s_excel_data["Узор_Сердцевины"] = dataframe.iloc[i, 9]
+        platok_s_excel_data["Узор_Сторон"] = dataframe.iloc[i, 10]
+        platok_s_excel_data["Узор_Углов"] = dataframe.iloc[i, 11]
+        platok_s_excel_data["Узор_Края"] = dataframe.iloc[i, 12]
+        platok_s_excel_data["Цветы_Орнамент"] = dataframe.iloc[i, 13]
+        platok_s_excel_data["Изображённый_Цветок_1"] = dataframe.iloc[i, 14]
+        platok_s_excel_data["Изображённый_Цветок_2"] = dataframe.iloc[i, 15]
+        platok_s_excel_data["Изображённый_Цветок_3"] = dataframe.iloc[i, 16]
+        platok_s_excel_data["Изображённый_Цветок_4"] = dataframe.iloc[i, 17]
+        platok_s_excel_data["Изображённый_Цветок_5"] = dataframe.iloc[i, 18]
+        platok_s_excel_data["Размер_Платка"] = dataframe.iloc[i, 19]
+        platok_s_excel_data["Материал_Платка"] = dataframe.iloc[i, 20]
+        platok_s_excel_data["Материал_Бахромы"] = dataframe.iloc[i, 21]
+        try:
+            platok_kontroll = Platok_Schema(**platok_s_excel_data)
+        except ValidationError:
+            peremycka = (" ")
+            soobhenije = ("Данные не прошли валидацию, ошибка в строке номер")
+            return soobhenije + peremycka + str(i + 1)
+        try:
+            session = session_factory()
+            platoch_eksemp = Platoky(id=platok_kontroll.id,Название=platok_kontroll.Название_Платка,
+            Автор=platok_kontroll.Автор_Платка, Колорит_1=platok_kontroll.Колорит_1,
+            Колорит_2=platok_kontroll.Колорит_2, Колорит_3=platok_kontroll.Колорит_3,
+            Колорит_4=platok_kontroll.Колорит_4, Колорит_5=platok_kontroll.Колорит_5,
+            Узор_темени=platok_kontroll.Узор_Темени, Узор_сердцевины=platok_kontroll.Узор_Сердцевины,
+            Узор_сторон=platok_kontroll.Узор_Сторон, Узор_углов=platok_kontroll.Узор_Углов,
+            Узор_края=platok_kontroll.Узор_Края, Цветы_Орнамент=platok_kontroll.Цветы_Орнамент,
+            Изображенный_Цветок_1=platok_kontroll.Изображённый_Цветок_1,
+            Изображенный_Цветок_2=platok_kontroll.Изображённый_Цветок_2,
+            Изображенный_Цветок_3=platok_kontroll.Изображённый_Цветок_3,
+            Изображенный_Цветок_4=platok_kontroll.Изображённый_Цветок_4,
+            Изображенный_Цветок_5=platok_kontroll.Изображённый_Цветок_5,
+            Размер_Платка=platok_kontroll.Размер_Платка, Материал_Платка=platok_kontroll.Материал_Платка,
+            Материал_Бахромы=platok_kontroll.Материал_Бахромы)
+            session.add(platoch_eksemp)
+            await session.commit()
+            await session.close()
+        except:  raise HTTPException(status_code=500, detail="Проблема с БД при вставке данных")
+        try:
+            platok_dannye = []
+            for j in range(len(dataframe.columns)):
+                platok_rjad = platok_predstav[j] + " " + str(dataframe.iloc[i,j])
+                platok_dannye.append(platok_rjad)
+            await router.broker.publish(message="Добавлен новый платок", queue="PLATOKY")
+            await router.broker.publish(message=f"{platok_dannye}", queue="PLATOKY")
+            platok_vstavka.append(platok_dannye)
+        except: raise HTTPException(status_code=500, detail="Проблема с брокером")
+        return platok_vstavka
 @app.post("/banda", summary="Platok",tags=["Платочная_Банда"])
 async def insert_persona(platoch_persona: Annotated[Banda_Schema,Depends()]):
     try:

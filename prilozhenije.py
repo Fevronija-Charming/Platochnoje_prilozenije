@@ -526,12 +526,7 @@ async def insert_boundle_platoky(file:UploadFile = File(...)):
         platok_s_excel_data["Размер_Платка"] = dataframe.iloc[i, 19]
         platok_s_excel_data["Материал_Платка"] = dataframe.iloc[i, 20]
         platok_s_excel_data["Материал_Бахромы"] = dataframe.iloc[i, 21]
-        try:
-            platok_kontroll = Platok_Schema(**platok_s_excel_data)
-        except:
-            peremycka = (" ")
-            annotation=("Ошибка в данных по платку под номером")
-            return {"message": annotation+peremycka+str(i+1)}
+        platok_kontroll = Platok_Schema(**platok_s_excel_data)
         try:
             session = session_factory()
             platoch_eksemp = Platoky(id=platok_kontroll.id,Название=platok_kontroll.Название_Платка,

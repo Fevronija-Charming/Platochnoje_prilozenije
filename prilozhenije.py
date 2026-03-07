@@ -477,7 +477,7 @@ async def insert_boundle_platoky(file:UploadFile = File(...)):
         id_platki_vstavka=dataframe.iloc[:,0]
         for i in range(len(nazvanije_platki_vstavka)):
             try:
-                proverka22=int(nazvanije_platki_vstavka[i])
+                proverka22=int(id_platki_vstavka[i])
             except ValueError:
                 peremycka=(" ")
                 soobhenije=("Артикул платка -- не целое число в строке номер:")

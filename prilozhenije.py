@@ -531,7 +531,7 @@ async def insert_boundle_platoky(file:UploadFile = File(...)):
         except:
             peremycka = (" ")
             soobhenije = ("Данные не прошли валидацию, ошибка в строке номер") + peremycka + str(i+1)
-            raise HTTPException(status_code=500, detail={soobhenije})
+            return {"message": soobhenije}
         try:
             session = session_factory()
             platoch_eksemp = Platoky(id=platok_kontroll.id,Название=platok_kontroll.Название_Платка,
@@ -551,7 +551,8 @@ async def insert_boundle_platoky(file:UploadFile = File(...)):
             session.add(platoch_eksemp)
             await session.commit()
             await session.close()
-        except:  raise HTTPException(status_code=500, detail="Проблема с БД при вставке данных")
+        except:
+            raise HTTPException(status_code=500, detail="Проблема с БД при вставке данных")
         try:
             platok_dannye = []
             for j in range(len(dataframe.columns)):

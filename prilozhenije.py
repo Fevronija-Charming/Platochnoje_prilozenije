@@ -491,7 +491,7 @@ async def insert_boundle_platoky(file:UploadFile = File(...)):
     for i in range(len(nazvanije_platki_vstavka)):
         if nazvanije_platki_vstavka[i] in nazvanije_platki_DB:
             zanjatyje_imena.append(nazvanije_platki_vstavka[i])
-        elif (id_platki_vstavka[i]) in id_platki_DB:
+        if id_platki_vstavka[i] in id_platki_DB:
             zanjatyje_id.append(str(id_platki_vstavka[i]))
     if len(zanjatyje_imena) > 0 or len(zanjatyje_id)>0:
         soobhenije2 = ("Эти названия платков ужк есть в БД")
@@ -602,8 +602,7 @@ async def insert_persona(platoch_persona: Annotated[Banda_Schema,Depends()]):
 #await connection.run_sync(Base.metadata.drop_all())
 async def kostily_BD():
     # создать ДБ
-    import psycopg2 as ps
-    from psycopg2.errors import DublicateDatabase
+    import psycopg2_binary import DublicateDatabase
     from psycopg2 import sql
     connection = None
     try:

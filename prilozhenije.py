@@ -536,7 +536,7 @@ async def insert_boundle_platoky(file:UploadFile = File(...)):
         try:
             platok_kontroll = Platok_Schema(**platok_s_excel_data)
         except:
-            soobjenije3=("Данный ряд не прошёл валидацию")
+            soobjenije3=("Ряд под данным порядковым номером сверху не прошёл валидацию->>>")
             peremycka=(" ")
             bityje_rjady.append(soobjenije3+peremycka+str(i+1))
             continue

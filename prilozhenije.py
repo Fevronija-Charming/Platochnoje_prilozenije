@@ -493,12 +493,12 @@ async def insert_boundle_platoky(file:UploadFile = File(...)):
             zanjatyje_imena.append(nazvanije_platki_vstavka[i])
         elif int(id_platki_vstavka[i]) in id_platki_DB:
             zanjatyje_id.append(id_platki_vstavka[i])
+    if len(zanjatyje_imena) > 0:
+        soobhenije2 = ("Эти названия платков ужк есть в БД")
+        return soobhenije2, zanjatyje_imena
     if len(zanjatyje_id)>0:
         soobhenije1=("Эти артикулы платков уже заняты в БД")
         return soobhenije1, zanjatyje_id
-    if len(zanjatyje_imena)>0:
-        soobhenije2 = ("Эти названия платков ужк есть в БД")
-        return soobhenije2, zanjatyje_imena
     platok_vstavka = []
     bityje_rjady = []
     platok_predstav = ["id: ", "Название платка: ", "Автор платка: ", "Вариант окраски 1: ",

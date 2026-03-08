@@ -594,7 +594,32 @@ async def insert_persona(platoch_persona: Annotated[Banda_Schema,Depends()]):
         #raise HTTPException(status_code=500, detail="Проблема с брокером")
     except:
         raise HTTPException(status_code=500, detail="Проблема с базой данных")
-from psycopg2.errors import DuplicateDatabase as oshibka
+def kostily_BD():
+    # создать ДБ
+    import psycopg2 as ps
+    from psycopg2.errors import DuplicateDatabase as Oshibka
+    from psycopg2 import sql
+    connection = None
+    try:
+        print('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
+        print(Back.GREEN + Fore.BLACK + Style.BRIGHT + 'Создать базу Данных')
+        databasename = os.getenv('DATABASENAME')
+        connection = ps.connect(host="localhost", database="postgres", user="postgres", password=os.getenv("DBPASSWORD"),
+                                port="5432")
+        connection.autocommit = True
+        cursor = connection.cursor()
+        cursor.execute(sql.SQL("CREATE DATABASE {}").format(sql.Identifier(databasename)))
+        cursor.close()
+        print(Back.LIGHTGREEN_EX + Fore.BLACK + Style.BRIGHT + 'БД успешно создана, моя Госпожа')
+        print('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
+    except Oshibka:
+        print('Такая БД уже есть, моя Госпожа!!!')
+        print('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
+    finally:
+        if connection:
+            connection.close()
+        if cursor:
+            cursor.close()
 async def main():
     init(autoreset=True)
     uvicorn.run("prilozhenije:app", reload=True, port=8000)

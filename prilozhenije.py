@@ -594,7 +594,7 @@ async def insert_persona(platoch_persona: Annotated[Banda_Schema,Depends()]):
         #raise HTTPException(status_code=500, detail="Проблема с брокером")
     except:
         raise HTTPException(status_code=500, detail="Проблема с базой данных")
-
+from psycopg2.errors import DuplicateDatabase as oshibka
 async def main():
     init(autoreset=True)
     uvicorn.run("prilozhenije:app", reload=True, port=8000)

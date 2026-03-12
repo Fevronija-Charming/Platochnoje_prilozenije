@@ -584,14 +584,13 @@ async def insert_persona(platoch_persona: Annotated[Banda_Schema,Depends()]):
         session.add(banda_eksemp)
         await session.commit()
         await session.close()
-        return platoch_persona
-        #заяц выключен
-        #try:
-        #await router.broker.publish(message="Добавлен новый персонаж", queue="PLATOKY")
-        #await router.broker.publish(message=f"{platoch_persona}", queue="PLATOKY")
-        #return {"message": "OK"}
-        #except:
-        #raise HTTPException(status_code=500, detail="Проблема с брокером")
+        #заяц включен
+        try:
+            await router.broker.publish(message="Добавлен новый персонаж", queue="PLATOKY")
+            await router.broker.publish(message=f"{platoch_persona}", queue="PLATOKY")
+            return platoch_persona
+        except:
+            raise HTTPException(status_code=500, detail="Проблема с брокером")
     except:
         raise HTTPException(status_code=500, detail="Проблема с базой данных")
 def kostily_BD():

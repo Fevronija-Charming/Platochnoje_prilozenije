@@ -61,7 +61,7 @@ class TablaColority(BaseModel):
 from templates import nazv_symbolov, opis_symboli, traktovka_kolority, hudozhik_0, hudozhik_1, hudozhik_2, hudozhik_3
 from templates import hudozhik_4, hudozhik_5,hudozhik_6, hudozhik_7, hudozhik_8, hudozhik_9, hudozhik_10,hudozhik_11
 from templates import hudozhik_12, hudozhik_13,hudozhik_14, hudozhik_15, hudozhik_16, hudozhik_17, hudozhik_18
-from templates import hudozhik_19, hudozhik_20,hudozhik_21, hudozhik_22
+from templates import hudozhik_19, hudozhik_20,hudozhik_21, hudozhik_22,hudozhik_23,hudozhik_24, hudozhik_25
 #hudozhik_23, hudozhik_24, hudozhik_25
 shapka_kolority=[
 TablaTraktKolority(Трактовка_Таблица=traktovka_kolority[0]),
@@ -146,11 +146,14 @@ data_hudozhniki=[Hudozhniki(Имя_Художника=hudozhik_0[0],Фамили
                             Возраст_Художника_Лет=hudozhik_20[4], День_Памяти_Художника=hudozhik_20[5],Годовщина_Памяти_Художника_Лет=hudozhik_20[6]),
                 Hudozhniki(Имя_Художника=hudozhik_21[0],Фамилия_Художника_1=hudozhik_21[1],Фамилия_Художника_2=hudozhik_21[2],День_Рождения_Художника=hudozhik_21[3],
                             Возраст_Художника_Лет=hudozhik_21[4],День_Памяти_Художника=hudozhik_21[5],Годовщина_Памяти_Художника_Лет=hudozhik_21[6]),
-                 Hudozhniki(Имя_Художника=hudozhik_22[0], Фамилия_Художника_1=hudozhik_22[1],Фамилия_Художника_2=hudozhik_22[2], День_Рождения_Художника=hudozhik_22[3],
+                Hudozhniki(Имя_Художника=hudozhik_22[0], Фамилия_Художника_1=hudozhik_22[1],Фамилия_Художника_2=hudozhik_22[2], День_Рождения_Художника=hudozhik_22[3],
                             Возраст_Художника_Лет=hudozhik_22[4], День_Памяти_Художника=hudozhik_22[5],Годовщина_Памяти_Художника_Лет=hudozhik_22[6]),
-                #Hudozhniki(Имя_Художника=hudozhik_11[0], Фамилия_Художника_1=hudozhik_11[1],Фамилия_Художника_2=hudozhik_11[2], День_Рождения_Художника=hudozhik_11[3],
-                #Возраст_Художника_Лет=hudozhik_11[4], День_Памяти_Художника=hudozhik_11[5],Годовщина_Памяти_Художника_Лет=hudozhik_11[6]),
-                 ]
+                Hudozhniki(Имя_Художника=hudozhik_23[0], Фамилия_Художника_1=hudozhik_23[1],Фамилия_Художника_2=hudozhik_23[2], День_Рождения_Художника=hudozhik_23[3],
+                Возраст_Художника_Лет=hudozhik_23[4], День_Памяти_Художника=hudozhik_23[5],Годовщина_Памяти_Художника_Лет=hudozhik_23[6]),
+                Hudozhniki(Имя_Художника=hudozhik_24[0], Фамилия_Художника_1=hudozhik_24[1],Фамилия_Художника_2=hudozhik_24[2], День_Рождения_Художника=hudozhik_24[3],
+                Возраст_Художника_Лет=hudozhik_24[4], День_Памяти_Художника=hudozhik_24[5],Годовщина_Памяти_Художника_Лет=hudozhik_24[6]),
+                 Hudozhniki(Имя_Художника=hudozhik_25[0], Фамилия_Художника_1=hudozhik_25[1],Фамилия_Художника_2=hudozhik_25[2], День_Рождения_Художника=hudozhik_25[3],
+                Возраст_Художника_Лет=hudozhik_25[4], День_Памяти_Художника=hudozhik_25[5],Годовщина_Памяти_Художника_Лет=hudozhik_25[6])]
 @gamajun.get("/api/symboli",response_model=FastUI,response_model_exclude_none=True)
 async def otris_symboli():
     return components.Page(components=

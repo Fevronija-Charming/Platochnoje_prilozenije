@@ -207,7 +207,7 @@ async def otris_hudozhnik():
                                 DisplayLookup(field="Имя", title="Имя"),
                                 DisplayLookup(field="Фамилия", title="Фамилия"),
                                 DisplayLookup(field="Дата_Рождения", title="Дата_Рождения"),
-                                DisplayLookup(field="Год_Рождения", title="Год_Рождения_Художника"),
+                                DisplayLookup(field="Год_Рождения", title="Год_Рождения"),
                                 DisplayLookup(field="Возраст_Лет", title="Возраст_Лет"),
                                 DisplayLookup(field="День_Памяти", title="День_Памяти"),
                                 DisplayLookup(field="Год_Памяти", title="Год_Памяти"),

@@ -80,6 +80,10 @@ foto_hudozhniki_telegr130="Отсутствует"
 foto_hudozhniki_telegr131="Отсутствует"
 foto_hudozhniki_telegr140="Отсутствует"
 foto_hudozhniki_telegr141="Отсутствует"
+foto_hudozhniki_telegr150="Отсутствует"
+foto_hudozhniki_telegr151="Отсутствует"
+foto_hudozhniki_telegr160="Отсутствует"
+foto_hudozhniki_telegr161="Отсутствует"
 ssylka_forum_0="(1)http://platforum.ru/viewtopic.php?f=55&t=1653 (2)https://vk.com/wall-6587000_13959 (3)http://platforum.ru/viewtopic.php?t=1028"
 ssylka_forum_1="(1)http://www.platforum.ru/viewtopic.php?f=26&t=740 (2)https://platki.ru/about/artists/sotskova/ (3)http://www.platforum.ru/viewtopic.php?t=740&start=30"
 ssylka_forum_2="(1)http://platforum.ru/viewtopic.php?f=55&t=1703"
@@ -95,6 +99,8 @@ ssylka_forum_11="Отсутствует"
 ssylka_forum_12="(1)http://www.platforum.ru/viewtopic.php?t=1671"
 ssylka_forum_13="(1)https://platki.ru/about/artists/kutuzov/ (2)http://www.platforum.ru/viewtopic.php?t=30333 (3)https://vk.com/wall-64434990_535586"
 ssylka_forum_14="Отсутствует"
+ssylka_forum_15="Отсутствует"
+ssylka_forum_16="Отсутствует"
 #hudozhik_0=["Надежда","Слащева","Отсутствует","25.05.1936","74","17.04.2011","15","Отсутствует","Отсутствует","Отсутствует"]
 hudozhnik_0=["Надежда","Слащева","05-25-1936","04-17-2011",foto_hudozhniki_telegr00,foto_hudozhniki_telegr01,ssylka_forum_0]
 hudozhnik_1=["Галина","Сотскова","05-18-1949","Отсутствует",foto_hudozhniki_telegr10,foto_hudozhniki_telegr11,ssylka_forum_1]
@@ -110,9 +116,9 @@ hudozhnik_10=["Дмитрий","Рогатов","01-24-1956","Отсутству
 hudozhnik_11=["Татьяна","Шолохова","02-11-1967","Отсутствует",foto_hudozhniki_telegr110,foto_hudozhniki_telegr111,ssylka_forum_11]
 hudozhnik_12=["Злата", "Ольшевская","10-20-1920","05-25-2011",foto_hudozhniki_telegr120,foto_hudozhniki_telegr121,ssylka_forum_12]
 hudozhnik_13=["Сергей","Кутузов","07.10.1993","Отсутствует",foto_hudozhniki_telegr130,foto_hudozhniki_telegr131,ssylka_forum_13]
-hudozhik_14=["Елена","Немешаева","08.03.1966","60","Отсутствует",foto_hudozhniki_telegr140,foto_hudozhniki_telegr141,ssylka_forum_14]
-hudozhik_15=["Константин","Аболихин","Отсутствует","08.01.1868","74","02.02.1942","84","Отсутствует","Отсутствует","Отсутствует"]
-hudozhik_16=["Елена","Фаворитова","Отсутствует","14.10.1967","59","Отсутствует","Отсутствует","Отсутствует","Отсутствует","Отсутствует"]
+hudozhnik_14=["Елена","Немешаева","08.03.1966","Отсутствует",foto_hudozhniki_telegr140,foto_hudozhniki_telegr141,ssylka_forum_14]
+hudozhnik_15=["Константин","Аболихин","08.01.1868","02.02.1942",foto_hudozhniki_telegr150,foto_hudozhniki_telegr151,ssylka_forum_15]
+hudozhnik_16=["Елена","Фаворитова","14.10.1967","Отсутствует",foto_hudozhniki_telegr160,foto_hudozhniki_telegr161,ssylka_forum_16]
 hudozhik_17=["Татьяна","Сухаревская","Отсутствует","06.09.1967","59","Отсутствует","Отсутствует","Отсутствует","Отсутствует","Отсутствует"]
 hudozhik_18=["Елена","Жукова","Отсутствует","14.04.1964","62","Отсутствует","Отсутствует","Отсутствует","Отсутствует","Отсутствует"]
 hudozhik_19=["Валерия","Фадеева","Отсутствует","17.04.1975","51","Отсутствует","Отсутствует","Отсутствует","Отсутствует","Отсутствует"]
@@ -181,3 +187,5 @@ uzor_hudozhnika12=""" https://pulherija-c47cb3169d8b.herokuapp.com/gamajun/hudoz
 uzor_hudozhnika13="""Восходящее Солнце, Гуслицкий край, В садах земли Нижегородской, Дары лета, Волшебная ночь, 
 Соловьиная Роща"""
 uzor_hudozhnika14="""Праздник Покрова"""
+uzor_hudozhnika15="""Молитва, Караван, """
+uzor_hudozhnika16=""" Тайна Сердца """

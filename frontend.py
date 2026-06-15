@@ -249,7 +249,7 @@ Hudozhniki(Имя=hudozhnik_14[0], Фамилия=hudozhnik_14[1], Дата_Ро
 Фотография_1="![Красноносова2](static/nemeshaeva2.jpg)",Фотография_2="![Красноносова2](static/nemeshaeva22.jpg)"),
 Hudozhniki(Имя=hudozhnik_15[0],Фамилия=hudozhnik_15[1],Дата_Рождения=hudozhnik_15[2],Возраст_Лет=2026-int((str(hudozhnik_15[2])[6:])),
 Дата_Памяти=hudozhnik_15[3],Годовщина_Лет=2026-int((str(hudozhnik_15[3])[6:])),Известные_Узоры=uzor_hudozhnika15,Обсуждение_Творчества=hudozhnik_15[6],
-Фотография_1="![Красноносова2](static/abolihinB.jpg)",Фотография_2="![Красноносова2](static/abolihin1.png)"),
+Фотография_1="![Красноносова2](static/abolihinB.JPG)",Фотография_2="![Красноносова2](static/abolihin1.png)"),
 Hudozhniki(Имя=hudozhnik_16[0], Фамилия=hudozhnik_16[1],Дата_Рождения=hudozhnik_16[2],Возраст_Лет=2026-int((str(hudozhnik_16[2])[6:])),
 Дата_Памяти=hudozhnik_16[3],Годовщина_Лет=0,Известные_Узоры=uzor_hudozhnika16,Обсуждение_Творчества=hudozhnik_16[6],
 Фотография_1="![Красноносова2](static/favoritova.jpg)",Фотография_2="![Красноносова2](static/favoritova2.jpg)"),

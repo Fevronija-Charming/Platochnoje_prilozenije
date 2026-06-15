@@ -72,11 +72,12 @@ class TablaColority(BaseModel):
     Cтолбец_Колорита_4: str = Field(min_length=3, max_length=128)
 from templates import nazv_symbolov, opis_symboli, traktovka_kolority, hudozhnik_0, hudozhnik_1, hudozhnik_2, hudozhnik_3
 from templates import hudozhnik_4, hudozhnik_5,hudozhnik_6, hudozhnik_7, hudozhnik_8, hudozhnik_9, hudozhnik_10,hudozhnik_11
-from templates import hudozhnik_12, hudozhnik_13,hudozhnik_14, hudozhnik_15, hudozhnik_16, hudozhik_17, hudozhik_18
-from templates import hudozhik_19, hudozhik_20,hudozhik_21, hudozhik_22,hudozhik_23,hudozhik_24, hudozhik_25, Hudozhniky
+from templates import hudozhnik_12, hudozhnik_13,hudozhnik_14, hudozhnik_15, hudozhnik_16, hudozhnik_17,hudozhnik_18
+from templates import hudozhnik_19, hudozhnik_20,hudozhnik_21, hudozhik_22,hudozhik_23,hudozhik_24, hudozhik_25, Hudozhniky
 from templates import uzor_hudozhnika0,uzor_hudozhnika1,uzor_hudozhnika2,uzor_hudozhnika3,uzor_hudozhnika4,uzor_hudozhnika5
 from templates import uzor_hudozhnika6,uzor_hudozhnika7,uzor_hudozhnika8,uzor_hudozhnika9,uzor_hudozhnika10,uzor_hudozhnika11
 from templates import uzor_hudozhnika12, uzor_hudozhnika13,uzor_hudozhnika14, uzor_hudozhnika15,  uzor_hudozhnika16
+from templates import uzor_hudozhnika17, uzor_hudozhnika18,uzor_hudozhnika19, uzor_hudozhnika20,  uzor_hudozhnika21
 #,,uzor_hudozhnika10,uzor_hudozhnika11)
 #hudozhik_23, hudozhik_24, hudozhik_25
 foto_hudozhniki_telegr=[]
@@ -253,14 +254,21 @@ Hudozhniki(Имя=hudozhnik_15[0],Фамилия=hudozhnik_15[1],Дата_Рож
 Hudozhniki(Имя=hudozhnik_16[0], Фамилия=hudozhnik_16[1],Дата_Рождения=hudozhnik_16[2],Возраст_Лет=2026-int((str(hudozhnik_16[2])[6:])),
 Дата_Памяти=hudozhnik_16[3],Годовщина_Лет=0,Известные_Узоры=uzor_hudozhnika16,Обсуждение_Творчества=hudozhnik_16[6],
 Фотография_1="![Красноносова2](static/favoritova.jpg)",Фотография_2="![Красноносова2](static/favoritova2.jpg)"),
-                #Hudozhniki(Имя_Художника=hudozhik_15[0],Фамилия_Художника_1=hudozhik_15[1],Фамилия_Художника_2=hudozhik_15[2],День_Рождения_Художника=hudozhik_15[3],
-                            #Возраст_Художника_Лет=hudozhik_15[4],День_Памяти_Художника=hudozhik_15[5],Годовщина_Памяти_Художника_Лет=hudozhik_15[6]),
-                 #Hudozhniki(Имя_Художника=hudozhik_16[0], Фамилия_Художника_1=hudozhik_16[1],Фамилия_Художника_2=hudozhik_16[2], День_Рождения_Художника=hudozhik_16[3],
-                            #Возраст_Художника_Лет=hudozhik_16[4], День_Памяти_Художника=hudozhik_16[5],Годовщина_Памяти_Художника_Лет=hudozhik_16[6]),
-                #Hudozhniki(Имя_Художника=hudozhik_17[0], Фамилия_Художника_1=hudozhik_17[1],Фамилия_Художника_2=hudozhik_17[2], День_Рождения_Художника=hudozhik_17[3],
-                            #Возраст_Художника_Лет=hudozhik_17[4], День_Памяти_Художника=hudozhik_17[5],Годовщина_Памяти_Художника_Лет=hudozhik_17[6]),
-                #Hudozhniki(Имя_Художника=hudozhik_18[0],Фамилия_Художника_1=hudozhik_18[1],Фамилия_Художника_2=hudozhik_18[2],День_Рождения_Художника=hudozhik_18[3],
-                            #Возраст_Художника_Лет=hudozhik_18[4],День_Памяти_Художника=hudozhik_18[5],Годовщина_Памяти_Художника_Лет=hudozhik_18[6]),
+Hudozhniki(Имя=hudozhnik_17[0], Фамилия=hudozhnik_17[1],Дата_Рождения=hudozhnik_17[2],Возраст_Лет=2026-int((str(hudozhnik_17[2])[6:])),
+Дата_Памяти=hudozhnik_17[3],Годовщина_Лет=0,Известные_Узоры=uzor_hudozhnika17,Обсуждение_Творчества=hudozhnik_17[6],
+Фотография_1="![Красноносова2](static/suharevskaja1.jpg)",Фотография_2="![Красноносова2](static/suharevskajaA.jpg)"),
+Hudozhniki(Имя=hudozhnik_18[0], Фамилия=hudozhnik_18[1],Дата_Рождения=hudozhnik_18[2],Возраст_Лет=2026-int((str(hudozhnik_18[2])[6:])),
+Дата_Памяти=hudozhnik_18[3],Годовщина_Лет=0,Известные_Узоры=uzor_hudozhnika18,Обсуждение_Творчества=hudozhnik_18[6],
+Фотография_1="![Красноносова2](static/zukova.jpg)",Фотография_2="![Красноносова2](static/zukova2.jpg)"),
+Hudozhniki(Имя=hudozhnik_19[0], Фамилия=hudozhnik_19[1],Дата_Рождения=hudozhnik_19[2],Возраст_Лет=2026-int((str(hudozhnik_19[2])[6:])),
+Дата_Памяти=hudozhnik_19[3],Годовщина_Лет=0,Известные_Узоры=uzor_hudozhnika19,Обсуждение_Творчества=hudozhnik_19[6],
+Фотография_1="![Красноносова2](static/fadeevaA.jpg)",Фотография_2="![Красноносова2](static/fadeevaB.jpg)"),
+Hudozhniki(Имя=hudozhnik_20[0], Фамилия=hudozhnik_20[1],Дата_Рождения=hudozhnik_20[2],Возраст_Лет=2026-int((str(hudozhnik_20[2])[6:])),
+Дата_Памяти=hudozhnik_20[3],Годовщина_Лет=0,Известные_Узоры=uzor_hudozhnika20,Обсуждение_Творчества=hudozhnik_20[6],
+Фотография_1="![Красноносова2](static/dadonov.jpg)",Фотография_2="![Красноносова2](static/dadonov2.jpg)"),
+Hudozhniki(Имя=hudozhnik_21[0], Фамилия=hudozhnik_21[1],Дата_Рождения=hudozhnik_21[2],Возраст_Лет=2026-int((str(hudozhnik_21[2])[6:])),
+Дата_Памяти=hudozhnik_21[3],Годовщина_Лет=2026-int((str(hudozhnik_21[3])[6:])),Известные_Узоры=uzor_hudozhnika21,Обсуждение_Творчества=hudozhnik_21[6],
+Фотография_1="![Красноносова2](static/zubritski.jpg)",Фотография_2="![Красноносова2](static/zubritskiB.jpg)"),
                 #Hudozhniki(Имя_Художника=hudozhik_19[0], Фамилия_Художника_1=hudozhik_19[1],Фамилия_Художника_2=hudozhik_19[2], День_Рождения_Художника=hudozhik_19[3],
                             #Возраст_Художника_Лет=hudozhik_19[4], День_Памяти_Художника=hudozhik_19[5],Годовщина_Памяти_Художника_Лет=hudozhik_19[6]),
                 #Hudozhniki(Имя_Художника=hudozhik_20[0], Фамилия_Художника_1=hudozhik_20[1],Фамилия_Художника_2=hudozhik_20[2], День_Рождения_Художника=hudozhik_20[3],

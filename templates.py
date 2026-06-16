@@ -50,6 +50,26 @@ traktovka_kolority=["""Шалелюбушки всегда такие интер
 Благовещение, Введение и др).""",
 """В первом ряду находится красный колорит, а также будоражащие, возбуждающие окраски павловопосадских платков на основе красного цвета. Во втором ряду расположен синий колорит, балансирующие и успокаивающие раскраски павловопосадских платков на основе синего цвета. В третий ряд поместил чёрный, белый колориты, а также остальные колориты, на основе заполняющих цветов, которые не получилось отнести ни к будоражащим, ни к успокаивающим цветам.
 """]
+foto_hudozhiki_vnutr00="![Слащева1](static/slazhevaAA.jpg)"
+foto_hudozhiki_vnutr01="![Слащева2](static/slazheva222.jpg)"
+foto_hudozhiki_vnutr10="![Сотская1](static/сотская111.jpg)"
+foto_hudozhiki_vnutr11="![Сотская2](static/сотская111.jpg)"
+foto_hudozhiki_vnutr20="![Постигов1](static/postigovA.jpg)"
+foto_hudozhiki_vnutr21="![Постигов2](static/postigovB.jpg)"
+foto_hudozhiki_vnutr30="![Созинова1](static/sozinovaA.jpg)"
+foto_hudozhiki_vnutr31="![Созинова2](static/sozinovaB.jpg)"
+foto_hudozhiki_vnutr40="![Штыхин1](static/shtyhin-001.jpg)"
+foto_hudozhiki_vnutr41="![Штыхин2](static/shtyhin2.jpg)"
+foto_hudozhiki_vnutr50="![Уткина1](static/utkina.jpg)"
+foto_hudozhiki_vnutr51="![Уткина2](static/utkina.jpg)"
+foto_hudozhiki_vnutr60="![Красноносова1](static/krasnonosovaAA.jpg)"
+foto_hudozhiki_vnutr61="![Красноносова2](static/krasnonosovaBB.jpg)"
+foto_hudozhiki_vnutr70="![Муравьёва1](static/muravjova1.jpg)"
+foto_hudozhiki_vnutr71="![Муравьёва2](static/muravjova2.jpg)"
+foto_hudozhiki_vnutr80="![Макаганчук1](static/makaganchuk2.jpg)"
+foto_hudozhiki_vnutr81="![Макаганчук2](static/makaganchuk.jpg)"
+foto_hudozhiki_vnutr90="![Сафонова1](static/safonova.jpg)"
+foto_hudozhiki_vnutr91="![Сафонова2](static/safonova2.jpg)"
 foto_hudozhniki_telegr00="AgACAgQAAxkBAAIr6moRdavwPNHDX-3NQLkM356uMX0NAAKTDmsbXvSIUPEnoYJk_PvXAQADAgADeQADOwQ"
 foto_hudozhniki_telegr01="AgACAgQAAxkBAAIr5moRdVuv-UDu0NYjyl0St2JezLWhAAKSDmsbXvSIUBpsWzHS1WjzAQADAgADeAADOwQ"
 foto_hudozhniki_telegr10="AgACAgQAAxkBAAIr7moRdsy_nONI8p8e97j6CcE1EHHIAAKUDmsbXvSIUKcFPAN6OaplAQADAgADbQADOwQ"
@@ -94,6 +114,16 @@ foto_hudozhniki_telegr200="Отсутствует"
 foto_hudozhniki_telegr201="Отсутствует"
 foto_hudozhniki_telegr210="Отсутствует"
 foto_hudozhniki_telegr211="Отсутствует"
+foto_hudozhniki_telegr220="Отсутствует"
+foto_hudozhniki_telegr221="Отсутствует"
+foto_hudozhniki_telegr230="Отсутствует"
+foto_hudozhniki_telegr231="Отсутствует"
+foto_hudozhniki_telegr240="Отсутствует"
+foto_hudozhniki_telegr241="Отсутствует"
+foto_hudozhniki_telegr250="Отсутствует"
+foto_hudozhniki_telegr251="Отсутствует"
+foto_hudozhniki_telegr260="Отсутствует"
+foto_hudozhniki_telegr261="Отсутствует"
 ssylka_forum_0="(1)http://platforum.ru/viewtopic.php?f=55&t=1653 (2)https://vk.com/wall-6587000_13959 (3)http://platforum.ru/viewtopic.php?t=1028"
 ssylka_forum_1="(1)http://www.platforum.ru/viewtopic.php?f=26&t=740 (2)https://platki.ru/about/artists/sotskova/ (3)http://www.platforum.ru/viewtopic.php?t=740&start=30"
 ssylka_forum_2="(1)http://platforum.ru/viewtopic.php?f=55&t=1703"
@@ -116,66 +146,11 @@ ssylka_forum_18="Отсутствует"
 ssylka_forum_19="Отсутствует"
 ssylka_forum_20="Отсутствует"
 ssylka_forum_21="Отсутствует"
-#hudozhik_0=["Надежда","Слащева","Отсутствует","25.05.1936","74","17.04.2011","15","Отсутствует","Отсутствует","Отсутствует"]
-hudozhnik_0=["Надежда","Слащева","05-25-1936","04-17-2011",foto_hudozhniki_telegr00,foto_hudozhniki_telegr01,ssylka_forum_0]
-hudozhnik_1=["Галина","Сотскова","05-18-1949","Отсутствует",foto_hudozhniki_telegr10,foto_hudozhniki_telegr11,ssylka_forum_1]
-hudozhnik_2=["Степан","Постигов","Отсутствует","Отсутствует",foto_hudozhniki_telegr20,foto_hudozhniki_telegr21,ssylka_forum_2]
-hudozhnik_3=["Валентина","Созинова","04-21-xxxx","Отсутствует",foto_hudozhniki_telegr30,foto_hudozhniki_telegr31,ssylka_forum_3]
-hudozhnik_4=["Евгений","Штыхин","09-22-xxxx","Отсутствует",foto_hudozhniki_telegr40,foto_hudozhniki_telegr41,ssylka_forum_4]
-hudozhnik_5=["Юлия","Уткина","05-09-xxxx","Отсутствует",foto_hudozhniki_telegr50,foto_hudozhniki_telegr51,ssylka_forum_5]
-hudozhnik_6=["Надежда","Красноносова        (Кудренко)","04-14-xxxx","Отсутствует",foto_hudozhniki_telegr60,foto_hudozhniki_telegr61,ssylka_forum_6]
-hudozhnik_7=["Евгения","Муравьёва","Отсутствует","Отсутствует",foto_hudozhniki_telegr70,foto_hudozhniki_telegr71,ssylka_forum_7]
-hudozhnik_8=["Инна","Макаганчук","07-11-1989","Отсутствует",foto_hudozhniki_telegr80,foto_hudozhniki_telegr81,ssylka_forum_8]
-hudozhnik_9=["Елена","Сафонова","Отсутствует","Отсутствует",foto_hudozhniki_telegr90,foto_hudozhniki_telegr91,ssylka_forum_9]
-hudozhnik_10=["Дмитрий","Рогатов","01-24-1956","Отсутствует",foto_hudozhniki_telegr100,foto_hudozhniki_telegr101,ssylka_forum_10]
-hudozhnik_11=["Татьяна","Шолохова","02-11-1967","Отсутствует",foto_hudozhniki_telegr110,foto_hudozhniki_telegr111,ssylka_forum_11]
-hudozhnik_12=["Злата", "Ольшевская","10-20-1920","05-25-2011",foto_hudozhniki_telegr120,foto_hudozhniki_telegr121,ssylka_forum_12]
-hudozhnik_13=["Сергей","Кутузов","07.10.1993","Отсутствует",foto_hudozhniki_telegr130,foto_hudozhniki_telegr131,ssylka_forum_13]
-hudozhnik_14=["Елена","Немешаева","08.03.1966","Отсутствует",foto_hudozhniki_telegr140,foto_hudozhniki_telegr141,ssylka_forum_14]
-hudozhnik_15=["Константин","Аболихин","08.01.1868","02.02.1942",foto_hudozhniki_telegr150,foto_hudozhniki_telegr151,ssylka_forum_15]
-hudozhnik_16=["Елена","Фаворитова","14.10.1967","Отсутствует",foto_hudozhniki_telegr160,foto_hudozhniki_telegr161,ssylka_forum_16]
-hudozhnik_17=["Татьяна","Сухаревская","06.09.1967","Отсутствует",foto_hudozhniki_telegr170,foto_hudozhniki_telegr171,ssylka_forum_17]
-hudozhnik_18=["Елена","Жукова","14.04.1964","Отсутствует",foto_hudozhniki_telegr180,foto_hudozhniki_telegr181,ssylka_forum_18]
-hudozhnik_19=["Валерия","Фадеева","17.04.1975","Отсутствует",foto_hudozhniki_telegr190,foto_hudozhniki_telegr191,ssylka_forum_19]
-hudozhnik_20=["Ирина","Дадонова","01.05.1939","Отсутствует",foto_hudozhniki_telegr200,foto_hudozhniki_telegr201,ssylka_forum_20]
-hudozhnik_21=["Виктор","Зубрицкий","24.09.1946","08.07.2023",foto_hudozhniki_telegr200,foto_hudozhniki_telegr201,ssylka_forum_21]
-hudozhik_22=["Екатерина","Регунова","Отсутствует","19.05.1926","83","11.06.2009","17","Отсутствует","Отсутствует","Отсутствует"]
-hudozhik_23=["Елена","Литвинова","Отсутствует","18.07.1969","67","Отсутствует","Отсутствует","Отсутствует","Отсутствует","Отсутствует"]
-hudozhik_24=["Наталья","Белокур","Отсутствует","13.06.1969","59","Отсутствует","Отсутствует","Отсутствует","Отсутствует","Отсутствует"]
-hudozhik_25=["Клара","Зиновьева","Отсутствует","24.06.1928","82","xx.03.2010","16","Отсутствует","Отсутствует","Отсутствует"]
-Hudozhniky=[["Надежда","Слащева","05-25","1936","04-17","2011","AgACAgQAAxkBAAIr6moRdavwPNHDX-3NQLkM356uMX0NAAKTDmsbXvSIUPEnoYJk_PvXAQADAgADeQADOwQ",
-"AgACAgQAAxkBAAIr5moRdVuv-UDu0NYjyl0St2JezLWhAAKSDmsbXvSIUBpsWzHS1WjzAQADAgADeAADOwQ"],
-["Галина","Сотскова","05-18","1949","Отсутствует","Отсутствует","Отсутствует","Отсутствует"],
-["Степан","Постигов","Отсутствует","Отсутствует","Отсутствует","Отсутствует","Отсутствует","Отсутствует"],
-["Валентина","Созинова","04-21","Отсутствует","Отсутствует","Отсутствует","Отсутствует","Отсутствует"],
-["Евгений","Штыхин","09-22","Отсутствует","Отсутствует","Отсутствует","Отсутствует","Отсутствует"],
-["Юлия","Уткина","05-09","Отсутствует","Отсутствует","Отсутствует","Отсутствует","Отсутствует"],
-["Надежда","Красноносова(Кудренко)","04-14","Отсутствует","Отсутствует","Отсутствует","AgACAgQAAxkBAAIr82oRm0axL9F9UI1qkHRg2LOiu-N-AAI7DmsbXvSQUOLyBK0c02uOAQADAgADdwADOwQ",
-"AgACAgQAAxkBAAIr92oRm9hF79bhQ7cQmok0iw0mfQIpAAI8DmsbXvSQUO-ZkVb2hTXrAQADAgADdwADOwQ"],
-["Евгения","Муравьёва","Отсутствует","Отсутствует","Отсутствует","Отсутствует","AgACAgQAAxkBAAIr-2oRnQcrJWxgc72qZg4dP5qIC_I2AAI-DmsbXvSQUOe5M6NXMY3MAQADAgADdwADOwQ",
-"AgACAgQAAxkBAAIr_2oRnRgdV-pgFEr1Z0bCqnLmIRUmAAI_DmsbXvSQUGha-dB7C2s_AQADAgADdwADOwQ"],
-["Инна","Макаганчук","07-11","1989","Отсутствует","Отсутствует","AgACAgQAAxkBAAIsA2oSD3IC7Y7DCCcsC6G_famMRqT2AAL5EWsbXvSQUOtAdOMl6q4JAQADAgADeQADOwQ",
- "AgACAgQAAxkBAAIsB2oSD4AE7tyBIvrQX0WSgLEiZCXiAAL6EWsbXvSQUDfdga_OxzKsAQADAgADeAADOwQ"],
-["Елена","Сафонова","Отсутствует","Отсутствует","Отсутствует","Отсутствует","Отсутствует"],
-["Дмитрий","Рогатов","01-24","1956","Отсутствует","Отсутствует","AgACAgQAAxkBAAIsDGoSESl1PxyJfv8FbFVHVpi-fZorAAL8EWsbXvSQUMUlIAqJ8pXGAQADAgADeAADOwQ",
- "AgACAgQAAxkBAAIsEGoSETiJs-d0_MOqaOQ7ElTiVnrBAAL9EWsbXvSQUAGGG8PgcomNAQADAgADeQADOwQ"],
-["Татьяна","Шолохова","02-11","1967","Отсутствует","Отсутствует","AgACAgQAAxkBAAIsFGoSEch8qTK6PorTAAEYwBiPJHdY-AAC_hFrG170kFBtyKFmCNKw0QEAAwIAA3cAAzsE",
-"AgACAgQAAxkBAAIsGGoSEexaujtmb0pjd7HmFN32qKTyAAL_EWsbXvSQUHXnOR623dO4AQADAgADeQADOwQ"],
-["Злата", "Ольшевская","10-20","1920","05-25","2011","AgACAgQAAxkBAAIsHGoSE0gDnkFhgvhimaK7eWzn4NP9AAIBEmsbXvSQUFhishbOe-DhAQADAgADdwADOwQ",
-"AgACAgQAAxkBAAIsHmoSE0386yIr1NMtU8Hwlz9iJS9lAAICEmsbXvSQUEPHZhq07PsDAQADAgADeQADOwQ"],
-["Сергей","Кутузов","10-07","1993","Отсутствует","Отсутствует","Отсутствует","Отсутствует"],
-["Елена","Немешаева","03-08","1966","Отсутствует","Отсутствует","Отсутствует","Отсутствует"],
-["Константин","Аболихин","01-08","1868","02-02","1942","Отсутствует","Отсутствует"],
-["Елена","Фаворитова","10-14","1967","Отсутствует","Отсутствует","Отсутствует","Отсутствует"],
-["Татьяна","Сухаревская","09-06","1967","Отсутствует","Отсутствует","Отсутствует","Отсутствует"],
-["Елена","Жукова","04-14","1964","Отсутствует","Отсутствует","Отсутствует","Отсутствует"],
-["Валерия","Фадеева","04-17","1975","Отсутствует","Отсутствует","Отсутствует","Отсутствует"],
-["Ирина","Дадонова","05-01","1939","Отсутствует","Отсутствует","Отсутствует","Отсутствует"],
-["Виктор","Зубрицкий","09-24","1946","07-08","2023","Отсутствует","Отсутствует"],
-["Екатерина","Регунова","05-19","1926","06-11","2009","Отсутствует","Отсутствует"],
-["Елена","Литвинова","07-18","1969","Отсутствует","Отсутствует","Отсутствует","Отсутствует"],
-["Наталья","Белокур","06-13","1969","Отсутствует","Отсутствует","Отсутствует","Отсутствует"],
-["Клара","Зиновьева","06-24","1928","03-01","2010","Отсутствует","Отсутствует"]]
+ssylka_forum_22="Отсутствует"
+ssylka_forum_23="Отсутствует"
+ssylka_forum_24="Отсутствует"
+ssylka_forum_25="Отсутствует"
+ssylka_forum_26="Отсутствует"
 uzor_hudozhnika0="""Весенние грёзы, Тайна, Фея Сирени, Весна, Финифть, Белые Крылья, Весенние грёзы, Цветочная сказка, 
 Чардаш, Венец, Качели, Лебёдушка, Солнечный круг, Евдокия, Радуга(1963), 
 Южная ночь(1969), Радость, Русское раздолье,
@@ -209,3 +184,41 @@ uzor_hudozhnika18=""" Подсолнух """
 uzor_hudozhnika19=""" 000 """
 uzor_hudozhnika20=""" 000 """
 uzor_hudozhnika21=""" 000 """
+uzor_hudozhnika22=""" 000 """
+uzor_hudozhnika23=""" 000 """
+uzor_hudozhnika24=""" 000 """
+uzor_hudozhnika25=""" 000 """
+uzor_hudozhnika26=""" 000 """
+#старая система
+#hudozhik_0=["Надежда","Слащева","Отсутствует","25.05.1936","74","17.04.2011","15","Отсутствует","Отсутствует","Отсутствует"]
+hudozhnik_0=["Надежда","Слащева","05-25-1936","04-17-2011",foto_hudozhiki_vnutr00,foto_hudozhiki_vnutr01,ssylka_forum_0,uzor_hudozhnika0]
+hudozhnik_1=["Галина","Сотскова","05-18-1949","Отсутствует",foto_hudozhiki_vnutr10,foto_hudozhiki_vnutr11,ssylka_forum_1,uzor_hudozhnika1]
+hudozhnik_2=["Степан","Постигов","Отсутствует","Отсутствует",foto_hudozhiki_vnutr20,foto_hudozhiki_vnutr21,ssylka_forum_2,uzor_hudozhnika2]
+hudozhnik_3=["Валентина","Созинова","04-21-xxxx","Отсутствует",foto_hudozhiki_vnutr30,foto_hudozhiki_vnutr31,ssylka_forum_3,uzor_hudozhnika3]
+hudozhnik_4=["Евгений","Штыхин","09-22-xxxx","Отсутствует",foto_hudozhiki_vnutr40,foto_hudozhiki_vnutr41,ssylka_forum_4,uzor_hudozhnika4]
+hudozhnik_5=["Юлия","Уткина","05-09-xxxx","Отсутствует",foto_hudozhiki_vnutr50,foto_hudozhiki_vnutr51,ssylka_forum_5,uzor_hudozhnika5]
+hudozhnik_6=["Надежда","Красноносова        (Кудренко)","04-14-xxxx","Отсутствует",foto_hudozhiki_vnutr60,foto_hudozhiki_vnutr61,ssylka_forum_6,uzor_hudozhnika6]
+hudozhnik_7=["Евгения","Муравьёва","Отсутствует","Отсутствует",foto_hudozhiki_vnutr70,foto_hudozhiki_vnutr71,ssylka_forum_7,uzor_hudozhnika7]
+hudozhnik_8=["Инна","Макаганчук","07-11-1989","Отсутствует",foto_hudozhiki_vnutr80,foto_hudozhiki_vnutr81,ssylka_forum_8,uzor_hudozhnika8]
+hudozhnik_9=["Елена","Сафонова","Отсутствует","Отсутствует",foto_hudozhiki_vnutr90,foto_hudozhiki_vnutr91,ssylka_forum_9,uzor_hudozhnika9]
+hudozhnik_10=["Дмитрий","Рогатов","01-24-1956","Отсутствует",foto_hudozhniki_telegr100,foto_hudozhniki_telegr101,ssylka_forum_10,uzor_hudozhnika10]
+hudozhnik_11=["Татьяна","Шолохова","02-11-1967","Отсутствует",foto_hudozhniki_telegr110,foto_hudozhniki_telegr111,ssylka_forum_11,uzor_hudozhnika11]
+hudozhnik_12=["Злата", "Ольшевская","10-20-1920","05-25-2011",foto_hudozhniki_telegr120,foto_hudozhniki_telegr121,ssylka_forum_12,uzor_hudozhnika12]
+hudozhnik_13=["Сергей","Кутузов","07-10-1993","Отсутствует",foto_hudozhniki_telegr130,foto_hudozhniki_telegr131,ssylka_forum_13,uzor_hudozhnika13]
+hudozhnik_14=["Елена","Немешаева","08-03-1966","Отсутствует",foto_hudozhniki_telegr140,foto_hudozhniki_telegr141,ssylka_forum_14,uzor_hudozhnika14]
+hudozhnik_15=["Константин","Аболихин","08-01-1868","02-02-1942",foto_hudozhniki_telegr150,foto_hudozhniki_telegr151,ssylka_forum_15,uzor_hudozhnika15]
+hudozhnik_16=["Елена","Фаворитова","14-10-1967","Отсутствует",foto_hudozhniki_telegr160,foto_hudozhniki_telegr161,ssylka_forum_16,uzor_hudozhnika16]
+hudozhnik_17=["Татьяна","Сухаревская","06-09-1967","Отсутствует",foto_hudozhniki_telegr170,foto_hudozhniki_telegr171,ssylka_forum_17,uzor_hudozhnika17]
+hudozhnik_18=["Елена","Жукова","14-04-1964","Отсутствует",foto_hudozhniki_telegr180,foto_hudozhniki_telegr181,ssylka_forum_18,uzor_hudozhnika18]
+hudozhnik_19=["Валерия","Фадеева","17-04-1975","Отсутствует",foto_hudozhniki_telegr190,foto_hudozhniki_telegr191,ssylka_forum_19,uzor_hudozhnika19]
+hudozhnik_20=["Ирина","Дадонова","01-05-1939","Отсутствует",foto_hudozhniki_telegr200,foto_hudozhniki_telegr201,ssylka_forum_20,uzor_hudozhnika20]
+hudozhnik_21=["Виктор","Зубрицкий","24-09-1946","08-07-2023",foto_hudozhniki_telegr210,foto_hudozhniki_telegr211,ssylka_forum_21,uzor_hudozhnika21]
+hudozhik_22=["Екатерина","Регунова","19-05-1926","11-06-2009",foto_hudozhniki_telegr220,foto_hudozhniki_telegr221,ssylka_forum_22,uzor_hudozhnika22]
+hudozhik_23=["Елена","Литвинова","18-07-1969","Отсутствует",foto_hudozhniki_telegr230,foto_hudozhniki_telegr231,ssylka_forum_23,uzor_hudozhnika23]
+hudozhik_24=["Наталья","Белокур","13-06-1969","Отсутствует",foto_hudozhniki_telegr240,foto_hudozhniki_telegr241,ssylka_forum_24,uzor_hudozhnika24]
+hudozhik_25=["Клара","Зиновьева","24-06-1928","xx-03-2010",foto_hudozhniki_telegr250,foto_hudozhniki_telegr251,ssylka_forum_25,uzor_hudozhnika25]
+hudozhik_26=["Отсутствует","Отсутствует","Отсутствует","Отсутствует",foto_hudozhniki_telegr260,foto_hudozhniki_telegr261,ssylka_forum_26,uzor_hudozhnika26]
+#сборка сущностей в список
+Hudozhniky=[hudozhnik_0,hudozhnik_1,hudozhnik_2,hudozhnik_3,hudozhnik_4,hudozhnik_5,hudozhnik_6,hudozhnik_7,hudozhnik_8,
+            hudozhnik_9,hudozhnik_10,hudozhnik_11,hudozhnik_12,hudozhnik_13,hudozhnik_14,hudozhnik_15,hudozhnik_16,hudozhnik_17,
+            hudozhnik_18,hudozhnik_19,hudozhnik_20,hudozhnik_21,hudozhik_22,hudozhik_23,hudozhik_24,hudozhik_25,hudozhik_26]

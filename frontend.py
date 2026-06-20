@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel,Field
 gamajun=FastAPI()
 from fastapi.responses import HTMLResponse
@@ -29,10 +29,10 @@ class Hudozhniki(BaseModel):
     Фотография_1: str = Field(min_length=3, max_length=100)
     Фотография_2: str = Field(min_length=3, max_length=100)
 class Uzory_Kisti_Hudozhnika(BaseModel):
-    Название_Узора: str = Field(min_length=4, max_length=84)
-    Название_Узора_2: str = Field(min_length=4, max_length=84)
-    Название_Узора_3: str = Field(min_length=4, max_length=84)
-    Название_Узора_4: str = Field(min_length=4, max_length=84)
+    Название_Узора: str = Field(min_length=4, max_length=840)
+    Название_Узора_2: str = Field(min_length=4, max_length=840)
+    Название_Узора_3: str = Field(min_length=4, max_length=840)
+    Название_Узора_4: str = Field(min_length=4, max_length=840)
     #Фотография_Платка: str = Field(min_length=4, max_length=84)
     #Крупное_фото_платка: str = Field(min_length=4, max_length=84)
 class Hudozhiniki_Photo_Telegram(BaseModel):
@@ -220,6 +220,52 @@ for hudozhnik in Hudozhniky:
     Дата_Памяти=hudozhnik[3],Годовщина_Лет= godovzhina_hudozhnika,Известные_Узоры=hudozhnik[7],Обсуждение_Творчества=hudozhnik[6],
     Фотография_1=hudozhnik[5],Фотография_2=hudozhnik[4])
     data_hudozhniky.append(predstav_hudozhnika)
+#фабрика представлений узоров платков
+grupi_uzory=[]
+for i in range(22):
+    data_uzory = []
+    zapolnenije = "----"
+    predstav_uzora = Uzory_Kisti_Hudozhnika(
+        Название_Узора= zapolnenije,
+        Название_Узора_2=zapolnenije,
+        Название_Узора_3=zapolnenije,
+        Название_Узора_4= zapolnenije)
+    data_uzory.append(predstav_uzora)
+    grupi_uzory.append(data_uzory)
+from templates import Uzory
+for personal_uzory in Uzory:
+    data_uzory = []
+    predstav_uzora=[]
+    split_uzory = personal_uzory.split(",")
+    zapolnenije = "----"
+    if len(split_uzory) % 4 == 3:
+        split_uzory.append(zapolnenije)
+    if len(split_uzory) % 4 == 2:
+        split_uzory.append(zapolnenije)
+        split_uzory.append(zapolnenije)
+    if len(split_uzory) % 4 == 1:
+        split_uzory.append(zapolnenije)
+        split_uzory.append(zapolnenije)
+        split_uzory.append(zapolnenije)
+    norm_dlina=int(len(split_uzory)/4)
+    for i in range(norm_dlina
+                   ):
+        predstav_uzora=Uzory_Kisti_Hudozhnika(
+            Название_Узора=split_uzory[0+i*4],
+            Название_Узора_2=split_uzory[1+i*4],
+            Название_Узора_3=split_uzory[2+i*4],
+            Название_Узора_4=split_uzory[3+i*4])
+        data_uzory.append(predstav_uzora)
+    grupi_uzory.append(data_uzory)
+data_uzory = []
+zapolnenije = "----"
+predstav_uzora = Uzory_Kisti_Hudozhnika(
+    Название_Узора= zapolnenije,
+    Название_Узора_2=zapolnenije,
+    Название_Узора_3=zapolnenije,
+    Название_Узора_4= zapolnenije)
+data_uzory.append(predstav_uzora)
+grupi_uzory.append(data_uzory)
 data_hudozhniki=[Hudozhniki(Имя=hudozhnik_0[0],Фамилия=hudozhnik_0[1],Дата_Рождения=hudozhnik_0[2],Возраст_Лет=2026-int((str(hudozhnik_0[2])[6:])),
 Дата_Памяти=hudozhnik_0[3],Годовщина_Лет=2026-int((str(hudozhnik_0[3])[6:])),Известные_Узоры=uzor_hudozhnika0,Обсуждение_Творчества=hudozhnik_0[6],
 Фотография_1="![Слащева1](static/slazhevaAA.jpg)",Фотография_2="![Слащева22](static/slazheva222.jpg)"),
@@ -372,6 +418,23 @@ async def otris_ZlatY():
                                 DisplayLookup(field="Название_Узора_3", title=""),
                                 DisplayLookup(field="Название_Узора_4", title=""),
                                 ],), ],)
+@gamajun.get("/api/hudozhniki/{id_hudozhika}",response_model=FastUI,response_model_exclude_none=True)
+async def otris_uzorov(id_hudozhika: int):
+    for hudozhnik in Hudozhniky:
+        if hudozhnik[8]== id_hudozhika:
+            return components.Div(class_name="fs-2 text-center",
+                        components=
+                          [components.Heading(text=f"Название и изображения платков кисти {hudozhnik[9]}", level=1),
+                            components.Table(data=grupi_uzory[id_hudozhika], columns=[
+                                DisplayLookup(field="Название_Узора", title=""),
+                                DisplayLookup(field="Название_Узора_2", title=""),
+                                DisplayLookup(field="Название_Узора_3", title=""),
+                                DisplayLookup(field="Название_Узора_4", title=""),
+                                ],), ],)
+    return components.Div(class_name="fs-2 text-center",
+                          components=[components.Heading(text="Художник не найден", level=1),
+                                      components.Link(components=[components.Text(text="К ТАБЛИЦЕ ХУДОЖНИКОВ")],
+                                    on_click=GoToEvent(url="https://pulherija-c47cb3169d8b.herokuapp.com/gamajun/hudozhniki"))])
 from fastapi.staticfiles import StaticFiles
 gamajun.mount("/static",StaticFiles(directory="static"))
 from templates import nazv_symbolov,opis_symboli,traktovka_kolority

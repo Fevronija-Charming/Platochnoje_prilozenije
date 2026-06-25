@@ -24,7 +24,7 @@ class Hudozhniki(BaseModel):
     Возраст_Лет: int
     Дата_Памяти: str = Field(min_length=2, max_length=32)
     Годовщина_Лет: int
-    Известные_Узоры: str = Field(min_length=1, max_length=3000)
+    Известные_Узоры: str = Field(min_length=1, max_length=5000)
     Обсуждение_Творчества: str = Field(min_length=1, max_length=1000)
     Фотография_1: str = Field(min_length=3, max_length=100)
     Фотография_2: str = Field(min_length=3, max_length=100)

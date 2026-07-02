@@ -19,7 +19,7 @@ app = FastAPI()
 from frontend import gamajun
 app.mount("/gamajun",gamajun)
 #работа с базой данных
-from sqlalchemy import  DateTime, String, Float, Column, Integer, func,Text
+from sqlalchemy import  DateTime, String, Float, Column, Integer, func,Text, BIGINT
 from sqlalchemy import  select
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine, async_sessionmaker
@@ -28,6 +28,14 @@ engine = create_async_engine(os.getenv("DBURL"),echo=True,max_overflow=5,pool_si
 session_factory = async_sessionmaker(bind=engine,class_=AsyncSession,expire_on_commit=False)
 class Base(DeclarativeBase):
     pass
+class Otzyvy(Base):
+    __tablename__ = "Книга_Отзывов"
+    id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True, nullable=False)
+    Индефикатор_Автора: Mapped[BIGINT] = mapped_column(BIGINT,nullable=False)
+    Автор_Отзыва: Mapped[str] = mapped_column(String(128), nullable=False)
+    Текст_Отзыва: Mapped[str]=mapped_column(Text, nullable=False)
+    Время_Записи_Отзыва: Mapped[str] = mapped_column(nullable=False)
+    Секунды_Записи_Отзыва: Mapped[BIGINT] = mapped_column(BIGINT,nullable=False)
 class Platoky(Base):
     __tablename__="ПППЛАТКИ"
     id: Mapped[int]=mapped_column(primary_key=True, autoincrement=True, nullable=False)
@@ -621,9 +629,14 @@ def kostily_BD():
             connection.close()
         if cursor:
             cursor.close()
+async def create_platky():
+    async with engine.begin() as connection:
+        await connection.run_sync(Base.metadata.create_all)
 async def main():
+    await create_platky()
     init(autoreset=True)
     uvicorn.run("prilozhenije:app", reload=True, port=8000)
+
 #ЗАЯЦ ВКЛЮЧЕН
 app.include_router(router)
 if __name__ == "__main__":

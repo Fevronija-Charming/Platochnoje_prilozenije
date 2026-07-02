@@ -1,4 +1,10 @@
+from attr.validators import max_len
+from datetime import datetime
+import time
 from fastapi import FastAPI, HTTPException
+from fastapi import Form
+from fastui.components import FireEvent
+from fastui.forms import Textarea
 from pydantic import BaseModel,Field
 gamajun=FastAPI()
 from fastapi.responses import HTMLResponse
@@ -7,21 +13,76 @@ from fastui.components.display import DisplayMode,DisplayLookup
 from fastui.events import GoToEvent, BackEvent, PageEvent
 from fastapi.staticfiles import StaticFiles
 gamajun.mount("/static",StaticFiles(directory="static"))
-#ОТРИСОВКА МЕНЮ
+#Форма обратной связи
+from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine, async_sessionmaker
+import os
+engine = create_async_engine(os.getenv("DBURL"),echo=True,max_overflow=5,pool_size=5)
+session_factory = async_sessionmaker(bind=engine,class_=AsyncSession,expire_on_commit=False,autoflush=True)
+class Otzyv(BaseModel):
+    Ваше_имя: str =Field()
+    Ваш_отзыв: str =Textarea(rows=5)
+    Антибот_простое_число_от_1_до_100: int
+#РЕГИСТРАЦИЯ ДАННЫХ
+@gamajun.post("/api/otzyv_add", response_model=FastUI, response_model_exclude_none=True)
+async def insert_DB_privycka_s_GrIntr(Ваше_имя: str = Form(), Ваш_отзыв: str= Form(), Антибот_простое_число_от_1_до_100:int= Form()):
+    if Антибот_простое_число_от_1_до_100 not in [2,3,5,7,11,13,17,19,23,29,31,37,41,43,47,53,59,61,67,71,73,79,83,89,97]:
+        return components.Page(components=[components.FireEvent(event=GoToEvent(url="/gamajun/403fail"))])
+    if len(Ваш_отзыв)>2000 or len(Ваше_имя)>32:
+        return components.Page(components=[components.FireEvent(event=GoToEvent(url="/gamajun/426fail"))])
+    indefikator=0
+    tochnoje_vremja = str(datetime.now())
+    vremja_dizain = tochnoje_vremja[:-10]
+    otnetka_vremeni = int(time.time())
+    from prilozhenije import Otzyvy
+    try:
+        Otzyv_eksmpr=Otzyvy(Индефикатор_Автора=indefikator,Автор_Отзыва=Ваше_имя,Текст_Отзыва=Ваш_отзыв,
+                            Время_Записи_Отзыва=vremja_dizain,Секунды_Записи_Отзыва=otnetka_vremeni)
+        session=session_factory()
+        session.add(Otzyv_eksmpr)
+        await session.commit()
+        await session.close()
+        return components.Page(components=[components.FireEvent(event=GoToEvent(url="/gamajun/success"))])
+    except:
+        return components.Page(components=[components.FireEvent(event=GoToEvent(url="/gamajun/500fail"))])
+@gamajun.get("/api/success", response_model=FastUI, response_model_exclude_none=True)
+async def Success():
+    return components.Page(components=[components.Heading(text="Спасибо за отзыв", level=1),
+    components.Link(components=[components.Text(text="НА ГЛАВНУЮ СТРАНИЦУ")],on_click=GoToEvent(url="/gamajun/root")),],)
+@gamajun.get("/api/500fail", response_model=FastUI, response_model_exclude_none=True)
+async def Server_Erorr():
+    return components.Page(components=[components.Heading(text="Status 500: internal error", level=1),
+    components.Link(components=[components.Text(text="НА ГЛАВНУЮ СТРАНИЦУ")],on_click=GoToEvent(url="/gamajun/root")),],)
+@gamajun.get("/api/403fail", response_model=FastUI, response_model_exclude_none=True)
+async def Fordidden_Fail():
+    return components.Page(components=[components.Heading(text="Status 403: forbidden", level=1),
+    components.Link(components=[components.Text(text="НА ГЛАВНУЮ СТРАНИЦУ")],on_click=GoToEvent(url="/gamajun/root")),],)
+@gamajun.get("/api/426fail", response_model=FastUI, response_model_exclude_none=True)
+async def Unsproccessable_Fail():
+    return components.Page(components=[components.Heading(text="Status 426: unprocessable entity", level=1),
+    components.Link(components=[components.Text(text="НА ГЛАВНУЮ СТРАНИЦУ")],on_click=GoToEvent(url="/gamajun/root"))],)
+@gamajun.get("/api/otzyv", response_model=FastUI,response_model_exclude_none=True)
+async def create_otzyv():
+    return components.Page(components=
+                            [components.Heading(text="Здесь можно оставить отзыв о работе сайта",level=2),
+                             components.ModelForm(model=Otzyv,submit_url="/gamajun/api/otzyv_add"),])
+
 @gamajun.get("/api/root", response_model=FastUI, response_model_exclude_none=True)
 async def show_urok():
         return components.Div(components=
-                            [components.Heading(text="ЧТО НАДОБНО, МОЙ ГОСПОДИН ?", level=3),
-                            components.Image(src="static/charica.jpg", width=400, height=500),
-                            components.Link(components=[components.Text(text="УРОК О КОЛОРИТАХ ПЛАТКОВ")],on_click=GoToEvent(url="/gamajun/koloriti")),
-                            components.Link(components=[components.Text(text="УРОК О СИМВОЛИКЕ ОРНАМЕНТА")],on_click=GoToEvent(url="/gamajun/symboli"))],
+        [components.Heading(text="ЧТО НАДОБНО, МОЙ ГОСПОДИН ?", level=3),
+        components.Image(src="static/charica1.jpg", width=400, height=500),
+        components.Link(components=[components.Text(text="ПЛАТОЧНАЯ БАЗА ДАННЫХ")],on_click=GoToEvent(url="/gamajun/baza")),
+        components.Link(components=[components.Text(text="СВЕДЕНИЯ О ХУДОЖНИКАХ ПАВЛОВОПОСАДСКОЙ МАНУФАКТУРЫ")],on_click=GoToEvent(url="/gamajun/hudozhniki")),
+        components.Link(components=[components.Text(text="УРОК О КОЛОРИТАХ ПЛАТКОВ")],on_click=GoToEvent(url="/gamajun/koloriti")),
+        components.Link(components=[components.Text(text="УРОК О СИМВОЛИКЕ ОРНАМЕНТА")],on_click=GoToEvent(url="/gamajun/symboli")),
+        components.Link(components=[components.Text(text="ОСТАВИТЬ ОТЗЫВ О РАБОТЕ ПРИЛОЖЕНИЯ")],on_click=GoToEvent(url="/gamajun/otzyv"))],
                               class_name="d-flex flex-column align-items-center")
 class PlatochnaBaza(BaseModel):
     Название_Платка: str = Field(min_length=2, max_length=128)
     Фотография_1: str = Field(min_length=3, max_length=100)
 data_platoky=[PlatochnaBaza(Название_Платка="Вологда",
-                            Фотография_1="![platokvologda](static/vologda.jpg)"),
-            PlatochnaBaza(Название_Платка="Кармен-Сюита",
+Фотография_1="![platokvologda](static/vologda.jpg)"),
+PlatochnaBaza(Название_Платка="Кармен-Сюита",
                             Фотография_1="![platokkarmensuita](static/karmen-suita.jpg)"),
             PlatochnaBaza(Название_Платка="Золотые россыпи",
                         Фотография_1="![platokzolotyjerossypy](static/zolotyje-rossypy.jpg)"),
@@ -36,7 +97,121 @@ data_platoky=[PlatochnaBaza(Название_Платка="Вологда",
                             ),
             PlatochnaBaza(Название_Платка="Парадокс",
                             Фотография_1="![platokparadoks](static/paradoks.jpg)"
-                            )
+                            ),
+            PlatochnaBaza(Название_Платка="Вдохновение",
+                            Фотография_1="![platokvdohnovenijes](static/vdohnovenije.jpg)"
+                            ),
+PlatochnaBaza(Название_Платка="Дездемона",
+                            Фотография_1="![platokdezdemona](static/dezdemona.jpg)"
+                            ),
+PlatochnaBaza(Название_Платка="А мы из Павловского Посада",
+                            Фотография_1="![platokdezdemona](static/myizpavlovpos.jpg)"
+                            ),
+PlatochnaBaza(Название_Платка="Возьмёмся за руки, друзья",
+                            Фотография_1="![platokdezdemona](static/vozzarukdruz.jpg)"
+                            ),
+PlatochnaBaza(Название_Платка="Старый романс",
+                            Фотография_1="![platokdezdemona](static/staryromans.jpg)"
+                            ),
+PlatochnaBaza(Название_Платка="Повесть пламенных лет (1917-1967)",
+                            Фотография_1="![platokdezdemona](static/povestplamlet.jpg)"
+                            ),
+PlatochnaBaza(Название_Платка="Русская красавица",
+                            Фотография_1="![platokdezdemona](static/ruskrasavica.jpg)"
+                            ),
+PlatochnaBaza(Название_Платка="Павловские зори",
+                            Фотография_1="![platokpavlovzori](static/pavlovzori.jpg)"
+                            ),
+PlatochnaBaza(Название_Платка="Лет до ста расти нам без старости",
+                            Фотография_1="![platokpavlovzori](static/letdo100rasti.jpg)"
+                            ),
+PlatochnaBaza(Название_Платка="Коллаж/Вернисаж",
+                            Фотография_1="![platokpavlovzori](static/vernisaz.jpg)"
+                            ),
+PlatochnaBaza(Название_Платка="Алёнушка",
+                            Фотография_1="![platokpavlovzori](static/alenushka.jpg)"
+                            ),
+PlatochnaBaza(Название_Платка="Бал у Лариных",
+                            Фотография_1="![platokpavlovzori](static/ballarin.jpg)"
+                            ),
+PlatochnaBaza(Название_Платка="Ах, ты, душенька, красна девица",
+                            Фотография_1="![platokpavlovzori](static/ahtydushen.jpg)"
+                            ),
+PlatochnaBaza(Название_Платка="Приз",
+                            Фотография_1="![platokpavlovzori](static/priz.jpg)"
+                            ),
+PlatochnaBaza(Название_Платка="Зрелый возраст",
+                            Фотография_1="![platokpavlovzori](static/zrelvozr.jpg)"
+                            ),
+PlatochnaBaza(Название_Платка="Жемчужное ожерелье",
+                            Фотография_1="![platokpavlovzori](static/zemozher.jpg)"
+                            ),
+PlatochnaBaza(Название_Платка="Кармен",
+                            Фотография_1="![platokpavlovzori](static/karmen.jpg)"
+                            ),
+PlatochnaBaza(Название_Платка="Медальон",
+                            Фотография_1="![platokpavlovzori](static/medaljon.jpg)"
+                            ),
+PlatochnaBaza(Название_Платка="Северная Пальмира",
+                            Фотография_1="![platokpavlovzori](static/severpalm.jpg)"
+                            ),
+PlatochnaBaza(Название_Платка="Именины",
+                            Фотография_1="![platokpavlovzori](static/imeniny.jpg)"
+                            ),
+PlatochnaBaza(Название_Платка="Сиреневый туман",
+                            Фотография_1="![platokpavlovzori](static/sirenevtum.jpg)"
+                            ),
+PlatochnaBaza(Название_Платка="Оружейная палата",
+                            Фотография_1="![platokpavlovzori](static/oruzpalat.jpg)"
+                            ),
+PlatochnaBaza(Название_Платка="Ретро",
+                            Фотография_1="![platokpavlovzori](static/retro.jpg)"),
+PlatochnaBaza(Название_Платка="Цветущее поле",
+                            Фотография_1="![platokpavlovzori](static/cvetpole.jpg)"),
+PlatochnaBaza(Название_Платка="Красный",
+                            Фотография_1="![platokpavlovzori](static/krasny.jpg)"),
+PlatochnaBaza(Название_Платка="Раздумья",
+                            Фотография_1="![platokpavlovzori](static/razdumja.jpg)"),
+PlatochnaBaza(Название_Платка="Последний парад",
+                            Фотография_1="![platokpavlovzori](static/posledniparad.jpg)"),
+PlatochnaBaza(Название_Платка="Покой",
+                            Фотография_1="![platokpavlovzori](static/pokoi.jpg)"),
+PlatochnaBaza(Название_Платка="Подмосковная краса",
+                            Фотография_1="![platokpavlovzori](static/podmoskvkrasa.jpg)"),
+PlatochnaBaza(Название_Платка="Сударушка",
+                            Фотография_1="![platokpavlovzori](static/sudarushka.jpg)"),
+PlatochnaBaza(Название_Платка="Царская невеста",
+                            Фотография_1="![platokpavlovzori](static/carskajanevesta.jpg)"),
+PlatochnaBaza(Название_Платка="Златые горы",
+                            Фотография_1="![platokpavlovzori](static/zlatygory.jpg)"),
+PlatochnaBaza(Название_Платка="Красное кружево",
+                            Фотография_1="![platokpavlovzori](static/krasnojekruzevo.jpg)"),
+PlatochnaBaza(Название_Платка="Малахит",
+                            Фотография_1="![platokpavlovzori](static/malahit.jpg)"),
+PlatochnaBaza(Название_Платка="Фаберже",
+                            Фотография_1="![platokpavlovzori](static/faberze.jpg)"),
+PlatochnaBaza(Название_Платка="Василиса Прекрасная",
+                            Фотография_1="![platokpavlovzori](static/vasilisaprekr.jpg)"),
+PlatochnaBaza(Название_Платка="Каменный цветок",
+                            Фотография_1="![platokpavlovzori](static/kamenycvet.jpg)"),
+PlatochnaBaza(Название_Платка="Ковёр-самолёт",
+                            Фотография_1="![platokpavlovzori](static/kaversamol.jpg)"),
+PlatochnaBaza(Название_Платка="Кащеево царство",
+                            Фотография_1="![platokpavlovzori](static/kashevocarstv.jpg)"),
+PlatochnaBaza(Название_Платка="Снегурочка",
+                            Фотография_1="![platokpavlovzori](static/snegurochka.jpg)"),
+PlatochnaBaza(Название_Платка="Финист - ясный сокол",
+                            Фотография_1="![platokpavlovzori](static/finist.jpg)"),
+PlatochnaBaza(Название_Платка="Фольклор",
+                            Фотография_1="![platokpavlovzori](static/folklor.jpg)"),
+PlatochnaBaza(Название_Платка="Кадриль",
+                            Фотография_1="![platokpavlovzori](static/kadril.jpg)"),
+PlatochnaBaza(Название_Платка="Золотой улей",
+                            Фотография_1="![platokpavlovzori](static/zolotoyuley.jpg)"),
+PlatochnaBaza(Название_Платка="Емеля",
+                            Фотография_1="![platokpavlovzori](static/emelja.jpg)"),
+PlatochnaBaza(Название_Платка="Царевна-лягушка",
+                            Фотография_1="![platokpavlovzori](static/carevnaljagush.jpg)"),
               ]
 @gamajun.get("/api/baza",response_model=FastUI,response_model_exclude_none=True)
 async def otris_kolority():

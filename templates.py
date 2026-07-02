@@ -672,7 +672,7 @@ uzor_hudozhnika26=""" 000 """
 #старая система
 #hudozhik_0=["Надежда","Слащева","Отсутствует","25.05.1936","74","17.04.2011","15","Отсутствует","Отсутствует","Отсутствует"]
 #сборка свойств художника в сущность художника
-hudozhnik_0=["Надежда","Слащева","05-25-1936","04-17-2011",foto_hudozhnika_vnutr00,foto_hudozhnika_vnutr01,ssylka_forum_0,uzor_hudozhnika0,0,"Надежды Слащевой"]
+hudozhnik_0=["Надежда","Слащева","25-05-1936","04-17-2011",foto_hudozhnika_vnutr00,foto_hudozhnika_vnutr01,ssylka_forum_0,uzor_hudozhnika0,0,"Надежды Слащевой"]
 hudozhnik_1=["Галина","Сотскова","05-18-1949","Отсутствует",foto_hudozhnika_vnutr10,foto_hudozhnika_vnutr11,ssylka_forum_1,uzor_hudozhnika1,1,"Галины Сотсковой"]
 hudozhnik_2=["Степан","Постигов","Отсутствует","Отсутствует",foto_hudozhnika_vnutr20,foto_hudozhnika_vnutr21,ssylka_forum_2,uzor_hudozhnika2,2,"Степана Постигова"]
 hudozhnik_3=["Валентина","Созинова","04-21-xxxx","Отсутствует",foto_hudozhnika_vnutr30,foto_hudozhnika_vnutr31,ssylka_forum_3,uzor_hudozhnika3,3,"Валентины Созиновой"]
@@ -682,7 +682,7 @@ hudozhnik_6=["Надежда","Красноносова\n\n(Кудренко)","
 hudozhnik_7=["Евгения","Муравьёва","Отсутствует","Отсутствует",foto_hudozhnika_vnutr70,foto_hudozhnika_vnutr71,ssylka_forum_7,uzor_hudozhnika7,7, "Евгении Муравьёвой"]
 hudozhnik_8=["Инна","Макаганчук","07-11-1989","Отсутствует",foto_hudozhnika_vnutr80,foto_hudozhnika_vnutr81,ssylka_forum_8,uzor_hudozhnika8,8,"Инны Макаганчук"]
 hudozhnik_9=["Елена","Сафонова","Отсутствует","Отсутствует",foto_hudozhnika_vnutr90,foto_hudozhnika_vnutr91,ssylka_forum_9,uzor_hudozhnika9,9,"Елены Сафоновой"]
-hudozhnik_10=["Дмитрий","Рогатов","01-24-1956","Отсутствует",foto_hudozhnika_vnutr100,foto_hudozhnika_vnutr101,ssylka_forum_10,uzor_hudozhnika10,10,"Дмитрия Рогатова"]
+hudozhnik_10=["Дмитрий","Рогатов","24-01-1956","Отсутствует",foto_hudozhnika_vnutr100,foto_hudozhnika_vnutr101,ssylka_forum_10,uzor_hudozhnika10,10,"Дмитрия Рогатова"]
 hudozhnik_11=["Татьяна","Шолохова","02-11-1967","Отсутствует",foto_hudozhnika_vnutr110,foto_hudozhnika_vnutr111,ssylka_forum_11,uzor_hudozhnika11,11,"Татьяны Шолоховой"]
 hudozhnik_12=["Злата", "Ольшевская","10-20-1920","05-25-2011",foto_hudozhnika_vnutr120,foto_hudozhnika_vnutr121,ssylka_forum_12,uzor_hudozhnika12,12,"Златы Ольшевской"]
 hudozhnik_13=["Сергей","Кутузов","07-10-1993","Отсутствует",foto_hudozhnika_vnutr130,foto_hudozhnika_vnutr131,ssylka_forum_13,uzor_hudozhnika13,13,"Сергея Кутузова"]
@@ -697,7 +697,7 @@ hudozhnik_21=["Виктор","Зубрицкий","24-09-1946","08-07-2023",foto
 hudozhnik_22=["Екатерина","Регунова","19-05-1926","11-06-2009",foto_hudozhnika_vnutr220,foto_hudozhnika_vnutr221,ssylka_forum_22,uzor_hudozhnika22,22,"Екатерины Регуновой"]
 hudozhnik_23=["Елена","Литвинова","18-07-1969","Отсутствует",foto_hudozhnika_vnutr230,foto_hudozhnika_vnutr231,ssylka_forum_23,uzor_hudozhnika23,23,"Елены Литвиновой"]
 hudozhnik_24=["Наталья","Белокур","13-06-1969","Отсутствует",foto_hudozhnika_vnutr240,foto_hudozhnika_vnutr241,ssylka_forum_24,uzor_hudozhnika24,24,"Натальи Белокур"]
-hudozhnik_25=["Клара","Зиновьева","24-06-1928","xx-03-2010",foto_hudozhnika_vnutr250,foto_hudozhnika_vnutr251,ssylka_forum_25,uzor_hudozhnika25,25,"Клары Зиновьевой"]
+hudozhnik_25=["Клара","Зиновьева","25-09-1936","03-09-2010",foto_hudozhnika_vnutr250,foto_hudozhnika_vnutr251,ssylka_forum_25,uzor_hudozhnika25,25,"Клары Зиновьевой"]
 hudozhnik_26=["Семён","Рыжов","16-04-1916","27-06-1994",foto_hudozhnika_vnutr260,foto_hudozhnika_vnutr261,ssylka_forum_26,uzor_hudozhnika26,26,"Семёна Рыжова"]
 #сборка сущностей художников в список
 Hudozhniky=[hudozhnik_0,hudozhnik_1,hudozhnik_2,hudozhnik_3,hudozhnik_4,hudozhnik_5,hudozhnik_6,hudozhnik_7,hudozhnik_8,

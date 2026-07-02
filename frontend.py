@@ -70,7 +70,7 @@ async def create_otzyv():
 async def show_urok():
         return components.Div(components=
         [components.Heading(text="ЧТО НАДОБНО, МОЙ ГОСПОДИН ?", level=3),
-        components.Image(src="static/charica1.jpg", width=400, height=500),
+        components.Image(src="static/charica1.jpg", width=510, height=780),
         components.Link(components=[components.Text(text="ПЛАТОЧНАЯ БАЗА ДАННЫХ")],on_click=GoToEvent(url="/gamajun/baza")),
         components.Link(components=[components.Text(text="СВЕДЕНИЯ О ХУДОЖНИКАХ ПАВЛОВОПОСАДСКОЙ МАНУФАКТУРЫ")],on_click=GoToEvent(url="/gamajun/hudozhniki")),
         components.Link(components=[components.Text(text="УРОК О КОЛОРИТАХ ПЛАТКОВ")],on_click=GoToEvent(url="/gamajun/koloriti")),

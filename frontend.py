@@ -583,14 +583,14 @@ async def otris_hudozhnik():
                             components.Table(data=data_hudozhniki, columns=[
                                 DisplayLookup(field="Имя", title="Имя",mode=DisplayMode.markdown),
                                 DisplayLookup(field="Фамилия", title="Фамилия",mode=DisplayMode.markdown),
-                                DisplayLookup(field="Дата_Рождения", title="Дата_Рождения"),
-                                DisplayLookup(field="Возраст_Лет", title="Возраст_Лет"),
-                                DisplayLookup(field="Дата_Памяти", title="Дата_Памяти"),
-                                DisplayLookup(field="Годовщина_Лет",title="Годовщина_Лет"),
-                                DisplayLookup(field="Известные_Узоры", title="Известные_Узоры",mode=DisplayMode.markdown),
-                                DisplayLookup(field="Обсуждение_Творчества", title="Обсуждение_Творчества",mode=DisplayMode.markdown),
-                                DisplayLookup(field="Фотография_1", title="Фотография_1",mode=DisplayMode.markdown),
-                                DisplayLookup(field="Фотография_2", title="Фотография_2",mode=DisplayMode.markdown),
+                                DisplayLookup(field="Дата_Рождения", title="Дата Рождения"),
+                                DisplayLookup(field="Возраст_Лет", title="Возраст"),
+                                DisplayLookup(field="Дата_Памяти", title="Дата Памяти"),
+                                DisplayLookup(field="Годовщина_Лет",title="Годовщина "),
+                                DisplayLookup(field="Известные_Узоры", title="Известные узоры",mode=DisplayMode.markdown),
+                                DisplayLookup(field="Обсуждение_Творчества", title="Обсуждение творчества",mode=DisplayMode.markdown),
+                                DisplayLookup(field="Фотография_1", title="Фотография 1",mode=DisplayMode.markdown),
+                                DisplayLookup(field="Фотография_2", title="Фотография 2",mode=DisplayMode.markdown),
                                 ],), ],)
 @gamajun.get("/api/hudozhniky",response_model=FastUI,response_model_exclude_none=True)
 async def otris_hudozhnik():

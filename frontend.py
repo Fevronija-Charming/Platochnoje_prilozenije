@@ -438,6 +438,7 @@ for personal_uzory in Uzory:
     data_uzory = []
     predstav_uzora=[]
     split_uzory = personal_uzory.split(",")
+    split_uzory[-1]="----"
     zapolnenije = "----"
     if len(split_uzory) % 4 == 3:
         split_uzory.append(zapolnenije)

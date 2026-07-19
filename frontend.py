@@ -77,27 +77,24 @@ async def show_urok():
         components.Link(components=[components.Text(text="УРОК О СИМВОЛИКЕ ОРНАМЕНТА")],on_click=GoToEvent(url="/gamajun/symboli")),
         components.Link(components=[components.Text(text="ОСТАВИТЬ ОТЗЫВ О РАБОТЕ ПРИЛОЖЕНИЯ")],on_click=GoToEvent(url="/gamajun/otzyv"))],
                               class_name="d-flex flex-column align-items-center")
+#platoky Zlata Olshevskaja forma 3
 class PlatochnaBaza(BaseModel):
     Название_Платка: str = Field(min_length=2, max_length=128)
     Фотография_1: str = Field(min_length=3, max_length=100)
 data_platoky=[PlatochnaBaza(Название_Платка="Вологда",
 Фотография_1="![platokvologda](static/vologda.jpg)"),
 PlatochnaBaza(Название_Платка="Кармен-Сюита",
-                            Фотография_1="![platokkarmensuita](static/karmen-suita.jpg)"),
-            PlatochnaBaza(Название_Платка="Золотые россыпи",
-                        Фотография_1="![platokzolotyjerossypy](static/zolotyje-rossypy.jpg)"),
-            PlatochnaBaza(Название_Платка="Бесприданница",
-                            Фотография_1="![platokbezpridannica](static/bezpridannica.jpg)"
-                            ),
-            PlatochnaBaza(Название_Платка="Мурсия",
-                            Фотография_1="![platokmursia](static/mursia.jpg)"
-                            ),
-            PlatochnaBaza(Название_Платка="Аленький Цветочек",
-                            Фотография_1="![platokalenki-cvetochek](static/alenki-cvetochek.jpg)"
-                            ),
-            PlatochnaBaza(Название_Платка="Парадокс",
-                            Фотография_1="![platokparadoks](static/paradoks.jpg)"
-                            ),
+Фотография_1="![platokkarmensuita](static/karmen-suita.jpg)"),
+PlatochnaBaza(Название_Платка="Золотые россыпи",
+Фотография_1="![platokzolotyjerossypy](static/zolotyje-rossypy.jpg)"),
+PlatochnaBaza(Название_Платка="Бесприданница",
+Фотография_1="![platokbezpridannica](static/bezpridannica.jpg)"),
+PlatochnaBaza(Название_Платка="Мурсия",
+Фотография_1="![platokmursia](static/mursia.jpg)"),
+PlatochnaBaza(Название_Платка="Аленький Цветочек",
+Фотография_1="![platokalenki-cvetochek](static/alenki-cvetochek.jpg)"),
+PlatochnaBaza(Название_Платка="Парадокс",
+Фотография_1="![platokparadoks](static/paradoks.jpg)"),
             PlatochnaBaza(Название_Платка="Вдохновение",
                             Фотография_1="![platokvdohnovenijes](static/vdohnovenije.jpg)"
                             ),
@@ -175,44 +172,43 @@ PlatochnaBaza(Название_Платка="Раздумья",
 PlatochnaBaza(Название_Платка="Последний парад",
                             Фотография_1="![platokpavlovzori](static/posledniparad.jpg)"),
 PlatochnaBaza(Название_Платка="Покой",
-                            Фотография_1="![platokpavlovzori](static/pokoi.jpg)"),
+Фотография_1="![platokpavlovzori](static/pokoi.jpg)"),
 PlatochnaBaza(Название_Платка="Подмосковная краса",
-                            Фотография_1="![platokpavlovzori](static/podmoskvkrasa.jpg)"),
+Фотография_1="![platokpavlovzori](static/podmoskvkrasa.jpg)"),
 PlatochnaBaza(Название_Платка="Сударушка",
-                            Фотография_1="![platokpavlovzori](static/sudarushka.jpg)"),
+Фотография_1="![platokpavlovzori](static/sudarushka.jpg)"),
 PlatochnaBaza(Название_Платка="Царская невеста",
-                            Фотография_1="![platokpavlovzori](static/carskajanevesta.jpg)"),
+Фотография_1="![platokpavlovzori](static/carskajanevesta.jpg)"),
 PlatochnaBaza(Название_Платка="Златые горы",
-                            Фотография_1="![platokpavlovzori](static/zlatygory.jpg)"),
+Фотография_1="![platokpavlovzori](static/zlatygory.jpg)"),
 PlatochnaBaza(Название_Платка="Красное кружево",
-                            Фотография_1="![platokpavlovzori](static/krasnojekruzevo.jpg)"),
+Фотография_1="![platokpavlovzori](static/krasnojekruzevo.jpg)"),
 PlatochnaBaza(Название_Платка="Малахит",
-                            Фотография_1="![platokpavlovzori](static/malahit.jpg)"),
+Фотография_1="![platokpavlovzori](static/malahit.jpg)"),
 PlatochnaBaza(Название_Платка="Фаберже",
-                            Фотография_1="![platokpavlovzori](static/faberze.jpg)"),
+Фотография_1="![platokpavlovzori](static/faberze.jpg)"),
 PlatochnaBaza(Название_Платка="Василиса Прекрасная",
-                            Фотография_1="![platokpavlovzori](static/vasilisaprekr.jpg)"),
+Фотография_1="![platokpavlovzori](static/vasilisaprekr.jpg)"),
 PlatochnaBaza(Название_Платка="Каменный цветок",
-                            Фотография_1="![platokpavlovzori](static/kamenycvet.jpg)"),
+Фотография_1="![platokpavlovzori](static/kamenycvet.jpg)"),
 PlatochnaBaza(Название_Платка="Ковёр-самолёт",
-                            Фотография_1="![platokpavlovzori](static/kaversamol.jpg)"),
+Фотография_1="![platokpavlovzori](static/kaversamol.jpg)"),
 PlatochnaBaza(Название_Платка="Кащеево царство",
-                            Фотография_1="![platokpavlovzori](static/kashevocarstv.jpg)"),
+Фотография_1="![platokpavlovzori](static/kashevocarstv.jpg)"),
 PlatochnaBaza(Название_Платка="Снегурочка",
-                            Фотография_1="![platokpavlovzori](static/snegurochka.jpg)"),
+Фотография_1="![platokpavlovzori](static/snegurochka.jpg)"),
 PlatochnaBaza(Название_Платка="Финист - ясный сокол",
-                            Фотография_1="![platokpavlovzori](static/finist.jpg)"),
+Фотография_1="![platokpavlovzori](static/finist.jpg)"),
 PlatochnaBaza(Название_Платка="Фольклор",
-                            Фотография_1="![platokpavlovzori](static/folklor.jpg)"),
+Фотография_1="![platokpavlovzori](static/folklor.jpg)"),
 PlatochnaBaza(Название_Платка="Кадриль",
-                            Фотография_1="![platokpavlovzori](static/kadril.jpg)"),
+Фотография_1="![platokpavlovzori](static/kadril.jpg)"),
 PlatochnaBaza(Название_Платка="Золотой улей",
-                            Фотография_1="![platokpavlovzori](static/zolotoyuley.jpg)"),
+Фотография_1="![platokpavlovzori](static/zolotoyuley.jpg)"),
 PlatochnaBaza(Название_Платка="Емеля",
-                            Фотография_1="![platokpavlovzori](static/emelja.jpg)"),
+Фотография_1="![platokpavlovzori](static/emelja.jpg)"),
 PlatochnaBaza(Название_Платка="Царевна-лягушка",
-                            Фотография_1="![platokpavlovzori](static/carevnaljagush.jpg)"),
-              ]
+Фотография_1="![platokpavlovzori](static/carevnaljagush.jpg)"),]
 @gamajun.get("/api/baza",response_model=FastUI,response_model_exclude_none=True)
 async def otris_kolority():
     return components.Page(components=
@@ -427,7 +423,7 @@ for hudozhnik in Hudozhniky:
     data_hudozhniky.append(predstav_hudozhnika)
 #фабрика представлений узоров платков
 grupi_uzory=[]
-for i in range(22):
+for i in range(13):
     data_uzory = []
     zapolnenije = "----"
     predstav_uzora = Uzory_Kisti_Hudozhnika(

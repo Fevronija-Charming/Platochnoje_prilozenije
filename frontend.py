@@ -260,6 +260,18 @@ PlatochnaBaza(Название_Платка="Времена года - весн�
 PlatochnaBaza(Название_Платка="Времена года - лето - оригинал 1980",Фотография_1="![platokpavlovzori](static/vrgdleto1980.jpg)"),
 PlatochnaBaza(Название_Платка="Времена года - осень - оригинал 1980",Фотография_1="![platokpavlovzori](static/vrgdosen1980.jpg)"),
 PlatochnaBaza(Название_Платка="Времена года - зима - оригинал 1980",Фотография_1="![platokpavlovzori](static/vrgdzima1980.jpg)"),
+PlatochnaBaza(Название_Платка="Времена года - весна - выпуск 2021 - вариант - 1",Фотография_1="![platokpavlovzori](static/vrgdvesna22-1.jpg)"),
+PlatochnaBaza(Название_Платка="Времена года - весна - выпуск 2021 - вариант - 2",Фотография_1="![platokpavlovzori](static/vrgdvesna22-2.jpg)"),
+PlatochnaBaza(Название_Платка="Времена года - весна - выпуск 2021 - вариант - 3",Фотография_1="![platokpavlovzori](static/vrgdvesna22-3.jpg)"),
+PlatochnaBaza(Название_Платка="Времена года - лето - выпуск 2021 - вариант - 1",Фотография_1="![platokpavlovzori](static/vrgdleto22-11.jpg)"),
+PlatochnaBaza(Название_Платка="Времена года - лето - выпуск 2021 - вариант - 2",Фотография_1="![platokpavlovzori](static/vrgdleto22-22.jpg)"),
+PlatochnaBaza(Название_Платка="Времена года - лето - выпуск 2021 - вариант - 3",Фотография_1="![platokpavlovzori](static/vrgdleto22-33.jpg)"),
+PlatochnaBaza(Название_Платка="Времена года - осень - выпуск 2021 - вариант - 1",Фотография_1="![platokpavlovzori](static/vrgdosen22-1.jpg)"),
+PlatochnaBaza(Название_Платка="Времена года - осень - выпуск 2021 - вариант - 2",Фотография_1="![platokpavlovzori](static/vrgdosen22-2.jpg)"),
+PlatochnaBaza(Название_Платка="Времена года - осень - выпуск 2021 - вариант - 3",Фотография_1="![platokpavlovzori](static/vrgdosen22-3.jpg)"),
+PlatochnaBaza(Название_Платка="Времена года - зима - выпуск 2021 - вариант - 1",Фотография_1="![platokpavlovzori](static/vrgdzima22-1.jpg)"),
+PlatochnaBaza(Название_Платка="Времена года - зима - выпуск 2021 - вариант - 2",Фотография_1="![platokpavlovzori](static/vrgdzima22-2.jpg)"),
+PlatochnaBaza(Название_Платка="Времена года - зима - выпуск 2021 - вариант - 3",Фотография_1="![platokpavlovzori](static/vrgdzima22-3.jpg)"),
 PlatochnaBaza(Название_Платка="Петрушка",Фотография_1="![platokpavlovzori](static/petruska.jpg)"),
 ]
 @gamajun.get("/api/baza",response_model=FastUI,response_model_exclude_none=True)

@@ -273,6 +273,22 @@ PlatochnaBaza(Название_Платка="Времена года - зима 
 PlatochnaBaza(Название_Платка="Времена года - зима - выпуск 2021 - вариант - 2",Фотография_1="![platokpavlovzori](static/vrgdzima22-2.jpg)"),
 PlatochnaBaza(Название_Платка="Времена года - зима - выпуск 2021 - вариант - 3",Фотография_1="![platokpavlovzori](static/vrgdzima22-3.jpg)"),
 PlatochnaBaza(Название_Платка="Петрушка",Фотография_1="![platokpavlovzori](static/petruska.jpg)"),
+PlatochnaBaza(Название_Платка="Времена года - весна - выпуск 1990",Фотография_1="![platokpavlovzori](static/vrgdvesNa1990.jpg)"),
+PlatochnaBaza(Название_Платка="Времена года - лето - выпуск 1990",Фотография_1="![platokpavlovzori](static/vrgdleto1990.jpg)"),
+PlatochnaBaza(Название_Платка="Времена года - осень - выпуск 1990 - вариант 1",Фотография_1="![platokpavlovzori](static/vrgdosen1990-1.jpg)"),
+PlatochnaBaza(Название_Платка="Времена года - осень - выпуск 1990 - вариант 2",Фотография_1="![platokpavlovzori](static/vrgdosen1990-2.JPG)"),
+PlatochnaBaza(Название_Платка="Времена года - зима - выпуск 1990 - вариант 1",Фотография_1="![platokpavlovzori](static/vrgdzima1990-1.jpg)"),
+PlatochnaBaza(Название_Платка="Времена года - зима - выпуск 1990 - вариант 2",Фотография_1="![platokpavlovzori](static/vrgdzima1990-2.JPG)"),
+PlatochnaBaza(Название_Платка="Времена года - доп. выпуск 1990 - вариант 1",Фотография_1="![platokpavlovzori](static/vrgd1990dop-1.JPG)"),
+PlatochnaBaza(Название_Платка="Времена года - доп. выпуск 1990 - вариант 2",Фотография_1="![platokpavlovzori](static/vrgd1990dop-2.jpg)"),
+PlatochnaBaza(Название_Платка="Времена года - доп. выпуск 1990 - вариант 3",Фотография_1="![platokpavlovzori](static/vrgd1990dop-3.jpg)"),
+PlatochnaBaza(Название_Платка="Времена года - доп. выпуск 1990 - вариант 4",Фотография_1="![platokpavlovzori](static/vrgd1990dop-4.jpg)"),
+PlatochnaBaza(Название_Платка="Времена года - доп. выпуск 1990 - вариант 5",Фотография_1="![platokpavlovzori](static/vrgd1990dop-5.JPG)"),
+PlatochnaBaza(Название_Платка="Времена года - доп. выпуск 1990 - вариант 6",Фотография_1="![platokpavlovzori](static/vrgd1990dop-6.JPG)"),
+PlatochnaBaza(Название_Платка="Времена года - доп. выпуск 1990 - вариант 7",Фотография_1="![platokpavlovzori](static/vrgd1990dop-7.jpg)"),
+PlatochnaBaza(Название_Платка="Покрывало № 7",Фотография_1="![platokpavlovzori](static/pokryvalo7.jpg)"),
+PlatochnaBaza(Название_Платка="Времена года - выпуск 1983",Фотография_1="![platokpavlovzori](static/vrgd1983.jpg)"),
+PlatochnaBaza(Название_Платка="Времена года - выпуск 1980",Фотография_1="![platokpavlovzori](static/vrgd1980.jpg)"),
 ]
 @gamajun.get("/api/baza",response_model=FastUI,response_model_exclude_none=True)
 async def otris_kolority():

@@ -3,6 +3,7 @@ from datetime import datetime
 import time
 from fastapi import FastAPI, HTTPException
 from fastapi import Form
+from fastapi import BackgroundTasks
 from fastui.components import FireEvent
 from fastui.forms import Textarea
 from pydantic import BaseModel,Field
@@ -16,8 +17,53 @@ gamajun.mount("/static",StaticFiles(directory="static"))
 #Форма обратной связи
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine, async_sessionmaker
 import os
+from faststream.rabbit import RabbitBroker
+broker=RabbitBroker(url=os.getenv("CLOUDAMQP_URL"))
 engine = create_async_engine(os.getenv("DBURL"),echo=True,max_overflow=5,pool_size=5)
 session_factory = async_sessionmaker(bind=engine,class_=AsyncSession,expire_on_commit=False,autoflush=True)
+from prilozhenije import Platoky
+@gamajun.post("/api/add",response_model=FastUI,response_model_exclude_none=True)
+async def insert_DB_platok_s_GrIntr(background_task: BackgroundTasks,id: int = Form(),Название_Платка: str = Form(),
+    Автор_Платка: str = Form(),Колорит_1: str = Form(), Колорит_2: str = Form(), Колорит_3: str= Form(),
+    Колорит_4: str=Form(),Колорит_5: str=Form(),Узор_Темени: str=Form(),Узор_Сердцевины: str=Form(),
+    Узор_Сторон: str=Form(),Узор_Углов:str=Form(),Узор_Края:str=Form(),Цветы_Орнамент:str=Form(),
+    Изображённый_Цветок_1:str=Form(),Изображённый_Цветок_2:str=Form(),Изображённый_Цветок_3: str=Form(),
+    Изображённый_Цветок_4: str=Form(),Изображённый_Цветок_5: str=Form(), Размер_Платка: str=Form(),
+    Материал_Платка:str=Form(),Материал_Бахромы:str=Form()):
+    platok_predstav = [str(id),Название_Платка,Автор_Платка,Колорит_1,Колорит_2, Колорит_3,Колорит_4,Колорит_5,Узор_Темени,
+    Узор_Сердцевины,Узор_Сторон,Узор_Углов,Узор_Края, Цветы_Орнамент,Изображённый_Цветок_1,Изображённый_Цветок_2,
+    Изображённый_Цветок_3, Изображённый_Цветок_4,Изображённый_Цветок_5,Размер_Платка,Материал_Платка,Материал_Бахромы]
+    platok_label = ["id: ", "Название платка: ", "Автор платка: ", "Вариант окраски 1: ",
+    "Вариант окраски 2: ", "Вариант окраски 3 ", "Вариант окраски 4: ", "Вариант окраски 5: ","Узор темени: ",
+    "Узор сердцевины: ", "Узор сторон: ", "Узор углов: ", "Узор края: ","Соотношение цветов и узора: ",
+    "Нарисованный цветок 1: ", "Нарисованный цветок 2: ","Нарисованный цветок 3: ", "Нарисованный цветок 4: ",
+    "Нарисованный цветок 5: ","Размер платка: ", "Материал платка: ", "Материал бахромы: "]
+    soobshenije = ""
+    for i in range(len(platok_predstav)):
+        soobshenije = soobshenije + platok_label[i] + " -> " + platok_predstav[i] + "; "
+    #вывод тяжёлой задачи в фон
+    #background_task.add_task(vstavka_platka,soobshenije,platok_predstav)
+    try:
+        session = session_factory()
+        platoch_eksemp = Platoky(id=id,Название=Название_Платка,Автор=Автор_Платка, Колорит_1=Колорит_1,
+        Колорит_2=Колорит_2, Колорит_3=Колорит_3,Колорит_4=Колорит_4, Колорит_5=Колорит_5,Узор_темени=Узор_Темени,
+        Узор_сердцевины=Узор_Сердцевины,Узор_сторон=Узор_Сторон, Узор_углов=Узор_Углов,Узор_края=Узор_Края,
+        Цветы_Орнамент=Цветы_Орнамент,Изображенный_Цветок_1=Изображённый_Цветок_1,
+        Изображенный_Цветок_2=Изображённый_Цветок_2,Изображенный_Цветок_3=Изображённый_Цветок_3,
+        Изображенный_Цветок_4=Изображённый_Цветок_4,Изображенный_Цветок_5=Изображённый_Цветок_5,
+        Размер_Платка=Размер_Платка, Материал_Платка=Материал_Платка,
+        Материал_Бахромы=Материал_Бахромы)
+        session.add(platoch_eksemp)
+        await session.commit()
+        await session.close()
+        try:
+            async with broker:
+                await broker.publish(message=f"{soobshenije}", queue="PLATOKY")
+                return components.FireEvent(event=GoToEvent(url="https://feodosija-eb292e00e9e1.herokuapp.com/zdarova.php"))
+        except:
+            raise HTTPException(status_code=500, detail="Проблема с брокером")
+    except:
+        raise HTTPException(status_code=500, detail="Проблема с БД при вставке данных")
 class Otzyv(BaseModel):
     Ваше_имя: str =Field()
     Ваш_отзыв: str =Textarea(rows=5)

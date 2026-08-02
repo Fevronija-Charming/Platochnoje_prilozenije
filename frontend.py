@@ -4,6 +4,7 @@ import time
 from fastapi import FastAPI, HTTPException
 from fastapi import Form
 from fastapi import BackgroundTasks
+from fastapi.responses import RedirectResponse
 from fastui.components import FireEvent
 from fastui.forms import Textarea
 from pydantic import BaseModel,Field
@@ -59,7 +60,8 @@ async def insert_DB_platok_s_GrIntr(background_task: BackgroundTasks,id: int = F
         try:
             async with broker:
                 await broker.publish(message=f"{soobshenije}", queue="PLATOKY")
-                return components.FireEvent(event=GoToEvent(url="https://feodosija-eb292e00e9e1.herokuapp.com/zdarova.php"))
+                return RedirectResponse(url="https://feodosija-eb292e00e9e1.herokuapp.com/zdarova.php", status_code=301)
+                #return components.FireEvent(event=GoToEvent(url="https://feodosija-eb292e00e9e1.herokuapp.com/zdarova.php"))
         except:
             raise HTTPException(status_code=500, detail="Проблема с брокером")
     except:

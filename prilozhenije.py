@@ -16,7 +16,7 @@ load_dotenv(find_dotenv())
 from faststream.rabbit.fastapi import RabbitBroker, RabbitRouter
 router=RabbitRouter(url=os.getenv("CLOUDAMQP_URL"))
 app = FastAPI()
-from frontend import gamajun
+gamajun = FastAPI()
 app.mount("/gamajun",gamajun)
 #работа с базой данных
 from sqlalchemy import  DateTime, String, Float, Column, Integer, func,Text, BIGINT

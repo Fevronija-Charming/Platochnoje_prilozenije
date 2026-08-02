@@ -7,12 +7,12 @@ from fastapi import BackgroundTasks
 from fastui.components import FireEvent
 from fastui.forms import Textarea
 from pydantic import BaseModel,Field
-gamajun=FastAPI()
 from fastapi.responses import HTMLResponse
 from fastui import FastUI, AnyComponent, prebuilt_html, components as components
 from fastui.components.display import DisplayMode,DisplayLookup
 from fastui.events import GoToEvent, BackEvent, PageEvent
 from fastapi.staticfiles import StaticFiles
+from prilozhenije import gamajun
 gamajun.mount("/static",StaticFiles(directory="static"))
 #Форма обратной связи
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine, async_sessionmaker

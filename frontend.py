@@ -12,7 +12,7 @@ from fastui import FastUI, AnyComponent, prebuilt_html, components as components
 from fastui.components.display import DisplayMode,DisplayLookup
 from fastui.events import GoToEvent, BackEvent, PageEvent
 from fastapi.staticfiles import StaticFiles
-from prilozhenije import gamajun
+gamajun=FastAPI()
 gamajun.mount("/static",StaticFiles(directory="static"))
 #Форма обратной связи
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine, async_sessionmaker
@@ -21,7 +21,7 @@ from faststream.rabbit import RabbitBroker
 broker=RabbitBroker(url=os.getenv("CLOUDAMQP_URL"))
 engine = create_async_engine(os.getenv("DBURL"),echo=True,max_overflow=5,pool_size=5)
 session_factory = async_sessionmaker(bind=engine,class_=AsyncSession,expire_on_commit=False,autoflush=True)
-from prilozhenije import Platoky
+from datamodels import Platoky
 @gamajun.post("/api/add",response_model=FastUI,response_model_exclude_none=True)
 async def insert_DB_platok_s_GrIntr(background_task: BackgroundTasks,id: int = Form(),Название_Платка: str = Form(),
     Автор_Платка: str = Form(),Колорит_1: str = Form(), Колорит_2: str = Form(), Колорит_3: str= Form(),

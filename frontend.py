@@ -24,7 +24,7 @@ engine = create_async_engine(os.getenv("DBURL"),echo=True,max_overflow=5,pool_si
 session_factory = async_sessionmaker(bind=engine,class_=AsyncSession,expire_on_commit=False,autoflush=True)
 from datamodels import Platoky
 from fastapi import status, Response
-@gamajun.post("/api/add",response_model=FastUI,response_model_exclude_none=True)
+@gamajun.post("/api/add",response_model=FastUI,response_model_exclude_none=True,status_code=status.HTTP_201_CREATED)
 async def insert_DB_platok_s_GrIntr(response:Response,background_task: BackgroundTasks,id: int = Form(),Название_Платка: str = Form(),
     Автор_Платка: str = Form(),Колорит_1: str = Form(), Колорит_2: str = Form(), Колорит_3: str= Form(),
     Колорит_4: str=Form(),Колорит_5: str=Form(),Узор_Темени: str=Form(),Узор_Сердцевины: str=Form(),

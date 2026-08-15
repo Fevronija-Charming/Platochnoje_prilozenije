@@ -23,9 +23,9 @@ broker=RabbitBroker(url=os.getenv("CLOUDAMQP_URL"))
 engine = create_async_engine(os.getenv("DBURL"),echo=True,max_overflow=5,pool_size=5)
 session_factory = async_sessionmaker(bind=engine,class_=AsyncSession,expire_on_commit=False,autoflush=True)
 from datamodels import Platoky
-from fastapi import Response,status
+from fastapi import status
 @gamajun.post("/api/add",response_model=FastUI,response_model_exclude_none=True)
-async def insert_DB_platok_s_GrIntr(response:Response,background_task: BackgroundTasks,id: int = Form(),Название_Платка: str = Form(),
+async def insert_DB_platok_s_GrIntr(background_task: BackgroundTasks,id: int = Form(),Название_Платка: str = Form(),
     Автор_Платка: str = Form(),Колорит_1: str = Form(), Колорит_2: str = Form(), Колорит_3: str= Form(),
     Колорит_4: str=Form(),Колорит_5: str=Form(),Узор_Темени: str=Form(),Узор_Сердцевины: str=Form(),
     Узор_Сторон: str=Form(),Узор_Углов:str=Form(),Узор_Края:str=Form(),Цветы_Орнамент:str=Form(),
@@ -61,7 +61,8 @@ async def insert_DB_platok_s_GrIntr(response:Response,background_task: Backgroun
         try:
             async with broker:
                 await broker.publish(message=f"{soobshenije}", queue="PLATOKY")
-                response.status_code=status.HTTP_201_CREATED
+                raise HTTPException(status_code=status.HTTP_201_CREATED)
+                #response.status_code=status.HTTP_201_CREATED
                 #return RedirectResponse(url="https://feodosija-eb292e00e9e1.herokuapp.com/zdarova.php", status_code=301)
                 #return components.FireEvent(event=GoToEvent(url="https://feodosija-eb292e00e9e1.herokuapp.com/zdarova.php"))
         except:

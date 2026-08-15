@@ -63,8 +63,8 @@ async def insert_DB_platok_s_GrIntr(response:Response,background_task: Backgroun
                 await broker.publish(message=f"{soobshenije}", queue="PLATOKY")
             try:
                 response.status_code = status.HTTP_201_CREATED
-                return {"message":"OK"} #RedirectResponse(url="https://feodosija-eb292e00e9e1.herokuapp.com/create.php",
-                                                  #status_code=301)
+                return {"message":"OK"},RedirectResponse(url="https://feodosija-eb292e00e9e1.herokuapp.com/create.php",
+                                                  status_code=301)
                 # return components.FireEvent(event=GoToEvent(url="https://feodosija-eb292e00e9e1.herokuapp.com/zdarova.php"))
             except: HTTPException(status_code=500, detail="INTERNAL SERVER ERROR")
         except:

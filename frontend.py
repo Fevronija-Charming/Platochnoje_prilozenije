@@ -61,7 +61,7 @@ async def insert_DB_platok_s_GrIntr(response:Response,background_task: Backgroun
         try:
             async with broker:
                 await broker.publish(message=f"{soobshenije}", queue="PLATOKY")
-                return RedirectResponse(url="https://feodosija-eb292e00e9e1.herokuapp.com/zdarova/create.php", status_code=201)
+                return RedirectResponse(url="https://feodosija-eb292e00e9e1.herokuapp.com/zdarova/create.php", status_code=301)
                 #return components.FireEvent(event=GoToEvent(url="https://feodosija-eb292e00e9e1.herokuapp.com/zdarova.php"))
         except:
             raise HTTPException(status_code=500, detail="Проблема с брокером")

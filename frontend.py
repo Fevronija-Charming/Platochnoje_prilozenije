@@ -22,7 +22,7 @@ from faststream.rabbit import RabbitBroker
 broker=RabbitBroker(url=os.getenv("CLOUDAMQP_URL"))
 engine = create_async_engine(os.getenv("DBURL"),echo=True,max_overflow=5,pool_size=5)
 session_factory = async_sessionmaker(bind=engine,class_=AsyncSession,expire_on_commit=False,autoflush=True)
-from datamodels import Platoky
+from datamodels import Platoky,Platok_Schema
 from fastapi import status, Response
 @gamajun.post("/api/add",status_code=status.HTTP_201_CREATED)
 async def insert_DB_platok_s_GrIntr(response:Response,background_task: BackgroundTasks,id: int = Form(),Название_Платка: str = Form(),
@@ -121,7 +121,8 @@ async def create_otzyv():
 
 @gamajun.get("/api/root", response_model=FastUI, response_model_exclude_none=True)
 async def show_urok():
-        return components.Div(components=
+        return components.Div(class_name="d-flex flex-column align-items-center",
+                              components=
         [components.Heading(text="ЧТО НАДОБНО, МОЙ ГОСПОДИН ?", level=3),
         components.Image(src="static/charica1.jpg", width=340, height=520),
         components.Link(components=[components.Text(text="ПЛАТОЧНАЯ БАЗА ДАННЫХ")],on_click=GoToEvent(url="/gamajun/baza")),
@@ -129,11 +130,25 @@ async def show_urok():
         components.Link(components=[components.Text(text="УРОК О КОЛОРИТАХ ПЛАТКОВ")],on_click=GoToEvent(url="/gamajun/koloriti")),
         components.Link(components=[components.Text(text="УРОК О СИМВОЛИКЕ ОРНАМЕНТА")],on_click=GoToEvent(url="/gamajun/symboli")),
         components.Link(components=[components.Text(text="ОСТАВИТЬ ОТЗЫВ О РАБОТЕ ПРИЛОЖЕНИЯ")],on_click=GoToEvent(url="/gamajun/otzyv"))],
-                              class_name="d-flex flex-column align-items-center")
+                              )
 #platoky Zlata Olshevskaja forma 3
 class PlatochnaBaza(BaseModel):
     Название_Платка: str = Field(min_length=2, max_length=128)
     Фотография_1: str = Field(min_length=3, max_length=100)
+class PlatochnaBazaNew(BaseModel):
+    Название: str = Field(min_length=2, max_length=128)
+    Вид_Изделия: str = Field(min_length=3, max_length=100)
+    Артикул: str = Field(min_length=3, max_length=100)
+    Год_Создания: str = Field(min_length=3, max_length=100)
+    Техника: str = Field(min_length=3, max_length=100)
+    Материал: str = Field(min_length=3, max_length=100)
+    Размер: str = Field(min_length=3, max_length=100)
+    Примечание: str = Field(min_length=3, max_length=100)
+    Фотография: str = Field(min_length=3, max_length=100)
+#platoky Semjon Ryzov forma 4
+data_platoky_new=[PlatochnaBazaNew(Название="Без названия",Вид_Изделия="Рисунок шали",Артикул="№ 289",Год_Создания="1950-e",
+                                   Материал="Бумага",Техника="Гуашь",Примечание="Компьютерная симуляция платка",
+                                   Фотография="![esk-plat-rusuzor](static/esk-plat-uzor-2033.jpg)",Размер="85на85")]
 data_platoky=[
 PlatochnaBaza(Название_Платка="Вологда", Фотография_1="![platokvologda](static/vologda.jpg)"),
 PlatochnaBaza(Название_Платка="Кармен-Сюита", Фотография_1="![platokkarmensuita](static/karmen-suita.jpg)"),
@@ -350,6 +365,53 @@ async def otris_kolority():
                             components.Table(data=data_platoky,columns=[DisplayLookup(field="Название_Платка",title="Название_Платка",mode=DisplayMode.markdown),
                                                                         DisplayLookup(field="Фотография_1",title="Фотография_1",mode=DisplayMode.markdown),
                                                                          ],),], class_name="d-flex flex-column align-items-center fs-1 text-center")
+@gamajun.get("/api/baza2",response_model=FastUI,response_model_exclude_none=True)
+async def otris_kolority():
+    return components.Page(components=
+                            [components.Heading(text="ТАБЛИЦА УЗОРОВ КИСТИ СЕМЁНА РЫЖОВА",level=1),
+                            components.Table(data=data_platoky_new,columns=[DisplayLookup(field="Название",title="Название",mode=DisplayMode.markdown),
+                                                                        DisplayLookup(field="Вид_Изделия",title="Вид изделия",mode=DisplayMode.markdown),
+                                                                        DisplayLookup(field="Артикул",title="Артикул",mode=DisplayMode.markdown),
+                                                                        DisplayLookup(field="Год_Создания",title="Год создания",mode=DisplayMode.markdown),
+                                                                        DisplayLookup(field="Техника",title="Техника",mode=DisplayMode.markdown),
+                                                                        DisplayLookup(field="Материал",title="Материал",mode=DisplayMode.markdown),
+                                                                            DisplayLookup(field="Размер",
+                                                                                          title="Размер",
+                                                                                          mode=DisplayMode.markdown),
+                                                                            DisplayLookup(field="Примечание",
+                                                                                          title="Примечание",
+                                                                                          mode=DisplayMode.markdown),
+                                                                            DisplayLookup(field="Фотография",
+                                                                                          title="Фотография",
+                                                                                          mode=DisplayMode.markdown),
+                                                                         ],),], class_name="d-flex flex-column align-items-center fs-3 text-center")
+
+@gamajun.get("/api/results", response_model=FastUI,response_model_exclude_none=True)
+async def show_platoky():
+    import psycopg2 as ps
+    connection = ps.connect(host=os.getenv("DBHOST"), database=os.getenv("DBNAME"), user=os.getenv("DBUSERNAME"),
+    password=os.getenv("DBPASSWORD"), port=os.getenv("DBPORT"))
+    cursor = connection.cursor()
+    zapros = "SELECT * FROM ПППЛАТКИ ORDER BY id ASC ;"
+    cursor.execute(zapros)
+    vedomost=[]
+    while True:
+        next_row = cursor.fetchone()
+        if next_row:
+            platok_disp=Platok_Schema(id=next_row[0], Название_Платка = next_row[1], Автор_Платка= next_row[2],
+            Колорит_1= next_row[3], Колорит_2= next_row[4], Колорит_3 = next_row[5], Колорит_4= next_row[6],
+            Колорит_5= next_row[7], Узор_Темени= next_row[8], Узор_Сердцевины= next_row[9], Узор_Сторон= next_row[10],
+            Узор_Углов= next_row[11], Узор_Края= next_row[12], Цветы_Орнамент=next_row[13],
+            Изображённый_Цветок_1=next_row[14], Изображённый_Цветок_2=next_row[15], Изображённый_Цветок_3=next_row[16],
+            Изображённый_Цветок_4=next_row[17], Изображённый_Цветок_5=next_row[18], Размер_Платка=next_row[19],
+            Материал_Платка=next_row[20], Материал_Бахромы=next_row[21])
+            vedomost.append(platok_disp)
+        else:
+            cursor.close()
+            connection.close()
+            return components.Page(components=
+                            [components.Heading(text="Вот здесь платоки",level=3),
+                             components.Table(data=vedomost),])
 class Hudozhniki(BaseModel):
     Имя: str = Field(min_length=2, max_length=32)
     Фамилия: str = Field(min_length=2, max_length=64)

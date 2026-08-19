@@ -432,7 +432,7 @@ async def otris_kolority():
                                                                          ],),], class_name="d-flex flex-column align-items-center fs-1 text-center")
 @gamajun.get("/api/baza2",response_model=FastUI,response_model_exclude_none=True)
 async def otris_kolority():
-    return components.Div(class_name="d-flex flex-column align-items-center fs-3 text-center", components=
+    return components.Div(class_name="d-flex flex-column align-items-center fs-1 text-center", components=
                             [components.Heading(text="ТАБЛИЦА УЗОРОВ КИСТИ СЕМЁНА РЫЖОВА",level=1),
                             components.Table(data=data_platoky_new,columns=[DisplayLookup(field="Название",title="Название",mode=DisplayMode.markdown),
                                                                         DisplayLookup(field="Вид_Изделия",title="Вид изделия",mode=DisplayMode.markdown),

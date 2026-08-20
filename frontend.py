@@ -212,7 +212,23 @@ PlatochnaBazaNew(Название="Силуэт", Вид_Изделия="Эск�
 PlatochnaBazaNew(Название="Золотистый", Вид_Изделия="Эскиз платка", Артикул="№ 206",
                                    Год_Создания="1956",
                                    Материал="Бумага", Техника="Гуашь", Примечание="Компьютерная симуляция платка",
-                                   Фотография="![esk-plat-zvezd-2032](static/esk-plat-zolot-206.png)", Размер="89на90")
+                                   Фотография="![esk-plat-zvezd-2032](static/esk-plat-zolot-206.png)", Размер="89на90"),
+PlatochnaBazaNew(Название="Папоротник", Вид_Изделия="Эскиз платка", Артикул="№ 245",
+                                   Год_Создания="Неизвестно",
+                                   Материал="Бумага", Техника="Гуашь", Примечание="Компьютерная симуляция платка",
+                                   Фотография="![esk-plat-zvezd-2032](static/esk-plat-paporot-245.png)", Размер="86на86"),
+PlatochnaBazaNew(Название="Идеал", Вид_Изделия="Эскиз платка", Артикул="№ 986",
+                                   Год_Создания="1965",
+                                   Материал="Бумага", Техника="Гуашь", Примечание="Компьютерная симуляция платка",
+                                   Фотография="![esk-plat-zvezd-2032](static/esk-plat-ideal-986.png)", Размер="91на92"),
+PlatochnaBazaNew(Название="Японский стиль", Вид_Изделия="Эскиз покрывала", Артикул="№ 1318",
+                                   Год_Создания="1948",
+                                   Материал="Бумага", Техника="Гуашь", Примечание="Компьютерная симуляция платка",
+                                   Фотография="![esk-plat-zvezd-2032](static/esk-pokr-japonstil.png)", Размер="79на92"),
+PlatochnaBazaNew(Название="Русский узор 2", Вид_Изделия="Эскиз платка", Артикул="№ 1318",
+                                   Год_Создания="1969",
+                                   Материал="Бумага", Техника="Гуашь", Примечание="Компьютерная симуляция платка",
+                                   Фотография="![esk-plat-zvezd-2032](static/esk-plat-zolot-206.png)", Размер="85на85")
                   ]
 data_platoky=[
 PlatochnaBaza(Название_Платка="Вологда", Фотография_1="![platokvologda](static/vologda.jpg)"),
@@ -429,7 +445,8 @@ async def otris_kolority():
                             [components.Heading(text="Таблица данных по платкам",level=1),
                             components.Table(data=data_platoky,columns=[DisplayLookup(field="Название_Платка",title="Название_Платка",mode=DisplayMode.markdown),
                                                                         DisplayLookup(field="Фотография_1",title="Фотография_1",mode=DisplayMode.markdown),
-                                                                         ],),], class_name="d-flex flex-column align-items-center fs-1 text-center")
+                                                                         ],),], class_name=" align-items-center fs-1 text-center")
+#d-flex flex-column
 @gamajun.get("/api/baza2",response_model=FastUI,response_model_exclude_none=True)
 async def otris_kolority():
     return components.Page(components=

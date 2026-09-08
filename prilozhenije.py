@@ -518,24 +518,25 @@ async def main():
     await create_platky()
     init(autoreset=True)
     uvicorn.run("prilozhenije:app", reload=True, port=8000)
-@app.middleware("http")
-async def visitor_metrics(request:Request,call_next):
+#@app.middleware("http")
+#async def visitor_metrics(request:Request,call_next):
     #получаю IP пользователя
-    сlient_ip=request.client.host if request.client else None
-    resource_path=str(request.url)
-    resource_path_splitted=resource_path.split("/")
-    vremja=datetime.datetime.now()
-    response = await call_next(request)
-    vremja_2=datetime.datetime.now()
-    status_code = response.status_code
-    oper_time=vremja_2 - vremja
-    if "static" in resource_path_splitted:
-        return response
-    else:
-        message=f"время посещения -> {vremja}; ip пользователя -> {сlient_ip}; адрес ресурса -> {resource_path}; статус -> {status_code}; время исполнения ->{oper_time}"
-        async with broker:
-            await broker.publish(message=f"{message}", queue="PLATOKY")
-        return response
+    #сlient_ip=request.client.host if request.client else None
+    #resource_path=str(request.url)
+    #resource_path_splitted=resource_path.split("/")
+    #vremja=datetime.datetime.now()
+    #response = await call_next(request)
+    #vremja_2=datetime.datetime.now()
+    #status_code = response.status_code
+    #status_code = response.status_code
+    #oper_time=vremja_2 - vremja
+    #if "static" in resource_path_splitted:
+        #return response
+    #else:
+        #message=f"время посещения -> {vremja}; ip пользователя -> {сlient_ip}; адрес ресурса -> {resource_path}; статус -> {status_code}; время исполнения ->{oper_time}"
+        #async with broker:
+            #await broker.publish(message=f"{message}", queue="PLATOKY")
+        #return response
 #ЗАЯЦ ВКЛЮЧЕН
 app.include_router(router)
 if __name__ == "__main__":

@@ -1,10 +1,13 @@
 import asyncio
 from io import BytesIO
+from urllib import request
+
 import pandas as pd
 from colorama import *
 from fastapi import FastAPI, UploadFile, File
 from fastapi import HTTPException
 from fastapi import Depends
+from fastapi import Request
 from typing import Annotated
 import uvicorn
 from pydantic import BaseModel, Field, ValidationError
@@ -14,6 +17,7 @@ from tokenize import String
 load_dotenv(find_dotenv())
 #заяц включен
 from faststream.rabbit.fastapi import RabbitBroker, RabbitRouter
+broker = RabbitBroker(url=os.getenv("CLOUDAMQP_URL"))
 router=RabbitRouter(url=os.getenv("CLOUDAMQP_URL"))
 app = FastAPI()
 from frontend import gamajun
@@ -514,7 +518,14 @@ async def main():
     await create_platky()
     init(autoreset=True)
     uvicorn.run("prilozhenije:app", reload=True, port=8000)
-
+@app.middleware("http")
+async def visitor_metrics(request:Request,call_next):
+    #получаю IP пользователя
+    сlient_ip=request.client.host if request.client else None
+    async with broker:
+        await broker.publish(message=f"{сlient_ip}", queue="PLATOKY")
+    response= await call_next(request)
+    return response
 #ЗАЯЦ ВКЛЮЧЕН
 app.include_router(router)
 if __name__ == "__main__":

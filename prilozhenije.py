@@ -530,7 +530,6 @@ async def visitor_metrics(request:Request,call_next):
     status_code = response.status_code
     oper_time=vremja_2 - vremja
     if "static" in resource_path_splitted:
-        response = await call_next(request)
         return response
     else:
         message=f"время посещения -> {vremja}; ip пользователя -> {сlient_ip}; адрес ресурса -> {resource_path}; статус -> {status_code}; время исполнения ->{oper_time}"

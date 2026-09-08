@@ -1,9 +1,10 @@
 from attr.validators import max_len
 from datetime import datetime
 import time
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException,Request
 from fastapi import Form
 from fastapi import BackgroundTasks
+from starlette.background import BackgroundTask as backgroundtask
 from fastapi.responses import RedirectResponse
 from fastui.components import FireEvent
 from fastui.forms import Textarea
@@ -24,6 +25,10 @@ engine = create_async_engine(os.getenv("DBURL"),echo=True,max_overflow=5,pool_si
 session_factory = async_sessionmaker(bind=engine,class_=AsyncSession,expire_on_commit=False,autoflush=True)
 from datamodels import Platoky,Platok_Schema
 from fastapi import status, Response
+async def registr_visit(message:str):
+    async with broker:
+        await broker.publish(message=f"{message}", queue="PLATOKY")
+    return
 @gamajun.post("/api/add",status_code=status.HTTP_201_CREATED)
 async def insert_DB_platok_s_GrIntr(response:Response,background_task: BackgroundTasks,id: int = Form(),Название_Платка: str = Form(),
     Автор_Платка: str = Form(),Колорит_1: str = Form(), Колорит_2: str = Form(), Колорит_3: str= Form(),
@@ -1104,6 +1109,30 @@ async def otris_uzorov(id_hudozhika: int):
 from fastapi.staticfiles import StaticFiles
 gamajun.mount("/static",StaticFiles(directory="static"))
 from templates import nazv_symbolov,opis_symboli,traktovka_kolority
+@gamajun.middleware("http")
+async def visitor_metrics(request:Request,call_next):
+    #получаю IP пользователя
+    сlient_ip=request.client.host if request.client else None
+    resource_path=str(request.url)
+    resource_path_splitted=resource_path.split("/")
+    vremja=datetime.now()
+    response = await call_next(request)
+    vremja_2=datetime.now()
+    status_code = response.status_code
+    oper_time = vremja_2 - vremja
+    if "static" in resource_path_splitted:
+        return response
+    # вывод тяжёлой задачи в фон
+    else:
+        message = f"время посещения -> {vremja}; ip пользователя -> {сlient_ip}; адрес ресурса -> {resource_path}; статус -> {status_code}; время исполнения ->{oper_time}"
+        response.background=backgroundtask(registr_visit,message)
+        return response
+    #if "static" in resource_path_splitted:
+        #else:
+        #message=f"время посещения -> {vremja}; ip пользователя -> {сlient_ip}; адрес ресурса -> {resource_path}; статус -> {status_code}; время исполнения ->{oper_time}"
+        #async with broker:
+            #await broker.publish(message=f"{message}", queue="PLATOKY")
+        #return response
 #переадрессация для включения фронта
 @gamajun.get('/{path:path}')
 def gamajun_root() -> HTMLResponse:

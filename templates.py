@@ -398,3 +398,5 @@ Uzory=[#uzor_hudozhnika0, uzor_hudozhnika1, uzor_hudozhnika2, uzor_hudozhnika3, 
     uzor_hudozhnika22, uzor_hudozhnika23,
        uzor_hudozhnika24, uzor_hudozhnika25, #uzor_hudozhnika26
 ]
+Cifr_otpech_=[["Тайна сердца","Синяя","aa02bd3aad2ad52b","aa02bd3aad2ad52b","aa12bd3aad2ad12b"]
+]

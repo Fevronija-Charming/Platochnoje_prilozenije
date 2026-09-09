@@ -1,6 +1,8 @@
 from attr.validators import max_len
 from datetime import datetime
+from zoneinfo import ZoneInfo
 import time
+tallinn_tz = ZoneInfo("Europe/Tallinn")
 from fastapi import FastAPI, HTTPException,Request
 from fastapi import Form
 from fastapi import BackgroundTasks
@@ -1115,9 +1117,9 @@ async def visitor_metrics(request:Request,call_next):
     сlient_ip=request.client.host if request.client else None
     resource_path=str(request.url)
     resource_path_splitted=resource_path.split("/")
-    vremja=datetime.now()
+    vremja=datetime.now(tallinn_tz)
     response = await call_next(request)
-    vremja_2=datetime.now()
+    vremja_2=datetime.now(tallinn_tz)
     status_code = response.status_code
     oper_time = vremja_2 - vremja
     if "static" in resource_path_splitted:
@@ -1136,9 +1138,9 @@ async def visitor_metrics(request:Request,call_next):
 #переадрессация для включения фронта
 @gamajun.get('/{path:path}')
 def gamajun_root() -> HTMLResponse:
-    return HTMLResponse(prebuilt_html(title='FastUI Demo',api_root_url='/gamajun/api',api_path_strip='/gamajun'))
+    return HTMLResponse(prebuilt_html(title='Твой путеводитель по Шалемании',api_root_url='/gamajun/api',api_path_strip='/gamajun'))
 @gamajun.post('/{path:path}')
 def gamajun_root2() -> HTMLResponse:
-    return HTMLResponse(prebuilt_html(title='FastUI Demo',api_root_url='/gamajun/api',api_path_strip='/gamajun'))
+    return HTMLResponse(prebuilt_html(title='Твой путеводитель по Шалемании',api_root_url='/gamajun/api',api_path_strip='/gamajun'))
 from fastapi.middleware.cors import CORSMiddleware
 gamajun.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["*"], allow_headers=["*"])

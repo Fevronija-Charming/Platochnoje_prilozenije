@@ -538,8 +538,10 @@ async def main():
             #await broker.publish(message=f"{message}", queue="PLATOKY")
         #return response
 #ЗАЯЦ ВКЛЮЧЕН
+from utils import photo
 app.include_router(router)
 if __name__ == "__main__":
+    asyncio.run(photo())
     asyncio.run(main())
 #except:
 #peremycka=(" ")

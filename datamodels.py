@@ -3,6 +3,14 @@ from sqlalchemy import  DateTime, String, Float, Column, Integer, func,Text, BIG
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 class Base(DeclarativeBase):
     pass
+class Posechenije(Base):
+    __tablename__ = "Журнал_Посещений"
+    id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True, nullable=False)
+    Время_Посещения: Mapped[str] = mapped_column(String(128), nullable=False)
+    IP_пользователя: Mapped[str] = mapped_column(String(128), nullable=False)
+    Адрес_ресурса: Mapped[str] = mapped_column(String(128), nullable=False)
+    Статус: Mapped[int] = mapped_column(nullable=False)
+    Время_Исполнения: Mapped[str] = mapped_column(String(128), nullable=False)
 class Otzyvy(Base):
     __tablename__ = "Книга_Отзывов"
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True, nullable=False)

@@ -31,7 +31,7 @@ from psycopg2.errors import *
 engine = create_async_engine(os.getenv("DBURL"),echo=True,max_overflow=5,pool_size=5)
 session_factory = async_sessionmaker(bind=engine,class_=AsyncSession,expire_on_commit=False)
 from datamodels import Base,Otzyvy,Platoky,Symboly,Banda
-from datamodels import Platok_Schema,Symbol_Schema,Banda_Schema
+from datamodels import Platok_Schema,Symbol_Schema,Banda_Schema,Posechenije
 #@app.post("/symboly", summary="Platok", tags=["Symboli"])
 @router.post("/symboly", summary="Platok",tags=["Symboli"])
 async def create_tradicii(symbol: Annotated[Symbol_Schema, Depends()]):

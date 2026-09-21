@@ -1609,8 +1609,8 @@ async def visitor_metrics(request:Request,call_next):
     # вывод тяжёлой задачи в фон
     else:
         message = f"время посещения -> {vremja}; ip пользователя -> {сlient_ip}; адрес ресурса -> {resource_path}; статус -> {status_code}; время исполнения ->{oper_time}"
-        response.background=backgroundtask(registr_visit,message)
-        response.background = backgroundtask(DB_registr_visit, message)
+        await registr_visit(message)
+        await DB_registr_visit(message)
         return response
     #if "static" in resource_path_splitted:
         #else:

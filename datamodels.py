@@ -76,6 +76,15 @@ class Banda(Base):
     Ссылка_На_Яндекс_Дзен: Mapped[str] = mapped_column(String(128), nullable=False)
     Ссылка_На_Сайт: Mapped[str] = mapped_column(String(128), nullable=False)
     Адрес_Деятельности: Mapped[str] = mapped_column(String(128), nullable=False)
+class Users(Base):
+    __tablename__ = "Пользователи"
+    id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True, nullable=False)
+    Никнейм: Mapped[str] = mapped_column(String(32), nullable=False)
+    ОтпечатокПароля: Mapped[str] = mapped_column(String(64), nullable=False)
+    Должность: Mapped[str] = mapped_column(String(32), nullable=False)
+    Разрешение: Mapped[str] = mapped_column(String(32), nullable=False)
+class User_To_Ban(BaseModel):
+    Имя_Пользователя: str = Field(min_length=5, max_length=50)
     # '''CREATE table Платочная_Банда (id BIGINT NOT NULL PRIMARY KEY, Гражданское_Имя VARCHAR(128) NOT NULL,
     # Творческий_Псевдоним VARCHAR(128) NOT NULL, Описание_Творческой_Деятельности TEXT NOT NULL,
     # Связь_Творчества_С_Павлопосадскими_Платками TEXT NOT NULL, Ссылка_На_Инстаграм VARCHAR(128) NOT NULL,

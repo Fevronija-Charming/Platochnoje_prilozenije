@@ -30,8 +30,23 @@ from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine, async_sess
 from psycopg2.errors import *
 engine = create_async_engine(os.getenv("DBURL"),echo=True,max_overflow=5,pool_size=5)
 session_factory = async_sessionmaker(bind=engine,class_=AsyncSession,expire_on_commit=False)
-from datamodels import Base,Otzyvy,Platoky,Symboly,Banda
-from datamodels import Platok_Schema,Symbol_Schema,Banda_Schema,Posechenije
+from datamodels import Base,Otzyvy,Platoky,Symboly,Banda,Posechenije,Users
+from datamodels import Platok_Schema,Symbol_Schema,Banda_Schema,User_To_Ban
+@app.get("/ban", summary="root",tags=["DEBUG"])
+def user_to_ban(user_to_ban: Annotated[User_To_Ban,Depends()]):
+    import psycopg2 as ps
+    connection = ps.connect(host=os.getenv("DBHOST"), database=os.getenv("DBNAMEOLD"), user=os.getenv("DBUSERNAME"),
+                            password=os.getenv("DBPASSWORD"), port=os.getenv("DBPORT"))
+    # создание интерфейса для sql запроса
+    cursor = connection.cursor()
+    zapros = "UPDATE Пользователи SET Разрешение=0 WHERE Никнейм=%s"
+    # отправить запрос системе управления
+    cursor.execute(zapros, (user_to_ban,))
+    connection.commit()
+    cursor.close()
+    connection.close()
+    soobzhenije=(f"{user_to_ban}"+ "забанен")
+    return soobzhenije
 #@app.post("/symboly", summary="Platok", tags=["Symboli"])
 @router.post("/symboly", summary="Platok",tags=["Symboli"])
 async def create_tradicii(symbol: Annotated[Symbol_Schema, Depends()]):

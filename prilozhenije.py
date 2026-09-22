@@ -31,21 +31,36 @@ from psycopg2.errors import *
 engine = create_async_engine(os.getenv("DBURL"),echo=True,max_overflow=5,pool_size=5)
 session_factory = async_sessionmaker(bind=engine,class_=AsyncSession,expire_on_commit=False)
 from datamodels import Base,Otzyvy,Platoky,Symboly,Banda,Posechenije,Users
-from datamodels import Platok_Schema,Symbol_Schema,Banda_Schema,User_To_Ban
+from datamodels import Platok_Schema,Symbol_Schema,Banda_Schema,User_To_Action
 @app.get("/ban", summary="root",tags=["DEBUG"])
-def user_to_ban(user_to_ban: Annotated[User_To_Ban,Depends()]):
+def user_to_ban(user_to_ban: Annotated[User_To_Action,Depends()]):
     import psycopg2 as ps
-    connection = ps.connect(host=os.getenv("DBHOST"), database=os.getenv("DBNAMEOLD"), user=os.getenv("DBUSERNAME"),
+    connection = ps.connect(host=os.getenv("DBHOST"), database=os.getenv("DBNAME"), user=os.getenv("DBUSERNAME"),
                             password=os.getenv("DBPASSWORD"), port=os.getenv("DBPORT"))
     # создание интерфейса для sql запроса
     cursor = connection.cursor()
     zapros = "UPDATE Пользователи SET Разрешение=0 WHERE Никнейм=%s"
     # отправить запрос системе управления
-    cursor.execute(zapros, (user_to_ban,))
+    cursor.execute(zapros, (user_to_ban.Имя_Пользователя,))
     connection.commit()
     cursor.close()
     connection.close()
     soobzhenije=(f"{user_to_ban}"+ "забанен")
+    return soobzhenije
+@app.get("/pomilovat", summary="root",tags=["DEBUG"])
+def user_to_ban(user_to_pomilovat: Annotated[User_To_Action,Depends()]):
+    import psycopg2 as ps
+    connection = ps.connect(host=os.getenv("DBHOST"), database=os.getenv("DBNAME"), user=os.getenv("DBUSERNAME"),
+                            password=os.getenv("DBPASSWORD"), port=os.getenv("DBPORT"))
+    # создание интерфейса для sql запроса
+    cursor = connection.cursor()
+    zapros = "UPDATE Пользователи SET Разрешение='Активен' WHERE Никнейм=%s"
+    # отправить запрос системе управления
+    cursor.execute(zapros, (user_to_pomilovat.Имя_Пользователя,))
+    connection.commit()
+    cursor.close()
+    connection.close()
+    soobzhenije=(f"{user_to_pomilovat}"+ "разблокирован")
     return soobzhenije
 #@app.post("/symboly", summary="Platok", tags=["Symboli"])
 @router.post("/symboly", summary="Platok",tags=["Symboli"])

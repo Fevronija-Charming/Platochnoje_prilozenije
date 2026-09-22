@@ -83,7 +83,7 @@ class Users(Base):
     ОтпечатокПароля: Mapped[str] = mapped_column(String(64), nullable=False)
     Должность: Mapped[str] = mapped_column(String(32), nullable=False)
     Разрешение: Mapped[str] = mapped_column(String(32), nullable=False)
-class User_To_Ban(BaseModel):
+class User_To_Action(BaseModel):
     Имя_Пользователя: str = Field(min_length=5, max_length=50)
     # '''CREATE table Платочная_Банда (id BIGINT NOT NULL PRIMARY KEY, Гражданское_Имя VARCHAR(128) NOT NULL,
     # Творческий_Псевдоним VARCHAR(128) NOT NULL, Описание_Творческой_Деятельности TEXT NOT NULL,

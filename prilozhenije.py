@@ -545,8 +545,8 @@ async def create_platky():
     async with engine.begin() as connection:
         await connection.run_sync(Base.metadata.create_all)
 async def main():
-    await create_platky()
-    init(autoreset=True)
+    #await create_platky()
+    #init(autoreset=True)
     uvicorn.run("prilozhenije:app", reload=True, port=8000)
 #@app.middleware("http")
 #async def visitor_metrics(request:Request,call_next):

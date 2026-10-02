@@ -1497,23 +1497,23 @@ class TablaMnogosloy(BaseModel):
     Cтолбец_Многослойность_7: str = Field(min_length=3, max_length=512)
     Cтолбец_Многослойность_8: str = Field(min_length=3, max_length=512)
 data_mnogosloy=[
-TablaMnogosloy(Cтолбец_Многослойность_1="Зимняя шапка ->\n\n_\n\n_\n\nВерхний платок ->\n\n_\n\n_\n\nШуба/пуховик ->\n\n_\n\n_\n\n_\n\n_\n\n_\n\n_\n\n_\n\nЗимняя обувь ->",Cтолбец_Многослойность_2="!""[сапожки](static/mnogosloy-plat-zelen-A.jpg)\n\n!""[сапожки](static/mnogosloy-platok-e.jpg)\n\n!""[сапожки](static/mnogosloy-puhan-c.jpg)\n\n!""[сапожки](static/mnogosloy-sapozky-d.jpg)",Cтолбец_Многослойность_3="Верхний платок ->",Cтолбец_Многослойность_4="!""[сапожки](static/mnogosloy-plat-zelen-A.jpg)",Cтолбец_Многослойность_5="Верхний платок ->",Cтолбец_Многослойность_6="!""[сапожки](static/mnogosloy-plat-zelen-A.jpg)",Cтолбец_Многослойность_7="Верхний платок ->",Cтолбец_Многослойность_8="!""[сапожки](static/mnogosloy-plat-zelen-A.jpg)"),
+TablaMnogosloy(Cтолбец_Многослойность_1="Основное предназначение/Аксессуары",Cтолбец_Многослойность_2="Длительное нахождение вне помещения в холодное время года",Cтолбец_Многослойность_3="Пребывание в коллективе мало знакомых людей вне дома, для работы и учёбы",Cтолбец_Многослойность_4="Пребывание в коллективе мало знакомых людей вне дома, для работы и учёбы",Cтолбец_Многослойность_5="Пребывание в коллективе мало знакомых людей вне дома, для работы и учёбы",Cтолбец_Многослойность_6="---",Cтолбец_Многослойность_7="---",Cтолбец_Многослойность_8="---"),
+TablaMnogosloy(Cтолбец_Многослойность_1="---",Cтолбец_Многослойность_2="Зимняя шапка:\n\n!""[сапожки](static/mnogosloy-plat-zelen-A.jpg)\n\nВерхний платок:\n\n!""[сапожки](static/mnogosloy-platok-e.jpg)\n\nШуба/пуховик:\n\n!""[сапожки](static/mnogosloy-puhan-c.jpg)\n\nЗимняя обувь:\n\n!""[сапожки](static/mnogosloy-sapozky-d.jpg)",Cтолбец_Многослойность_3="Зимняя шапка:\n\n!""[сапожки](static/mnogosloy-plat-zelen-A.jpg)\n\nВерхний_платок:\n\n!""[сапожки](static/mnogosloy-platok-e.jpg)\n\nШуба/пуховик:\n\n!""[сапожки](static/mnogosloy-puhan-c.jpg)\n\nЗимняя обувь:\n\n!""[сапожки](static/mnogosloy-sapozky-d.jpg)",Cтолбец_Многослойность_4="Зимняя шапка:\n\n!""[сапожки](static/mnogosloy-plat-zelen-A.jpg)\n\nВерхний_платок:\n\n!""[сапожки](static/mnogosloy-platok-e.jpg)\n\nШуба/пуховик:\n\n!""[сапожки](static/mnogosloy-puhan-c.jpg)\n\nЗимняя обувь:\n\n!""[сапожки](static/mnogosloy-sapozky-d.jpg)",Cтолбец_Многослойность_5="Зимняя шапка:\n\n!""[сапожки](static/mnogosloy-plat-zelen-A.jpg)\n\nВерхний_платок:\n\n!""[сапожки](static/mnogosloy-platok-e.jpg)\n\nШуба/пуховик:\n\n!""[сапожки](static/mnogosloy-puhan-c.jpg)\n\nЗимняя обувь:\n\n!""[сапожки](static/mnogosloy-sapozky-d.jpg)",Cтолбец_Многослойность_6="!""[сапожки](static/mnogosloy-plat-zelen-A.jpg)",Cтолбец_Многослойность_7="Верхний платок ->",Cтолбец_Многослойность_8="!""[сапожки](static/mnogosloy-plat-zelen-A.jpg)"),
 ]
 @gamajun.get("/api/mnogosloy",response_model=FastUI,response_model_exclude_none=True)
 async def otris_mnogosloy():
     return components.Div(components=
                             [components.Heading(text="Концепция многослойность",level=3),
-                            components.Div(components=[components.Table(data=data_mnogosloy,columns=[DisplayLookup(field="Cтолбец_Многослойность_1",title="слой",mode=DisplayMode.markdown),
-                                                                        DisplayLookup(field="Cтолбец_Многослойность_2",title="4ой, климатически-защитный: Длительное нахождение\n\nвне помещения\n\nв холодное время года",mode=DisplayMode.markdown),
-                                                                        DisplayLookup(field="Cтолбец_Многослойность_3",title="",mode=DisplayMode.markdown),
-                                                                        DisplayLookup(field="Cтолбец_Многослойность_4",title="3ий, внешний: Пребывание в коллективе мало знакомых людей вне дома, для работы и учёбы",mode=DisplayMode.markdown),
-                                                                        DisplayLookup(field="Cтолбец_Многослойность_5",title="",mode=DisplayMode.markdown),
-                                                                        DisplayLookup(field="Cтолбец_Многослойность_6",title="Пребывание в коллективе малознакомых людей вне дома, для работы и учёбы",mode=DisplayMode.markdown),
-                                                                        DisplayLookup(field="Cтолбец_Многослойность_7",title="",mode=DisplayMode.markdown),
-                                                                        DisplayLookup(field="Cтолбец_Многослойность_8",title= "Пребывание в коллективе малознакомых людей вне дома, для работы и учёбы",mode=DisplayMode.markdown)],)],),
+                            components.Div(components=[components.Table(data=data_mnogosloy,columns=[
+                                DisplayLookup(field="Cтолбец_Многослойность_1",title="Название слоя",mode=DisplayMode.markdown),
+                                                                        DisplayLookup(field="Cтолбец_Многослойность_2",title="4ой, климатически-защитный:",mode=DisplayMode.markdown),
+                                                                        DisplayLookup(field="Cтолбец_Многослойность_3",title="3ий, внешний",mode=DisplayMode.markdown),
+                                                                        DisplayLookup(field="Cтолбец_Многослойность_4",title="2ой,нижний",mode=DisplayMode.markdown),
+                                DisplayLookup(field="Cтолбец_Многослойность_5",title="Исподнее бельё",mode=DisplayMode.markdown),
+                                                                    ],)],class_name="m-0 p-0 align-items-center fs-6 text-center"),
 
 
-                             ], class_name="m-0 p-0 align-items-center fs-6 text-center")
+                             ], )
 from templates import nazv_symbolov, opis_symboli, traktovka_kolority, hudozhnik_0, hudozhnik_1, hudozhnik_2, hudozhnik_3
 from templates import hudozhnik_4, hudozhnik_5,hudozhnik_6, hudozhnik_7, hudozhnik_8, hudozhnik_9, hudozhnik_10,hudozhnik_11
 from templates import hudozhnik_12, hudozhnik_13,hudozhnik_14, hudozhnik_15, hudozhnik_16, hudozhnik_17,hudozhnik_18, hudozhnik_25

@@ -1509,10 +1509,10 @@ async def otris_mnogosloy():
                                 DisplayLookup(field="Cтолбец_Многослойность_2",title="4ой, климатически-защитный:",mode=DisplayMode.markdown),
                                 DisplayLookup(field="Cтолбец_Многослойность_3",title="3ий, внешний",mode=DisplayMode.markdown),
                                 DisplayLookup(field="Cтолбец_Многослойность_4",title="1-ый/2ой,нижний + Исподнее бельё",mode=DisplayMode.markdown),
-                                                                    ],)],class_name="align-items-center fs-6"),
+                                                                    ],),
+                            components.Heading(text="Если что-то в данном комплекте Вас не устраивает, попробуйте заменить этот элемент одежды:", level=3),],class_name="align-items-center fs-6"),
                             components.Div(components=
                              [
-                            components.Heading(text="Если что-то в данном комплекте Вас не устраивает, попробуйте заменить этот элемент одежды:", level=3),
                             components.Div(components=[
                             components.Text(text="________________"),
                             components.Link(components=[components.Text(text="ПОМЕНЯТЬ ПУХОВИК")],on_click=GoToEvent(url="/gamajun/otzyv")),

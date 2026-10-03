@@ -1520,7 +1520,7 @@ async def otris_mnogosloy():
                                         components.Link(components=[components.Text(text="НА ГЛАВНУЮ")],
                                              on_click=GoToEvent(url="/gamajun/root"))]),
                                    ],
-                                           class_name="fs-5 d-flex flex-column align-items-center"),
+                                           class_name="fs-5 d-flex flex-column"),
                             components.Div(components=[components.Table(data=data_mnogosloy,columns=[
                                 DisplayLookup(field="Cтолбец_Многослойность_1",title="Название слоя",mode=DisplayMode.markdown),
                                 DisplayLookup(field="Cтолбец_Многослойность_2",title="4ой, климатически-защитный:",mode=DisplayMode.markdown),
@@ -1538,7 +1538,7 @@ async def otris_mnogosloy():
                                  components.Heading(
                                      text="Если что-то в данном комплекте Вас не устраивает, попробуйте заменить этот элемент одежды:",
                                      level=3),
-                                 ], class_name="fs-4 d-flex flex-column align-items-center"),
+                                 ], class_name="fs-4 d-flex flex-column"),
                             components.Div(components=
                              [
                                 components.Div(components=[

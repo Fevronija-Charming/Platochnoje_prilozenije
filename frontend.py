@@ -1509,7 +1509,7 @@ async def otris_mnogosloy():
                             components.Div(components=
                                     [
                                     components.Div(components=[
-                                    components.Heading(text="Конструктор многослойных нарядов",level=2)],),
+                                    components.Heading(text="Конструктор многослойных нарядов",level=2)],class_name="fs-5 d-flex flex-row"),
                                     components.Div(components=[
                                         components.Link(components=[components.Text(text="ПРИМЕРЫ МНОГОСЛОЙНЫХ НАРЯДОВ")],
                                              on_click=GoToEvent(url="/gamajun/otzyv")),

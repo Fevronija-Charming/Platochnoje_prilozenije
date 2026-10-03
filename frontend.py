@@ -1509,9 +1509,9 @@ async def otris_mnogosloy():
                             components.Div(components=
                                     [
                                     components.Div(components=[
-                                    components.Heading(text="Конструктор многослойных нарядов",level=2)],class_name="fs-5 d-flex flex-row"),
+                                    components.Heading(text="Конструктор многослойных нарядов:",level=2)],),
                                         components.Link(
-                                            components=[components.Text(text="ПРИМЕРЫ МНОГОСЛОЙНЫХ НАРЯДОВ")],
+                                            components=[components.Text(text="ПОДБОРКА МНОГОСЛОЙНЫХ ОБРАЗОВ")],
                                             on_click=GoToEvent(url="/gamajun/otzyv")),
                                         components.Text(text="______"),
                                         components.Link(components=[components.Text(text="О КОНЦЕПЦИИ МНОГОСЛОЙНОСТИ")],
@@ -1520,7 +1520,7 @@ async def otris_mnogosloy():
                                         components.Link(components=[components.Text(text="НА ГЛАВНУЮ")],
                                                         on_click=GoToEvent(url="/gamajun/root"))
                                    ],
-                                           class_name="fs-5 d-flex flex-column align-items-center"),
+                                           class_name="d-flex flex-column align-items-center fs-5"),
                             components.Div(components=[components.Table(data=data_mnogosloy,columns=[
                                 DisplayLookup(field="Cтолбец_Многослойность_1",title="Название слоя",mode=DisplayMode.markdown),
                                 DisplayLookup(field="Cтолбец_Многослойность_2",title="4ой, климатически-защитный:",mode=DisplayMode.markdown),

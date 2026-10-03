@@ -1521,10 +1521,10 @@ async def otris_mnogosloy():
                             components.Link(components=[components.Text(text="ПОМЕНЯТЬ НИЖНЮЮ СОРОЧКУ В НАБОРЕ")],on_click=GoToEvent(url="/gamajun/otzyv"))
                                                          ],class_name="d-flex flex-column align-items-center"),
                             components.Div(components=[
-                            components.Text(text="____"),
-                            components.Text(text="____"),
-                            components.Text(text="____"),
-                            components.Text(text="____"),
+                            components.Text(text="__"),
+                            components.Text(text="__"),
+                            components.Text(text="__"),
+                            components.Text(text="__"),
                                  ], class_name="fs-6 d-flex flex-row align-items-start"),
                             components.Div(components=[
                             components.Link(components=[components.Text(text="ПОМЕНЯТЬ ПУХОВИК В НАБОРЕ")],on_click=GoToEvent(url="/gamajun/otzyv")),
@@ -1536,10 +1536,10 @@ async def otris_mnogosloy():
                             components.Link(components=[components.Text(text="ПОМЕНЯТЬ НИЖНЮЮ СОРОЧКУ В НАБОРЕ")],on_click=GoToEvent(url="/gamajun/otzyv"))
                                                         ],class_name="d-flex flex-column align-items-center"),
                             components.Div(components=[
-                            components.Text(text="________"),
-                            components.Text(text="________"),
-                            components.Text(text="________"),
-                            components.Text(text="________"),
+                            components.Text(text="__"),
+                            components.Text(text="__"),
+                            components.Text(text="__"),
+                            components.Text(text="__")
                                  ], class_name="fs-6 d-flex flex-row align-items-start"),
                                  components.Div(components=[
                                      components.Link(components=[components.Text(text="ПОМЕНЯТЬ ПУХОВИК В НАБОРЕ")],

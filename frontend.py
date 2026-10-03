@@ -1506,7 +1506,7 @@ TablaMnogosloy(Cтолбец_Многослойность_1="---",Cтолбец_
 @gamajun.get("/api/mnogosloy",response_model=FastUI,response_model_exclude_none=True)
 async def otris_mnogosloy():
     return components.Div(components=
-                            [
+                            [components.Heading(text="Конструктор многослойных нарядов",level=2),
                             components.Text(text="___"),
                             components.Link(components=[components.Text(text="ПРИМЕРЫ МНОГОСЛОЙНЫХ НАРЯДОВ")],
                                              on_click=GoToEvent(url="/gamajun/otzyv")),
@@ -1516,7 +1516,6 @@ async def otris_mnogosloy():
                             components.Text(text="___"),
                             components.Link(components=[components.Text(text="НА ГЛАВНУЮ")],
                                              on_click=GoToEvent(url="/gamajun/root")),
-                            components.Heading(text="Конструктор многослойных нарядов", level=2),
                             components.Div(components=[components.Table(data=data_mnogosloy,columns=[
                                 DisplayLookup(field="Cтолбец_Многослойность_1",title="Название слоя",mode=DisplayMode.markdown),
                                 DisplayLookup(field="Cтолбец_Многослойность_2",title="4ой, климатически-защитный:",mode=DisplayMode.markdown),

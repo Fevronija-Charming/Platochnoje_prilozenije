@@ -1513,13 +1513,14 @@ async def otris_mnogosloy():
                                     components.Div(components=[
                                         components.Link(components=[components.Text(text="ПРИМЕРЫ МНОГОСЛОЙНЫХ НАРЯДОВ")],
                                              on_click=GoToEvent(url="/gamajun/otzyv")),
-                                        components.Text(text="_________"),
+                                        components.Text(text="______"),
                                         components.Link(components=[components.Text(text="О КОНЦЕПЦИИ МНОГОСЛОЙНОСТИ")],
                                         on_click=GoToEvent(url="/gamajun/otzyv")),
-                                        components.Text(text="_________"),
+                                        components.Text(text="______"),
                                         components.Link(components=[components.Text(text="НА ГЛАВНУЮ")],
-                                             on_click=GoToEvent(url="/gamajun/root"))])],
-                                           class_name="fs-4 d-flex flex-column align-items-center"),
+                                             on_click=GoToEvent(url="/gamajun/root"))]),
+                                   ],
+                                           class_name="fs-5 d-flex flex-column align-items-center"),
                             components.Div(components=[components.Table(data=data_mnogosloy,columns=[
                                 DisplayLookup(field="Cтолбец_Многослойность_1",title="Название слоя",mode=DisplayMode.markdown),
                                 DisplayLookup(field="Cтолбец_Многослойность_2",title="4ой, климатически-защитный:",mode=DisplayMode.markdown),

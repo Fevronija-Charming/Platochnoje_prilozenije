@@ -1496,6 +1496,9 @@ class TablaMnogosloy(BaseModel):
     Cтолбец_Многослойность_6: str = Field(min_length=3, max_length=512)
     Cтолбец_Многослойность_7: str = Field(min_length=3, max_length=512)
     Cтолбец_Многослойность_8: str = Field(min_length=3, max_length=512)
+import fastui.events as events
+async def pustyshka():
+    return components.Text(text="______________________"),
 data_mnogosloy=[
 TablaMnogosloy(Cтолбец_Многослойность_1="Основное предназначение/Аксессуары",Cтолбец_Многослойность_2="Длительное нахождение вне помещения в холодное время года",Cтолбец_Многослойность_3="Пребывание в коллективе мало знакомых людей вне дома, для работы и учёбы",Cтолбец_Многослойность_4="Пребывание в коллективе мало знакомых людей вне дома, для работы и учёбы",Cтолбец_Многослойность_5="Пребывание в коллективе мало знакомых людей вне дома, для работы и учёбы",Cтолбец_Многослойность_6="---",Cтолбец_Многослойность_7="---",Cтолбец_Многослойность_8="---"),
 TablaMnogosloy(Cтолбец_Многослойность_1="---",Cтолбец_Многослойность_2="Зимняя шапка:\n\n!""[сапожки](static/mnogosloy-plat-zelen-A.jpg)\n\nВерхний платок:\n\n!""[сапожки](static/mnogosloy-platok-e.jpg)\n\nШуба/пуховик:\n\n!""[сапожки](static/mnogosloy-puhan-c.jpg)\n\nЗимняя обувь:\n\n!""[сапожки](static/mnogosloy-zelen-sapogi.jpg)",Cтолбец_Многослойность_3="Зимняя шапка:\n\n!""[сапожки](static/mnogosloy-plat-zelen-A.jpg)\n\nВерхний_платок:\n\n!""[сапожки](static/mnogosloy-platok-e.jpg)\n\nШуба/пуховик:\n\n!""[сапожки](static/mnogosloy-puhan-c.jpg)\n\nЗимняя обувь:\n\n!""[сапожки](static/mnogosloy-zelen-sapogi.jpg)",Cтолбец_Многослойность_4="Шуба/пуховик:\n\n!""[сапожки](static/mnogosloy-puhan-c.jpg)\n\nШуба/пуховик:\n\n!""[сапожки](static/mnogosloy-puhan-c.jpg)",Cтолбец_Многослойность_5="Зимняя шапка:\n\n!""[сапожки](static/mnogosloy-plat-zelen-A.jpg)\n\nВерхний_платок:\n\n!""[сапожки](static/mnogosloy-platok-e.jpg)\n\nШуба/пуховик:\n\n!""[сапожки](static/mnogosloy-puhan-c.jpg)\n\nЗимняя обувь:\n\n!""[сапожки](static/mnogosloy-zelen-sapogi.jpg)",Cтолбец_Многослойность_6="!""[сапожки](static/mnogosloy-zelen-sapogi.jpg)",Cтолбец_Многослойность_7="Верхний платок ->",Cтолбец_Многослойность_8="!""[сапожки](static/mnogosloy-plat-zelen-A.jpg)"),
@@ -1503,24 +1506,34 @@ TablaMnogosloy(Cтолбец_Многослойность_1="---",Cтолбец_
 @gamajun.get("/api/mnogosloy",response_model=FastUI,response_model_exclude_none=True)
 async def otris_mnogosloy():
     return components.Div(components=
-                            [components.Heading(text="Концепция многослойность",level=3),
+                            [components.Heading(text="Конструктор многослойных нарядов",level=3),
                             components.Div(components=[components.Table(data=data_mnogosloy,columns=[
                                 DisplayLookup(field="Cтолбец_Многослойность_1",title="Название слоя",mode=DisplayMode.markdown),
                                 DisplayLookup(field="Cтолбец_Многослойность_2",title="4ой, климатически-защитный:",mode=DisplayMode.markdown),
                                 DisplayLookup(field="Cтолбец_Многослойность_3",title="3ий, внешний",mode=DisplayMode.markdown),
                                 DisplayLookup(field="Cтолбец_Многослойность_4",title="1-ый/2ой,нижний + Исподнее бельё",mode=DisplayMode.markdown),
-                                                                    ],),
-                            components.Heading(text="Если что-то в данном комплекте Вас не устраивает, попробуйте заменить этот элемент одежды:", level=3),],class_name="align-items-center fs-6"),
+                                                                    ],),],class_name="align-items-center fs-6"),
+
+                            components.Button(text="Оформить заказ на данный набор многослойной одежды",
+                                               on_click=events.GoToEvent(url="/gamajun/otzyv"),class_name="btn btn-success fs-3"),
+                            components.Heading(text="Если что-то в данном комплекте Вас не устраивает, попробуйте заменить этот элемент одежды:",
+                            level=3),
                             components.Div(components=
                              [
+                                components.Div(components=[
+                                     components.Text(text="_"),
+                                     components.Text(text="_"),
+                                     components.Text(text="_"),
+                                     components.Text(text="_"),
+                                 ], class_name="fs-5 d-flex flex-row"),
                             components.Div(components=[
-                            components.Text(text="________________"),
+                            components.Text(text="_____________________________"),
                             components.Link(components=[components.Text(text="ПОМЕНЯТЬ ПУХОВИК")],on_click=GoToEvent(url="/gamajun/otzyv")),
-                            components.Text(text="________________"),
+                            components.Text(text="______________________________"),
                             components.Link(components=[components.Text(text="ПОМЕНЯТЬ ВЕРХНЕЕ ПЛАТЬЕ/САРАФАН")],on_click=GoToEvent(url="/gamajun/otzyv")),
-                            components.Text(text="________________"),
+                            components.Text(text="_______________________________"),
                             components.Link(components=[components.Text(text="ПОМЕНЯТЬ КРАСНУЮ РУБАХУ/ВЕРХНЮЮ СОРОЧКУ")],on_click=GoToEvent(url="/gamajun/otzyv")),
-                            components.Text(text="________________"),
+                            components.Text(text="_______________________________"),
                             components.Link(components=[components.Text(text="ПОМЕНЯТЬ НИЖНЮЮ СОРОЧКУ")],on_click=GoToEvent(url="/gamajun/otzyv"))
                                                          ],class_name="d-flex flex-column"),
                             components.Div(components=[
@@ -1530,13 +1543,13 @@ async def otris_mnogosloy():
                             components.Text(text="_"),
                                  ], class_name="fs-5 d-flex flex-row"),
                             components.Div(components=[
-                            components.Text(text="________________"),
+                            components.Text(text="_________________________________"),
                             components.Link(components=[components.Text(text="ПОМЕНЯТЬ ПУХОВИК В НАБОРЕ")],on_click=GoToEvent(url="/gamajun/otzyv")),
-                            components.Text(text="________________"),
+                            components.Text(text="__________________________________"),
                             components.Link(components=[components.Text(text="ПОМЕНЯТЬ ВЕРХНЕЕ ПЛАТЬЕ/САРАФАН В НАБОРЕ")],on_click=GoToEvent(url="/gamajun/otzyv")),
-                            components.Text(text="________________"),
+                            components.Text(text="__________________________________"),
                             components.Link(components=[components.Text(text="ПОМЕНЯТЬ КРАСНУЮ РУБАХУ/ВЕРХНЮЮ СОРОЧКУ В НАБОРЕ")],on_click=GoToEvent(url="/gamajun/otzyv")),
-                            components.Text(text="________________"),
+                            components.Text(text="___________________________________"),
                             components.Link(components=[components.Text(text="ПОМЕНЯТЬ НИЖНЮЮ СОРОЧКУ В НАБОРЕ")],on_click=GoToEvent(url="/gamajun/otzyv"))
                                                         ],class_name="d-flex flex-column"),
                             components.Div(components=[
@@ -1555,7 +1568,7 @@ async def otris_mnogosloy():
                             components.Text(text="________"),
                             components.Link(components=[components.Text(text="ПОМЕНЯТЬ НИЖНЮЮ СОРОЧКУ В НАБОРЕ")],on_click=GoToEvent(url="/gamajun/otzyv"))
                                  ], class_name="d-flex flex-column"),
-                             ],class_name="d-flex flex-row")
+                             ],class_name="d-flex flex-row align-items-center")
                              ],class_name="fs-5")
 from templates import nazv_symbolov, opis_symboli, traktovka_kolority, hudozhnik_0, hudozhnik_1, hudozhnik_2, hudozhnik_3
 from templates import hudozhnik_4, hudozhnik_5,hudozhnik_6, hudozhnik_7, hudozhnik_8, hudozhnik_9, hudozhnik_10,hudozhnik_11

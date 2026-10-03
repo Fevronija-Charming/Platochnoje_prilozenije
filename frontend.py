@@ -1506,18 +1506,33 @@ TablaMnogosloy(Cтолбец_Многослойность_1="---",Cтолбец_
 @gamajun.get("/api/mnogosloy",response_model=FastUI,response_model_exclude_none=True)
 async def otris_mnogosloy():
     return components.Div(components=
-                            [components.Heading(text="Конструктор многослойных нарядов",level=3),
+                            [
+                            components.Text(text="___"),
+                            components.Link(components=[components.Text(text="ПРИМЕРЫ МНОГОСЛОЙНЫХ НАРЯДОВ")],
+                                             on_click=GoToEvent(url="/gamajun/otzyv")),
+                            components.Text(text="___"),
+                            components.Link(components=[components.Text(text="О КОНЦЕПЦИИ МНОГОСЛОЙНОСТИ")],
+                                 on_click=GoToEvent(url="/gamajun/otzyv")),
+                            components.Text(text="___"),
+                            components.Link(components=[components.Text(text="НА ГЛАВНУЮ")],
+                                             on_click=GoToEvent(url="/gamajun/root")),
+                            components.Heading(text="Конструктор многослойных нарядов", level=2).
                             components.Div(components=[components.Table(data=data_mnogosloy,columns=[
                                 DisplayLookup(field="Cтолбец_Многослойность_1",title="Название слоя",mode=DisplayMode.markdown),
                                 DisplayLookup(field="Cтолбец_Многослойность_2",title="4ой, климатически-защитный:",mode=DisplayMode.markdown),
                                 DisplayLookup(field="Cтолбец_Многослойность_3",title="3ий, внешний",mode=DisplayMode.markdown),
                                 DisplayLookup(field="Cтолбец_Многослойность_4",title="1-ый/2ой,нижний + Исподнее бельё",mode=DisplayMode.markdown),
-                                                                    ],),],class_name="align-items-center fs-6"),
+                                                                    ],),],class_name="align-items-center fs-5"),
 
-                            components.Button(text="Оформить заказ на данный набор многослойной одежды",
-                                               on_click=events.GoToEvent(url="/gamajun/otzyv"),class_name="btn btn-success fs-3"),
-                            components.Heading(text="Если что-то в данном комплекте Вас не устраивает, попробуйте заменить этот элемент одежды:",
-                            level=3),
+                            components.Div(components=
+                             [
+                                 components.Button(text="Оформить заказ на данный набор многослойной одежды",
+                                                   on_click=events.GoToEvent(url="/gamajun/otzyv"),
+                                                   class_name="btn btn-success fs-4"),
+                                 components.Heading(
+                                     text="Если что-то в данном комплекте Вас не устраивает, попробуйте заменить этот элемент одежды:",
+                                     level=3),
+                                 ], class_name="fs-4 d-flex flex-column align-items-center"),
                             components.Div(components=
                              [
                                 components.Div(components=[

@@ -1509,9 +1509,10 @@ async def otris_mnogosloy():
                                 DisplayLookup(field="Cтолбец_Многослойность_2",title="4ой, климатически-защитный:",mode=DisplayMode.markdown),
                                 DisplayLookup(field="Cтолбец_Многослойность_3",title="3ий, внешний",mode=DisplayMode.markdown),
                                 DisplayLookup(field="Cтолбец_Многослойность_4",title="1-ый/2ой,нижний + Исподнее бельё",mode=DisplayMode.markdown),
-                                                                    ],)],class_name="align-items-center fs-6 text-center"),
+                                                                    ],)],class_name="align-items-center fs-6"),
                             components.Div(components=
                              [components.Div(components=[
+                            components.Text(text="________"),
                             components.Link(components=[components.Text(text="ПОМЕНЯТЬ ПУХОВИК В НАБОРЕ")],on_click=GoToEvent(url="/gamajun/otzyv")),
                             components.Text(text="________"),
                             components.Link(components=[components.Text(text="ПОМЕНЯТЬ ВЕРХНЕЕ ПЛАТЬЕ/САРАФАН В НАБОРЕ")],on_click=GoToEvent(url="/gamajun/otzyv")),
@@ -1519,13 +1520,14 @@ async def otris_mnogosloy():
                             components.Link(components=[components.Text(text="ПОМЕНЯТЬ КРАСНУЮ РУБАХУ/ВЕРХНЮЮ СОРОЧКУ В НАБОРЕ")],on_click=GoToEvent(url="/gamajun/otzyv")),
                             components.Text(text="________"),
                             components.Link(components=[components.Text(text="ПОМЕНЯТЬ НИЖНЮЮ СОРОЧКУ В НАБОРЕ")],on_click=GoToEvent(url="/gamajun/otzyv"))
-                                                         ],class_name="d-flex flex-column align-items-center"),
+                                                         ],class_name="d-flex flex-column"),
                             components.Div(components=[
-                            components.Text(text="__"),
-                            components.Text(text="__"),
-                            components.Text(text="__"),
-                            components.Text(text="__"),
-                                 ], class_name="fs-6 d-flex flex-row align-items-start"),
+                            components.Text(text="_"),
+                            components.Text(text="_"),
+                            components.Text(text="_"),
+                            components.Text(text="_"),
+                                 ], class_name="fs-6 d-flex flex-row"),
+                            components.Text(text="________"),
                             components.Div(components=[
                             components.Link(components=[components.Text(text="ПОМЕНЯТЬ ПУХОВИК В НАБОРЕ")],on_click=GoToEvent(url="/gamajun/otzyv")),
                             components.Text(text="________"),
@@ -1534,26 +1536,23 @@ async def otris_mnogosloy():
                             components.Link(components=[components.Text(text="ПОМЕНЯТЬ КРАСНУЮ РУБАХУ/ВЕРХНЮЮ СОРОЧКУ В НАБОРЕ")],on_click=GoToEvent(url="/gamajun/otzyv")),
                             components.Text(text="________"),
                             components.Link(components=[components.Text(text="ПОМЕНЯТЬ НИЖНЮЮ СОРОЧКУ В НАБОРЕ")],on_click=GoToEvent(url="/gamajun/otzyv"))
-                                                        ],class_name="d-flex flex-column align-items-center"),
+                                                        ],class_name="d-flex flex-column"),
                             components.Div(components=[
-                            components.Text(text="__"),
-                            components.Text(text="__"),
-                            components.Text(text="__"),
-                            components.Text(text="__")
-                                 ], class_name="fs-6 d-flex flex-row align-items-center"),
+                            components.Text(text="_"),
+                            components.Text(text="_"),
+                            components.Text(text="_"),
+                            components.Text(text="_")
+                                 ], class_name="fs-6 d-flex flex-row"),
                                  components.Div(components=[
-                                     components.Link(components=[components.Text(text="ПОМЕНЯТЬ ПУХОВИК В НАБОРЕ")],
-                                                     on_click=GoToEvent(url="/gamajun/otzyv")),
-                                     components.Link(
-                                         components=[components.Text(text="ПОМЕНЯТЬ ВЕРХНЕЕ ПЛАТЬЕ/САРАФАН В НАБОРЕ")],
-                                         on_click=GoToEvent(url="/gamajun/otzyv")),
-                                     components.Link(components=[
-                                         components.Text(text="ПОМЕНЯТЬ КРАСНУЮ РУБАХУ/ВЕРХНЮЮ СОРОЧКУ В НАБОРЕ")],
-                                                     on_click=GoToEvent(url="/gamajun/otzyv")),
-                                     components.Link(
-                                         components=[components.Text(text="ПОМЕНЯТЬ НИЖНЮЮ СОРОЧКУ В НАБОРЕ")],
-                                         on_click=GoToEvent(url="/gamajun/otzyv"))
-                                 ], class_name="d-flex flex-column align-items-center"),
+                            components.Text(text="________"),
+                            components.Link(components=[components.Text(text="ПОМЕНЯТЬ ПУХОВИК В НАБОРЕ")],on_click=GoToEvent(url="/gamajun/otzyv")),
+                            components.Text(text="________"),
+                            components.Link(components=[components.Text(text="ПОМЕНЯТЬ ВЕРХНЕЕ ПЛАТЬЕ/САРАФАН В НАБОРЕ")],on_click=GoToEvent(url="/gamajun/otzyv")),
+                            components.Text(text="________"),
+                            components.Link(components=[components.Text(text="ПОМЕНЯТЬ КРАСНУЮ РУБАХУ/ВЕРХНЮЮ СОРОЧКУ В НАБОРЕ")],on_click=GoToEvent(url="/gamajun/otzyv")),
+                            components.Text(text="________"),
+                            components.Link(components=[components.Text(text="ПОМЕНЯТЬ НИЖНЮЮ СОРОЧКУ В НАБОРЕ")],on_click=GoToEvent(url="/gamajun/otzyv"))
+                                 ], class_name="d-flex flex-column"),
                              ],class_name="d-flex flex-row")
                              ],class_name="fs-5 text-center")
 from templates import nazv_symbolov, opis_symboli, traktovka_kolority, hudozhnik_0, hudozhnik_1, hudozhnik_2, hudozhnik_3

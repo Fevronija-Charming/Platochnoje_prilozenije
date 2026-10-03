@@ -1540,7 +1540,7 @@ async def otris_mnogosloy():
                             components.Text(text="__"),
                             components.Text(text="__"),
                             components.Text(text="__")
-                                 ], class_name="fs-6 d-flex flex-row align-items-start"),
+                                 ], class_name="fs-6 d-flex flex-row align-items-center"),
                                  components.Div(components=[
                                      components.Link(components=[components.Text(text="ПОМЕНЯТЬ ПУХОВИК В НАБОРЕ")],
                                                      on_click=GoToEvent(url="/gamajun/otzyv")),

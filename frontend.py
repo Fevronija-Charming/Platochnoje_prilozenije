@@ -1511,18 +1511,18 @@ async def otris_mnogosloy():
                                             on_click=GoToEvent(url="/gamajun/otzyv")),
         components.Link(components=[components.Text(text="О КОНЦЕПЦИИ МНОГОСЛОЙНОСТИ")],
                         on_click=GoToEvent(url="/gamajun/otzyv")),
-        ],end_links=[components.Link(components=[components.Text(text="НА ГЛАВНУЮ")],
+            components.Link(components=[components.Text(text="НА ГЛАВНУЮ")],
                             on_click=GoToEvent(url="/gamajun/root")),
             components.Link(
                 components=[components.Text(text="ВЫХОД ИЗ ПРИЛОЖЕНИЯ")],
                 on_click=GoToEvent(url="/gamajun/otzyv"))
-        ],class_name="fs-3"),
-        components.Div(components=[
+        ],class_name="d-flex flex-column align-items-start  fs-3"),
+        components.Page(components=[
             components.Div(components=
             [
                 components.Heading(text="~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~", level=3),
             components.Heading(text="<--- Конструктор многослойных нарядов --->", level=3),
-            components.Heading(text="~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~", level=3)], class_name="align-items-center fs-4"),
+            components.Heading(text="~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~", level=3)], class_name="d-flex flex-column align-items-center fs-4"),
                             components.Div(components=[components.Table(data=data_mnogosloy,columns=[
                                 DisplayLookup(field="Cтолбец_Многослойность_1",title="Название слоя",mode=DisplayMode.markdown),
                                 DisplayLookup(field="Cтолбец_Многослойность_2",title="4ой, климатически-защитный:",mode=DisplayMode.markdown),
@@ -1592,8 +1592,10 @@ async def otris_mnogosloy():
                             components.Text(text="_________________________________"),
                             components.Link(components=[components.Text(text="ПОМЕНЯТЬ НИЖНЮЮ СОРОЧКУ В НАБОРЕ")],on_click=GoToEvent(url="/gamajun/otzyv"))
                                  ], class_name="d-flex flex-column"),
-                             ],class_name="d-flex flex-row")
-                             ],class_name="align-items-center fs-5")
+                             ],class_name="d-flex flex-row"),
+                             components.Footer(links=[components.Link(components=[components.Text(text="ПОМЕНЯТЬ НИЖНЮЮ СОРОЧКУ В НАБОРЕ")],on_click=GoToEvent(url="/gamajun/otzyv"))],class_name="border-top")
+        ],
+            class_name="align-items-center fs-5"),
             ]
 from templates import nazv_symbolov, opis_symboli, traktovka_kolority, hudozhnik_0, hudozhnik_1, hudozhnik_2, hudozhnik_3
 from templates import hudozhnik_4, hudozhnik_5,hudozhnik_6, hudozhnik_7, hudozhnik_8, hudozhnik_9, hudozhnik_10,hudozhnik_11

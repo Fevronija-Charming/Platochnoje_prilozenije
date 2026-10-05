@@ -1497,52 +1497,7 @@ class TablaMnogosloy(BaseModel):
     Cтолбец_Многослойность_7: str = Field(min_length=3, max_length=512)
     Cтолбец_Многослойность_8: str = Field(min_length=3, max_length=512)
 import fastui.events as events
-async def pustyshka():
-    return components.Text(text="______________________"),
-data_mnogosloy=[
-#TablaMnogosloy(Cтолбец_Многослойность_1="Основное предназначение/Аксессуары",Cтолбец_Многослойность_2="Длительное нахождение вне помещения в холодное время года",Cтолбец_Многослойность_3="Пребывание в коллективе мало знакомых людей вне дома, для работы и учёбы",Cтолбец_Многослойность_4="Пребывание в коллективе мало знакомых людей вне дома, для работы и учёбы",Cтолбец_Многослойность_5="Пребывание в коллективе мало знакомых людей вне дома, для работы и учёбы",Cтолбец_Многослойность_6="---",Cтолбец_Многослойность_7="---",Cтолбец_Многослойность_8="---"),
-TablaMnogosloy(Cтолбец_Многослойность_1="---",Cтолбец_Многослойность_2="Зимняя шапка:\n\n!""[сапожки](static/mnogosloy-plat-zelen-A.jpg)\n\nВерхний платок:\n\n!""[сапожки](static/mnogosloy-platok-e.jpg)\n\nШуба/пуховик:\n\n!""[сапожки](static/mnogosloy-puhan-c.jpg)\n\nЗимняя обувь:\n\n!""[сапожки](static/mnogosloy-zelen-sapogi.jpg)",Cтолбец_Многослойность_3="Зимняя шапка:\n\n!""[сапожки](static/mnogosloy-plat-zelen-A.jpg)\n\nВерхний_платок:\n\n!""[сапожки](static/mnogosloy-platok-e.jpg)\n\nШуба/пуховик:\n\n!""[сапожки](static/mnogosloy-puhan-c.jpg)\n\nЗимняя обувь:\n\n!""[сапожки](static/mnogosloy-zelen-sapogi.jpg)",Cтолбец_Многослойность_4="Шуба/пуховик:\n\n!""[сапожки](static/mnogosloy-puhan-c.jpg)\n\nШуба/пуховик:\n\n!""[сапожки](static/mnogosloy-puhan-c.jpg)",Cтолбец_Многослойность_5="Зимняя шапка:\n\n!""[сапожки](static/mnogosloy-plat-zelen-A.jpg)\n\nВерхний_платок:\n\n!""[сапожки](static/mnogosloy-platok-e.jpg)\n\nШуба/пуховик:\n\n!""[сапожки](static/mnogosloy-puhan-c.jpg)\n\nЗимняя обувь:\n\n!""[сапожки](static/mnogosloy-zelen-sapogi.jpg)",Cтолбец_Многослойность_6="!""[сапожки](static/mnogosloy-zelen-sapogi.jpg)",Cтолбец_Многослойность_7="Верхний платок ->",Cтолбец_Многослойность_8="!""[сапожки](static/mnogosloy-plat-zelen-A.jpg)"),
-]
-@gamajun.get("/api/mnogosloy",response_model=FastUI,response_model_exclude_none=True)
-async def otris_mnogosloy():
-    return [components.PageTitle(text="Конструктор многослойных нарядов"),
-        components.Navbar(start_links=[components.Link(
-                                            components=[components.Text(text="ПОДБОРКА МНОГОСЛОЙНЫХ ОБРАЗОВ")],
-                                            on_click=GoToEvent(url="/gamajun/otzyv")),
-        components.Link(components=[components.Text(text="О КОНЦЕПЦИИ МНОГОСЛОЙНОСТИ")],
-                        on_click=GoToEvent(url="/gamajun/otzyv")),
-            components.Link(components=[components.Text(text="НА ГЛАВНУЮ")],
-                            on_click=GoToEvent(url="/gamajun/root")),
-            components.Link(
-                components=[components.Text(text="ВЫХОД ИЗ ПРИЛОЖЕНИЯ")],
-                on_click=GoToEvent(url="/gamajun/otzyv"))
-        ],class_name="d-flex flex-column align-items-start  fs-3"),
-        components.Page(components=[
-            components.Div(components=
-            [
-                components.Heading(text="~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~", level=3),
-            components.Heading(text="<--- Конструктор многослойных нарядов --->", level=3),
-            components.Heading(text="~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~", level=3)], class_name="d-flex flex-column align-items-center fs-4"),
-                            components.Div(components=[components.Table(data=data_mnogosloy,columns=[
-                                DisplayLookup(field="Cтолбец_Многослойность_1",title="Название слоя",mode=DisplayMode.markdown),
-                                DisplayLookup(field="Cтолбец_Многослойность_2",title="4ой, климатически-защитный:",mode=DisplayMode.markdown),
-                                DisplayLookup(field="Cтолбец_Многослойность_3",title="3ий, внешний",mode=DisplayMode.markdown),
-                                DisplayLookup(field="Cтолбец_Многослойность_4",title="1-ый/2ой,нижний + Исподнее бельё",mode=DisplayMode.markdown),
-                                DisplayLookup(field="Cтолбец_Многослойность_5",
-                                              title="1-ый/2ой,нижний + Исподнее бельё", mode=DisplayMode.markdown)
-                                                                    ],),],class_name="align-items-center fs-5"),
-
-                            components.Div(components=
-                             [
-                                 components.Button(text="Оформить заказ на данный набор многослойной одежды",
-                                                   on_click=events.GoToEvent(url="/gamajun/otzyv"),
-                                                   class_name="btn btn-success fs-4"),
-                                 components.Text(text="_____________________________"),
-                                 components.Heading(
-                                     text="Если что-то в данном комплекте Вас не устраивает, попробуйте заменить этот элемент одежды:",
-                                     level=3),
-                                 ], class_name="fs-4 d-flex flex-column align-items-center"),
-                            components.Div(components=
+smena_narjadov_upr=components.Div(components=
                              [
                                 components.Div(components=[
                                      components.Text(text="_"),
@@ -1592,8 +1547,89 @@ async def otris_mnogosloy():
                             components.Text(text="_________________________________"),
                             components.Link(components=[components.Text(text="ПОМЕНЯТЬ НИЖНЮЮ СОРОЧКУ В НАБОРЕ")],on_click=GoToEvent(url="/gamajun/otzyv"))
                                  ], class_name="d-flex flex-column"),
-                             ],class_name="d-flex flex-row"),
-                             components.Footer(links=[components.Link(components=[components.Text(text="ПОМЕНЯТЬ НИЖНЮЮ СОРОЧКУ В НАБОРЕ")],on_click=GoToEvent(url="/gamajun/otzyv"))],class_name="border-top")
+                             ],class_name="d-flex flex-row")
+nizn_navigacija=components.Navbar(start_links=[components.Link(
+                components=[components.Text(text="ПОДБОРКА МНОГОСЛОЙНЫХ ОБРАЗОВ")],
+                on_click=GoToEvent(url="/gamajun/otzyv")),
+                components.Link(components=[components.Text(text="О КОНЦЕПЦИИ МНОГОСЛОЙНОСТИ")],
+                                on_click=GoToEvent(url="/gamajun/otzyv")),
+                components.Link(components=[components.Text(text="НА ГЛАВНУЮ")],
+                                on_click=GoToEvent(url="/gamajun/root")),
+                components.Link(
+                    components=[components.Text(text="ВЫХОД ИЗ ПРИЛОЖЕНИЯ")],
+                    on_click=GoToEvent(url="/gamajun/otzyv"))
+            ], class_name="d-flex flex-column align-items-start  fs-3")
+async def pustyshka():
+    return components.Text(text="______________________"),
+data_mnogosloy=[
+#TablaMnogosloy(Cтолбец_Многослойность_1="Основное предназначение/Аксессуары",Cтолбец_Многослойность_2="Длительное нахождение вне помещения в холодное время года",Cтолбец_Многослойность_3="Пребывание в коллективе мало знакомых людей вне дома, для работы и учёбы",Cтолбец_Многослойность_4="Пребывание в коллективе мало знакомых людей вне дома, для работы и учёбы",Cтолбец_Многослойность_5="Пребывание в коллективе мало знакомых людей вне дома, для работы и учёбы",Cтолбец_Многослойность_6="---",Cтолбец_Многослойность_7="---",Cтолбец_Многослойность_8="---"),
+TablaMnogosloy(Cтолбец_Многослойность_1="---",Cтолбец_Многослойность_2="Зимняя шапка:\n\n!""[сапожки](static/mnogosloy-plat-zelen-A.jpg)\n\nВерхний платок:\n\n!""[сапожки](static/mnogosloy-platok-e.jpg)\n\nШуба/пуховик:\n\n!""[сапожки](static/mnogosloy-puhan-c.jpg)\n\nЗимняя обувь:\n\n!""[сапожки](static/mnogosloy-zelen-sapogi.jpg)",Cтолбец_Многослойность_3="Зимняя шапка:\n\n!""[сапожки](static/mnogosloy-plat-zelen-A.jpg)\n\nВерхний_платок:\n\n!""[сапожки](static/mnogosloy-platok-e.jpg)\n\nШуба/пуховик:\n\n!""[сапожки](static/mnogosloy-puhan-c.jpg)\n\nЗимняя обувь:\n\n!""[сапожки](static/mnogosloy-zelen-sapogi.jpg)",Cтолбец_Многослойность_4="Шуба/пуховик:\n\n!""[сапожки](static/mnogosloy-puhan-c.jpg)\n\nШуба/пуховик:\n\n!""[сапожки](static/mnogosloy-puhan-c.jpg)",Cтолбец_Многослойность_5="Зимняя шапка:\n\n!""[сапожки](static/mnogosloy-plat-zelen-A.jpg)\n\nВерхний_платок:\n\n!""[сапожки](static/mnogosloy-platok-e.jpg)\n\nШуба/пуховик:\n\n!""[сапожки](static/mnogosloy-puhan-c.jpg)\n\nЗимняя обувь:\n\n!""[сапожки](static/mnogosloy-zelen-sapogi.jpg)",Cтолбец_Многослойность_6="!""[сапожки](static/mnogosloy-zelen-sapogi.jpg)",Cтолбец_Многослойность_7="Верхний платок ->",Cтолбец_Многослойность_8="!""[сапожки](static/mnogosloy-plat-zelen-A.jpg)"),
+]
+@gamajun.get("/api/mnogosloy",response_model=FastUI,response_model_exclude_none=True)
+async def otris_mnogosloy():
+    return [components.PageTitle(text="Конструктор многослойных нарядов"),
+        components.Navbar(start_links=[components.Link(
+                                            components=[components.Text(text="ПОДБОРКА МНОГОСЛОЙНЫХ ОБРАЗОВ")],
+                                            on_click=GoToEvent(url="/gamajun/otzyv")),
+        components.Link(components=[components.Text(text="О КОНЦЕПЦИИ МНОГОСЛОЙНОСТИ")],
+                        on_click=GoToEvent(url="/gamajun/otzyv")),
+            components.Link(components=[components.Text(text="НА ГЛАВНУЮ")],
+                            on_click=GoToEvent(url="/gamajun/root")),
+            components.Link(
+                components=[components.Text(text="ВЫХОД ИЗ ПРИЛОЖЕНИЯ")],
+                on_click=GoToEvent(url="/gamajun/otzyv"))
+        ],class_name=" border-up fs-3"),
+        components.Page(components=[
+            components.Div(components=
+            [
+                components.Heading(text="~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~", level=3),
+            components.Heading(text="<--- Конструктор многослойных нарядов --->", level=3),
+            components.Heading(text="~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~", level=3)], class_name="d-flex flex-column align-items-center fs-4"),
+                            components.Div(components=[components.Table(data=data_mnogosloy,columns=[
+                                DisplayLookup(field="Cтолбец_Многослойность_1",title="Название слоя",mode=DisplayMode.markdown),
+                                DisplayLookup(field="Cтолбец_Многослойность_2",title="4ой, климатически-защитный:",mode=DisplayMode.markdown),
+                                DisplayLookup(field="Cтолбец_Многослойность_3",title="3ий, внешний",mode=DisplayMode.markdown),
+                                DisplayLookup(field="Cтолбец_Многослойность_4",title="1-ый/2ой,нижний + Исподнее бельё",mode=DisplayMode.markdown),
+                                DisplayLookup(field="Cтолбец_Многослойность_5",
+                                              title="1-ый/2ой,нижний + Исподнее бельё", mode=DisplayMode.markdown)
+                                                                    ],),],class_name="align-items-center fs-5"),
+
+                            components.Div(components=
+                             [
+                                 components.Button(text="Оформить заказ на данный набор многослойной одежды",
+                                                   on_click=events.GoToEvent(url="/gamajun/otzyv"),
+                                                   class_name="btn btn-success fs-4"),
+                                 components.Text(text="_____________________________"),
+                                 components.Heading(
+                                     text="Если что-то в данном комплекте Вас не устраивает, попробуйте заменить этот элемент одежды:",
+                                     level=3),
+                                 ], class_name="fs-4 d-flex flex-column align-items-center"),
+            #smena_narjadov_upr,
+            #nizn_navigacija,
+                            components.Footer(links=[
+                            components.Link(components=[components.Text(text="СМЕНИТЬ НИЖНЮЮ СОРОЧКУ")],on_click=GoToEvent(url="/gamajun/otzyv")),
+                            components.Link(components=[components.Text(text="СМЕНИТЬ КРАСНУЮ РУБАХУ/ВЕРХНЮЮ СОРОЧКУ")],on_click=GoToEvent(url="/gamajun/otzyv")),
+                            components.Link(components=[components.Text(text="СМЕНИТЬ ВЕРХНЕЕ ПЛАТЬЕ/САРАФАН")],on_click=GoToEvent(url="/gamajun/otzyv")),
+                            components.Link(components=[components.Text(text="СМЕНИТЬ ПУХОВИК/ВЕРХНЮЮ СОРОЧКУ")],on_click=GoToEvent(url="/gamajun/otzyv")),
+                                components.Link(components=[components.Text(text="СМЕНИТЬ НИЖНЮЮ СОРОЧКУ")],
+                                                on_click=GoToEvent(url="/gamajun/otzyv")),
+                                components.Link(
+                                    components=[components.Text(text="СМЕНИТЬ КРАСНУЮ РУБАХУ/ВЕРХНЮЮ СОРОЧКУ")],
+                                    on_click=GoToEvent(url="/gamajun/otzyv")),
+                                components.Link(components=[components.Text(text="СМЕНИТЬ ВЕРХНЕЕ ПЛАТЬЕ/САРАФАН")],
+                                                on_click=GoToEvent(url="/gamajun/otzyv")),
+                                components.Link(components=[components.Text(text="СМЕНИТЬ ПУХОВИК/ВЕРХНЮЮ СОРОЧКУ")],
+                                                on_click=GoToEvent(url="/gamajun/otzyv")),
+                                components.Link(components=[components.Text(text="СМЕНИТЬ НИЖНЮЮ СОРОЧКУ")],
+                                                on_click=GoToEvent(url="/gamajun/otzyv")),
+                                components.Link(
+                                    components=[components.Text(text="СМЕНИТЬ КРАСНУЮ РУБАХУ/ВЕРХНЮЮ СОРОЧКУ")],
+                                    on_click=GoToEvent(url="/gamajun/otzyv")),
+                                components.Link(components=[components.Text(text="СМЕНИТЬ ВЕРХНЕЕ ПЛАТЬЕ/САРАФАН")],
+                                                on_click=GoToEvent(url="/gamajun/otzyv")),
+                                components.Link(components=[components.Text(text="СМЕНИТЬ ПУХОВИК/ВЕРХНЮЮ СОРОЧКУ")],
+                                                on_click=GoToEvent(url="/gamajun/otzyv")),
+                            ],class_name="border-top d-flex flex-column fs-3"),
         ],
             class_name="align-items-center fs-5"),
             ]
@@ -1982,9 +2018,9 @@ async def visitor_metrics(request:Request,call_next):
         return response
     elif "root" in resource_path_splitted:
         return response
-    elif "api" not in resource_path_splitted:
+    elif "localhost:800" in resource_path_splitted:
         return response
-    elif "localhost" in resource_path_splitted:
+    elif "api" not in resource_path_splitted:
         return response
     # вывод тяжёлой задачи в фон
     else:

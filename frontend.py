@@ -1559,6 +1559,63 @@ nizn_navigacija=components.Navbar(start_links=[components.Link(
                     components=[components.Text(text="ВЫХОД ИЗ ПРИЛОЖЕНИЯ")],
                     on_click=GoToEvent(url="/gamajun/otzyv"))
             ], class_name="d-flex flex-column align-items-start  fs-3")
+nizn_panel=components.Navbar(start_links=[components.Link(
+                                            components=[components.Text(text="ПОДБОРКА МНОГОСЛОЙНЫХ ОБРАЗОВ")],
+                                            on_click=GoToEvent(url="/gamajun/otzyv")),
+        components.Link(components=[components.Text(text="О КОНЦЕПЦИИ МНОГОСЛОЙНОСТИ")],
+                        on_click=GoToEvent(url="/gamajun/otzyv")),
+            components.Link(components=[components.Text(text="НА ГЛАВНУЮ")],
+                            on_click=GoToEvent(url="/gamajun/root")),
+            components.Link(
+                components=[components.Text(text="ВЫХОД ИЗ ПРИЛОЖЕНИЯ")],
+                on_click=GoToEvent(url="/gamajun/otzyv")),
+components.Link(
+                                            components=[components.Text(text="ПОДБОРКА МНОГОСЛОЙНЫХ ОБРАЗОВ")],
+                                            on_click=GoToEvent(url="/gamajun/otzyv")),
+        components.Link(components=[components.Text(text="О КОНЦЕПЦИИ МНОГОСЛОЙНОСТИ")],
+                        on_click=GoToEvent(url="/gamajun/otzyv")),
+            components.Link(components=[components.Text(text="НА ГЛАВНУЮ")],
+                            on_click=GoToEvent(url="/gamajun/root")),
+            components.Link(
+                components=[components.Text(text="ВЫХОД ИЗ ПРИЛОЖЕНИЯ")],
+                on_click=GoToEvent(url="/gamajun/otzyv")),
+components.Link(
+                                            components=[components.Text(text="ПОДБОРКА МНОГОСЛОЙНЫХ ОБРАЗОВ")],
+                                            on_click=GoToEvent(url="/gamajun/otzyv")),
+        components.Link(components=[components.Text(text="О КОНЦЕПЦИИ МНОГОСЛОЙНОСТИ")],
+                        on_click=GoToEvent(url="/gamajun/otzyv")),
+            components.Link(components=[components.Text(text="НА ГЛАВНУЮ")],
+                            on_click=GoToEvent(url="/gamajun/root")),
+            components.Link(
+                components=[components.Text(text="ВЫХОД ИЗ ПРИЛОЖЕНИЯ")],
+                on_click=GoToEvent(url="/gamajun/otzyv")),
+
+
+        ],class_name="fs-3")
+nizn_ssylki=components.Footer(links=[
+                            components.Link(components=[components.Text(text="СМЕНИТЬ НИЖНЮЮ СОРОЧКУ")],on_click=GoToEvent(url="/gamajun/otzyv")),
+                            components.Link(components=[components.Text(text="СМЕНИТЬ КРАСНУЮ РУБАХУ/ВЕРХНЮЮ СОРОЧКУ")],on_click=GoToEvent(url="/gamajun/otzyv")),
+                            components.Link(components=[components.Text(text="СМЕНИТЬ ВЕРХНЕЕ ПЛАТЬЕ/САРАФАН")],on_click=GoToEvent(url="/gamajun/otzyv")),
+                            components.Link(components=[components.Text(text="СМЕНИТЬ ПУХОВИК/ВЕРХНЮЮ СОРОЧКУ")],on_click=GoToEvent(url="/gamajun/otzyv")),
+                                components.Link(components=[components.Text(text="СМЕНИТЬ НИЖНЮЮ СОРОЧКУ")],
+                                                on_click=GoToEvent(url="/gamajun/otzyv")),
+                                components.Link(
+                                    components=[components.Text(text="СМЕНИТЬ КРАСНУЮ РУБАХУ/ВЕРХНЮЮ СОРОЧКУ")],
+                                    on_click=GoToEvent(url="/gamajun/otzyv")),
+                                components.Link(components=[components.Text(text="СМЕНИТЬ ВЕРХНЕЕ ПЛАТЬЕ/САРАФАН")],
+                                                on_click=GoToEvent(url="/gamajun/otzyv")),
+                                components.Link(components=[components.Text(text="СМЕНИТЬ ПУХОВИК/ВЕРХНЮЮ СОРОЧКУ")],
+                                                on_click=GoToEvent(url="/gamajun/otzyv")),
+                                components.Link(components=[components.Text(text="СМЕНИТЬ НИЖНЮЮ СОРОЧКУ")],
+                                                on_click=GoToEvent(url="/gamajun/otzyv")),
+                                components.Link(
+                                    components=[components.Text(text="СМЕНИТЬ КРАСНУЮ РУБАХУ/ВЕРХНЮЮ СОРОЧКУ")],
+                                    on_click=GoToEvent(url="/gamajun/otzyv")),
+                                components.Link(components=[components.Text(text="СМЕНИТЬ ВЕРХНЕЕ ПЛАТЬЕ/САРАФАН")],
+                                                on_click=GoToEvent(url="/gamajun/otzyv")),
+                                components.Link(components=[components.Text(text="СМЕНИТЬ ПУХОВИК/ВЕРХНЮЮ СОРОЧКУ")],
+                                                on_click=GoToEvent(url="/gamajun/otzyv")),
+                            ],class_name="border-top d-flex flex-row fs-3"),
 async def pustyshka():
     return components.Text(text="______________________"),
 data_mnogosloy=[
@@ -1578,7 +1635,7 @@ async def otris_mnogosloy():
             components.Link(
                 components=[components.Text(text="ВЫХОД ИЗ ПРИЛОЖЕНИЯ")],
                 on_click=GoToEvent(url="/gamajun/otzyv"))
-        ],class_name=" border-up fs-3"),
+        ],class_name="fs-3"),
         components.Page(components=[
             components.Div(components=
             [
@@ -1606,30 +1663,7 @@ async def otris_mnogosloy():
                                  ], class_name="fs-4 d-flex flex-column align-items-center"),
             #smena_narjadov_upr,
             #nizn_navigacija,
-                            components.Footer(links=[
-                            components.Link(components=[components.Text(text="СМЕНИТЬ НИЖНЮЮ СОРОЧКУ")],on_click=GoToEvent(url="/gamajun/otzyv")),
-                            components.Link(components=[components.Text(text="СМЕНИТЬ КРАСНУЮ РУБАХУ/ВЕРХНЮЮ СОРОЧКУ")],on_click=GoToEvent(url="/gamajun/otzyv")),
-                            components.Link(components=[components.Text(text="СМЕНИТЬ ВЕРХНЕЕ ПЛАТЬЕ/САРАФАН")],on_click=GoToEvent(url="/gamajun/otzyv")),
-                            components.Link(components=[components.Text(text="СМЕНИТЬ ПУХОВИК/ВЕРХНЮЮ СОРОЧКУ")],on_click=GoToEvent(url="/gamajun/otzyv")),
-                                components.Link(components=[components.Text(text="СМЕНИТЬ НИЖНЮЮ СОРОЧКУ")],
-                                                on_click=GoToEvent(url="/gamajun/otzyv")),
-                                components.Link(
-                                    components=[components.Text(text="СМЕНИТЬ КРАСНУЮ РУБАХУ/ВЕРХНЮЮ СОРОЧКУ")],
-                                    on_click=GoToEvent(url="/gamajun/otzyv")),
-                                components.Link(components=[components.Text(text="СМЕНИТЬ ВЕРХНЕЕ ПЛАТЬЕ/САРАФАН")],
-                                                on_click=GoToEvent(url="/gamajun/otzyv")),
-                                components.Link(components=[components.Text(text="СМЕНИТЬ ПУХОВИК/ВЕРХНЮЮ СОРОЧКУ")],
-                                                on_click=GoToEvent(url="/gamajun/otzyv")),
-                                components.Link(components=[components.Text(text="СМЕНИТЬ НИЖНЮЮ СОРОЧКУ")],
-                                                on_click=GoToEvent(url="/gamajun/otzyv")),
-                                components.Link(
-                                    components=[components.Text(text="СМЕНИТЬ КРАСНУЮ РУБАХУ/ВЕРХНЮЮ СОРОЧКУ")],
-                                    on_click=GoToEvent(url="/gamajun/otzyv")),
-                                components.Link(components=[components.Text(text="СМЕНИТЬ ВЕРХНЕЕ ПЛАТЬЕ/САРАФАН")],
-                                                on_click=GoToEvent(url="/gamajun/otzyv")),
-                                components.Link(components=[components.Text(text="СМЕНИТЬ ПУХОВИК/ВЕРХНЮЮ СОРОЧКУ")],
-                                                on_click=GoToEvent(url="/gamajun/otzyv")),
-                            ],class_name="border-top d-flex flex-row fs-3"),
+            nizn_panel,
         ],
             class_name="align-items-center fs-5"),
             ]

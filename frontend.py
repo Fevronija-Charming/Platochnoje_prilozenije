@@ -1629,7 +1629,7 @@ async def otris_mnogosloy():
                                                 on_click=GoToEvent(url="/gamajun/otzyv")),
                                 components.Link(components=[components.Text(text="СМЕНИТЬ ПУХОВИК/ВЕРХНЮЮ СОРОЧКУ")],
                                                 on_click=GoToEvent(url="/gamajun/otzyv")),
-                            ],class_name="border-top d-flex flex-column fs-3"),
+                            ],class_name="border-top d-flex flex-row fs-3"),
         ],
             class_name="align-items-center fs-5"),
             ]

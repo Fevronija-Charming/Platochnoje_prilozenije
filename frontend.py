@@ -167,9 +167,9 @@ class PlatochnaBazaNew(BaseModel):
     Примечание: str = Field(min_length=3, max_length=100)
     Фотография: str = Field(min_length=3, max_length=100)
 class Merki(BaseModel):
-    Название_Мерки: str = Field(min_length=2, max_length=128)
-    Описание: str = Field(min_length=3, max_length=100)
-    Фотография: str = Field(min_length=3, max_length=100)
+    Название_Мерки: str = Field(min_length=2, max_length=512)
+    Описание: str = Field(min_length=3, max_length=512)
+    Фотография: str = Field(min_length=3, max_length=512)
 data_merki=[Merki(Название_Мерки="Длина изделия по спинке",Описание="""В одиночку на самом себе замеряется от 7-го позвонка, 
 опуская нить с тяжелым грузиком до звука падения этого грузика об пол; на другом человеке замеряется от ключной выемки до
 пола. Следует учесть, что оптимальное расстояние от нижнего подола изделия до пола 3-5 см.""",Фотография="Семён Рыжов"),

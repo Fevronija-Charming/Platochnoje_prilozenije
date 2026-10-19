@@ -1565,7 +1565,7 @@ async def otris_kolority():
                                                                         DisplayLookup(field="Размер",title="Размер",mode=DisplayMode.markdown),
                                                                         DisplayLookup(field="Примечание",title="Примечание",mode=DisplayMode.markdown),
                                                                         DisplayLookup(field="Фотография",title="Фотография",mode=DisplayMode.markdown),
-                                                                         ],),], class_name=" align-items-center fs-4 text-center")
+                                                                         ],),], class_name=" align-items-center fs-5 text-center")
 #class_name="fs-6 text-center"
 @gamajun.get("/api/results", response_model=FastUI,response_model_exclude_none=True)
 async def show_platoky():

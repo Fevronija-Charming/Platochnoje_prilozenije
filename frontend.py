@@ -1780,7 +1780,7 @@ async def pustyshka():
     return components.Text(text="______________________"),
 data_mnogosloy=[
 #TablaMnogosloy(Cтолбец_Многослойность_1="Основное предназначение/Аксессуары",Cтолбец_Многослойность_2="Длительное нахождение вне помещения в холодное время года",Cтолбец_Многослойность_3="Пребывание в коллективе мало знакомых людей вне дома, для работы и учёбы",Cтолбец_Многослойность_4="Пребывание в коллективе мало знакомых людей вне дома, для работы и учёбы",Cтолбец_Многослойность_5="Пребывание в коллективе мало знакомых людей вне дома, для работы и учёбы",Cтолбец_Многослойность_6="---",Cтолбец_Многослойность_7="---",Cтолбец_Многослойность_8="---"),
-TablaMnogosloy(Cтолбец_Многослойность_1="Зимняя шапка,норка:\n\n!""[сапожки](static/mnogosloy-shapka-B.jpg)\n\nБрошь энтическая:\n\n!""[сапожки](static/mnogosloy-brosh-B.jpg)\n\nПояс:\n\n!""[сапожки](static/многослойность-пояс-зел.jpg)\n\nЗимняя обувь:\n\n!""[сапожки](static/mnogosloy-zelen-sapogi.jpg)",Cтолбец_Многослойность_2="\n\nВерхний платок:\n\n!""[сапожки](static/mnogosloy-platok-zeleny-AAAA.jpg)\n\nШуба/пуховик:\n\n!""[сапожки](static/mnogosloy-puhan-zeleny-e.jpg)",Cтолбец_Многослойность_3="Нижний платок:\n\n!""[сапожки](static/mnogosloy-platok-zeleny-AAAA.jpg)\n\nВерхнее платье/сарафан:\n\n!""[сапожки](static/mnogosloy-puhan-zeleny-e.jpg)\n\nПостолы:\n\n!""[сапожки](static/mnogosloy-zelen-sapogi.jpg)",Cтолбец_Многослойность_4="Венец,ложный кокошник:\n\n!""[сапожки](static/mnogosloy-venec.jpg)\n\nКрепежные магнитики:\n\n!""[сапожки](static/mnogosloy-magnet.jpg)\n\nПоручи:\n\n!""[сапожки](static/mnogosloy-poruch.jpg)\n\nНабор колец:\n\n!""[сапожки](static/mnogosloy-kolca.jpg)\n\nПоясок:\n\n!""[сапожки](static/mnogosloy-pojas-2.jpg)",Cтолбец_Многослойность_5="Верхняя сорочка:\n\n!""[сапожки](static/mnogosloy-sorochka-A.jpg)\n\nНижняя сорочка:\n\n!""[сапожки](static//mnogosloy-sorochka-A.jpg)",Cтолбец_Многослойность_6="!""[сапожки](static/mnogosloy-zelen-sapogi.jpg)",Cтолбец_Многослойность_7="Верхний платок ->",Cтолбец_Многослойность_8="!""[сапожки](static/mnogosloy-plat-zelen-A.jpg)"),
+TablaMnogosloy(Cтолбец_Многослойность_1="Зимняя шапка,норка:\n\n!""[сапожки](static/mnogosloy-shapka-B.jpg)\n\nБрошь энтическая:\n\n!""[сапожки](static/mnogosloy-brosh-B.jpg)\n\nПояс:\n\n!""[сапожки](static/многослойность-пояс-зел.jpg)\n\nЗимняя обувь:\n\n!""[сапожки](static/mnogosloy-zelen-sapogi.jpg)",Cтолбец_Многослойность_2="\n\nВерхний платок:\n\n!""[сапожки](static/mnogosloy-platok-zeleny-AAAA.jpg)\n\nНижний платок:\n\n!""[сапожки](static/mnogosloy-platok-zeleny-AAAA.jpg)\n\nШуба/пуховик:\n\n!""[сапожки](static/mnogosloy-puhan-zeleny-e.jpg)",Cтолбец_Многослойность_3="Верхнее платье/сарафан:\n\n!""[сапожки](static/mnogosloy-sarafan-2.jpg)\n\nНижнее платье:\n\n!""[сапожки](static/mnogosloy-platyje-2.jpg)",Cтолбец_Многослойность_4="Венец,ложный кокошник:\n\n!""[сапожки](static/mnogosloy-venec.jpg)\n\nКрепежные магнитики:\n\n!""[сапожки](static/mnogosloy-magnet.jpg)\n\nПоручи:\n\n!""[сапожки](static/mnogosloy-poruch.jpg)\n\nНабор колец:\n\n!""[сапожки](static/mnogosloy-kolca.jpg)\n\nПостолы:\n\n!""[сапожки](static/mnogosloy-zelen-sapogi.jpg)",Cтолбец_Многослойность_5="Верхняя сорочка:\n\n!""[сапожки](static/mnogosloy-sorochka-B2.jpg)\n\nПоясок:\n\n!""[сапожки](static/mnogosloy-pojas-3.jpg)\n\nНижняя сорочка:\n\n!""[сапожки](static//mnogosloy-sorochka-A.jpg)",Cтолбец_Многослойность_6="!""[сапожки](static/mnogosloy-zelen-sapogi.jpg)",Cтолбец_Многослойность_7="Верхний платок ->",Cтолбец_Многослойность_8="!""[сапожки](static/mnogosloy-plat-zelen-A.jpg)"),
 ]
 @gamajun.get("/api/mnogosloy",response_model=FastUI,response_model_exclude_none=True)
 async def otris_mnogosloy():
@@ -1795,7 +1795,7 @@ async def otris_mnogosloy():
             components.Link(
                 components=[components.Text(text="ВЫХОД ИЗ ПРИЛОЖЕНИЯ")],
                 on_click=GoToEvent(url="/gamajun/otzyv"))
-        ],class_name="fs-3"),
+        ],class_name="fs-3 me-3"),
         components.Page(components=[
             components.Div(components=
             [
@@ -1824,7 +1824,7 @@ async def otris_mnogosloy():
             #nizn_navigacija,
             nizn_panel,
         ],
-            class_name="align-items-start fs-5"),
+            class_name="align-items-center fs-5"),
             ]
 from templates import nazv_symbolov, opis_symboli, traktovka_kolority, hudozhnik_0, hudozhnik_1, hudozhnik_2, hudozhnik_3
 from templates import hudozhnik_4, hudozhnik_5,hudozhnik_6, hudozhnik_7, hudozhnik_8, hudozhnik_9, hudozhnik_10,hudozhnik_11
